@@ -9,3 +9,5 @@ He too, would like to share his experience on the mainstream social media.
 The platform itself should also provide a REST API allowing third party integration and app development.
 
 Your client requires that Project creation and backing should be allowed solely to registered users through a secure environment and that all money transactions should be handled by an authorised Payments Institution.
+
+Cheers!
