@@ -1,7 +1,7 @@
 namespace CF.Models.Database
 {
     // UserProjectComment
-    public class UserProjectComment
+    public class UserProjectComment : IDbModel
     {
         public int Id { get; set; } // Id (Primary key)
         public int BackerId { get; set; } // BackerId
