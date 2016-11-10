@@ -1,7 +1,5 @@
-
 namespace CF.Models.Database
 {
-
     // Category
     public class Category
     {
@@ -16,6 +14,4 @@ namespace CF.Models.Database
             Projects = new System.Collections.Generic.List<Project>();
         }
     }
-
 }
-// </auto-generated>

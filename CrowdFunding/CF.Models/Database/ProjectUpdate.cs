@@ -1,6 +1,5 @@
 namespace CF.Models.Database
 {
-
     // ProjectUpdate
     public class ProjectUpdate
     {
@@ -12,6 +11,4 @@ namespace CF.Models.Database
         // Foreign keys
         public virtual Project Project { get; set; } // FK_ProjectUpdate_Project
     }
-
 }
-// </auto-generated>

@@ -2,7 +2,6 @@ namespace CF.Models.Database
 {
 
     // BackerProject
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.24.0.0")]
     public class BackerProject
     {
         public int Id { get; set; } // Id (Primary key)
@@ -15,6 +14,4 @@ namespace CF.Models.Database
         public virtual Project Project { get; set; } // FK_BackerProject_Project
         public virtual User User { get; set; } // FK_BackerProject_User
     }
-
 }
-// </auto-generated>

@@ -16,6 +16,4 @@ namespace CF.Models.Database
         // Foreign keys
         public virtual Project Project { get; set; } // FK_Reward_Project
     }
-
 }
-// </auto-generated>

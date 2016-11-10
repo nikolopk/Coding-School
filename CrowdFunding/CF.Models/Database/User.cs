@@ -1,6 +1,5 @@
 namespace CF.Models.Database
 {
-
     // User
     public class User
     {
@@ -28,6 +27,4 @@ namespace CF.Models.Database
             UserProjectComments = new System.Collections.Generic.List<UserProjectComment>();
         }
     }
-
 }
-// </auto-generated>

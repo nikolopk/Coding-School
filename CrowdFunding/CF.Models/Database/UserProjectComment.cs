@@ -13,5 +13,4 @@ namespace CF.Models.Database
         public virtual Project Project { get; set; } // FK_UserProjectComment_Project
         public virtual User User { get; set; } // FK_UserProjectComment_User
     }
-
 }

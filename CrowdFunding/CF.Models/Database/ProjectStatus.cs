@@ -1,6 +1,5 @@
 namespace CF.Models.Database
 {
-
     // ProjectStatus
     public class ProjectStatus
     {
@@ -15,6 +14,4 @@ namespace CF.Models.Database
             Projects = new System.Collections.Generic.List<Project>();
         }
     }
-
 }
-// </auto-generated>
