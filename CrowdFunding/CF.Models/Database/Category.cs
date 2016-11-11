@@ -1,9 +1,7 @@
-
 namespace CF.Models.Database
 {
-
     // Category
-    public class Category
+    public class Category : IDbModel
     {
         public int Id { get; set; } // Id (Primary key)
         public string Name { get; set; } // Name (length: 50)
@@ -16,6 +14,4 @@ namespace CF.Models.Database
             Projects = new System.Collections.Generic.List<Project>();
         }
     }
-
 }
-// </auto-generated>

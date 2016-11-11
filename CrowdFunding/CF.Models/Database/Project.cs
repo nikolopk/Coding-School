@@ -1,8 +1,7 @@
 namespace CF.Models.Database
 {
-
     // Project
-    public class Project
+    public class Project : IDbModel
     {
         public int Id { get; set; } // Id (Primary key)
         public int CreatorId { get; set; } // CreatorId
@@ -34,6 +33,4 @@ namespace CF.Models.Database
             UserProjectComments = new System.Collections.Generic.List<UserProjectComment>();
         }
     }
-
 }
-// </auto-generated>

@@ -1,8 +1,7 @@
 namespace CF.Models.Database
 {
-
     // User
-    public class User
+    public class User : IDbModel
     {
         public int Id { get; set; } // Id (Primary key)
         public string Email { get; set; } // Email (length: 200)
@@ -28,6 +27,4 @@ namespace CF.Models.Database
             UserProjectComments = new System.Collections.Generic.List<UserProjectComment>();
         }
     }
-
 }
-// </auto-generated>

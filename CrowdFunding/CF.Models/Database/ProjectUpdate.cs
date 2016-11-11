@@ -1,8 +1,7 @@
 namespace CF.Models.Database
 {
-
     // ProjectUpdate
-    public class ProjectUpdate
+    public class ProjectUpdate : IDbModel
     {
         public int Id { get; set; } // Id (Primary key)
         public int ProjectId { get; set; } // ProjectId
@@ -12,6 +11,4 @@ namespace CF.Models.Database
         // Foreign keys
         public virtual Project Project { get; set; } // FK_ProjectUpdate_Project
     }
-
 }
-// </auto-generated>

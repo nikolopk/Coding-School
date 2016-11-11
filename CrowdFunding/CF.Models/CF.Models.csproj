@@ -48,6 +48,7 @@
     <Compile Include="Database\Reward.cs" />
     <Compile Include="Database\User.cs" />
     <Compile Include="Database\UserProjectComment.cs" />
+    <Compile Include="IDbModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 namespace CF.Models.Database
 { 
     // Reward
-    public class Reward
+    public class Reward : IDbModel
     {
         public int Id { get; set; } // Id (Primary key)
         public int ProjectId { get; set; } // ProjectId
@@ -16,6 +16,4 @@ namespace CF.Models.Database
         // Foreign keys
         public virtual Project Project { get; set; } // FK_Reward_Project
     }
-
 }
-// </auto-generated>

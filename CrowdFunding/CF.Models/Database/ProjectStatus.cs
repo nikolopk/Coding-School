@@ -1,8 +1,7 @@
 namespace CF.Models.Database
 {
-
     // ProjectStatus
-    public class ProjectStatus
+    public class ProjectStatus : IDbModel
     {
         public int Id { get; set; } // Id (Primary key)
         public string Name { get; set; } // Name (length: 50)
@@ -15,6 +14,4 @@ namespace CF.Models.Database
             Projects = new System.Collections.Generic.List<Project>();
         }
     }
-
 }
-// </auto-generated>

@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\CrowdFundingDbContext.cs" />
+    <Compile Include="Context\ICrowdFundingDbContext.cs" />
+    <Compile Include="Disposable.cs" />
     <Compile Include="Mappings\BackerProjectMapping.cs" />
     <Compile Include="Mappings\CategoryMapping.cs" />
     <Compile Include="Mappings\ProjectMapping.cs" />
@@ -58,6 +61,31 @@
     <Compile Include="Mappings\UserMapping.cs" />
     <Compile Include="Mappings\UserProjectCommentMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\IRepositoryBase.cs" />
+    <Compile Include="Repositories\Models\UserRepository.cs" />
+    <Compile Include="Repositories\Models\UserProjectCommentRepository.cs" />
+    <Compile Include="Repositories\Models\RewardRepository.cs" />
+    <Compile Include="Repositories\Models\ProjectUpdateRepository.cs" />
+    <Compile Include="Repositories\Models\ProjectStatusRepository.cs" />
+    <Compile Include="Repositories\Models\ProjectRepository.cs" />
+    <Compile Include="Repositories\Models\CategoryRepository.cs" />
+    <Compile Include="Repositories\Models\BackerProjectRepository.cs" />
+    <Compile Include="Repositories\Models\IUserProjectCommentRepository.cs" />
+    <Compile Include="Repositories\Models\IProjectUpdateRepository.cs" />
+    <Compile Include="Repositories\Models\IRewardRepository.cs" />
+    <Compile Include="Repositories\Models\IProjectRepository.cs" />
+    <Compile Include="Repositories\Models\ICategoryRepository.cs" />
+    <Compile Include="Repositories\Models\IProjectStatusRepository.cs" />
+    <Compile Include="Repositories\Models\IUserRepository.cs" />
+    <Compile Include="Repositories\Models\IBackerProjectRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWorkManager.cs" />
+    <Compile Include="UnitOfWork\UnitOfWork.cs" />
+    <Compile Include="UnitOfWork\UnitOfWorkBase.cs" />
+    <Compile Include="UnitOfWork\UnitOfWorkManager.cs" />
+    <Compile Include="UnitOfWork\UnitOfWorkTransactional.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -69,6 +97,7 @@
       <Name>CF.Models</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
