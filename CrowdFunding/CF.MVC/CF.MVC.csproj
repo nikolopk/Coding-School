@@ -239,11 +239,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\myTemplate\ajax\" />
-    <Folder Include="Content\myTemplate\css\" />
-    <Folder Include="Content\myTemplate\images\" />
-    <Folder Include="Content\myTemplate\js\" />
-    <Folder Include="Content\myTemplate\twitter\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
