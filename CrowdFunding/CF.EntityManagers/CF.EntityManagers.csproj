@@ -52,11 +52,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CF.Data2\CF.Data2.csproj">
+      <Project>{537a9adb-6c9a-4f9d-b658-9fea7f04290e}</Project>
+      <Name>CF.Data2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CF.Models\CF.Models.csproj">
+      <Project>{1716a568-d5ac-4dc6-bf54-94615b178c73}</Project>
+      <Name>CF.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CF.Public\CF.Public.csproj">
+      <Project>{1f277a82-b9fd-40ef-9d38-70db4ce8e411}</Project>
+      <Name>CF.Public</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

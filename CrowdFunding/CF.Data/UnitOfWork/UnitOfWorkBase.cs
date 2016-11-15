@@ -8,6 +8,7 @@ namespace CF.Data.UnitOfWork
 {
     public abstract class UnitOfWorkBase : Disposable, IUnitOfWork
     {
+        // https://blog.longle.net/2013/05/11/genericizing-the-unit-of-work-pattern-repository-pattern-with-entity-framework-in-mvc/
         private readonly ICrowdFundingDbContext _context;
         private IBackerProjectRepository _backerProjects;
         private ICategoryRepository _categories;
@@ -17,7 +18,7 @@ namespace CF.Data.UnitOfWork
         private IRewardRepository _rewards;
         private IUserProjectCommentRepository _userProjectComments;
         private IUserRepository _users;
-
+        // ICrowdFundingDbContext,IProject
         protected UnitOfWorkBase(ICrowdFundingDbContext context)
         {
             if (context == null)
@@ -27,8 +28,13 @@ namespace CF.Data.UnitOfWork
 
             _context = context;
         }
-
         
+        //public IRepository<T> GetRepository<T<R>> (T t , R r) 
+        //    where R:Repository<>
+        //    where T:IRepository <R>
+        //{
+        //    get { return InstantiateRepository(t, typeof(R)); }
+        //}
 
         public IBackerProjectRepository BackerProjects
         {

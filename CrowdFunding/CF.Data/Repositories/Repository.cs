@@ -1,15 +1,12 @@
 ﻿using CF.Data.Context;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CF.Data.Repositories
 {
-    public class Repository<T> : Disposable where T : class
+    public class Repository<T> : Disposable, IRepository<T> where T : class
     {
         private readonly ICrowdFundingDbContext _context;
         private readonly DbSet<T> _set;

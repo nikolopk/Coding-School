@@ -6,9 +6,10 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using CF.MVC.Models;
+using CF.Models.MVC;
+using CF.Models.MVC.Account.Manage;
 
-namespace CF.MVC.Controllers
+namespace CF.Controllers
 {
     [Authorize]
     public class ManageController : Controller
