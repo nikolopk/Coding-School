@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CF.Models.MVC.Account.Manage
+namespace CF.Models.MVC.Manage
 {
     public class ConfigureTwoFactorViewModel
     {

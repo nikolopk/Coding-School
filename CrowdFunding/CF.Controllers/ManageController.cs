@@ -1,13 +1,11 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using CF.Models.MVC;
-using CF.Models.MVC.Account.Manage;
+using CF.Models.MVC.Manage;
 
 namespace CF.Controllers
 {

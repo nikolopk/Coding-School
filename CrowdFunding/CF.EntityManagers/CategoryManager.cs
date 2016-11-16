@@ -2,11 +2,8 @@
 using CF.Models.Database;
 using CF.Models.MVC.Category;
 using CF.Public;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CF.EntityManagers
 {
