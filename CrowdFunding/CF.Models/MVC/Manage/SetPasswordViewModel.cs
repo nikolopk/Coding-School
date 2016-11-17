@@ -2,7 +2,7 @@
 
 namespace CF.Models.MVC.Manage
 {
-    public class SetPasswordViewModel
+    public class SetPasswordViewModel : ICachableModel
     {
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

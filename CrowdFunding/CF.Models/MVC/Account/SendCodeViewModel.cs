@@ -2,7 +2,7 @@
 
 namespace CF.Models.MVC.Account
 {
-    public class SendCodeViewModel
+    public class SendCodeViewModel : ICachableModel
     {
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }

@@ -2,7 +2,7 @@
 
 namespace CF.Models.MVC.Account
 {
-    public class ExternalLoginConfirmationViewModel
+    public class ExternalLoginConfirmationViewModel : ICachableModel
     {
         [Required]
         [Display(Name = "Email")]

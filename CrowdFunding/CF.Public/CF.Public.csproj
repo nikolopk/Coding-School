@@ -52,7 +52,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IBackProject.cs" />
     <Compile Include="IManageCategory.cs" />
+    <Compile Include="IManageProject.cs" />
+    <Compile Include="IManageProjectReward.cs" />
+    <Compile Include="IManageProjectUpdate.cs" />
+    <Compile Include="IManageProjectComment.cs" />
+    <Compile Include="IManageUserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

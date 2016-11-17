@@ -2,7 +2,7 @@
 
 namespace CF.Models.MVC.Account
 {
-    public class VerifyCodeViewModel
+    public class VerifyCodeViewModel : ICachableModel
     {
         [Required]
         public string Provider { get; set; }

@@ -2,7 +2,7 @@
 
 namespace CF.Models.MVC.Account
 {
-    public class LoginViewModel
+    public class LoginViewModel : ICachableModel
     {
         [Required]
         [Display(Name = "Email")]

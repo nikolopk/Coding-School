@@ -2,7 +2,7 @@
 
 namespace CF.Models.MVC.Manage
 {
-    public class VerifyPhoneNumberViewModel
+    public class VerifyPhoneNumberViewModel : ICachableModel
     {
         [Required]
         [Display(Name = "Code")]

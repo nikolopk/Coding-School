@@ -113,7 +113,7 @@
     <Compile Include="Database\Reward.cs" />
     <Compile Include="Database\User.cs" />
     <Compile Include="Database\UserProjectComment.cs" />
-    <Compile Include="IDbModel.cs" />
+    <Compile Include="ICachableModel.cs" />
     <Compile Include="MVC\Account\ForgotPasswordViewModel.cs" />
     <Compile Include="MVC\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="MVC\Account\ExternalLoginListViewModel.cs" />
@@ -134,6 +134,16 @@
     <Compile Include="MVC\Manage\ConfigureTwoFactorViewModel.cs" />
     <Compile Include="MVC\Manage\SetPasswordViewModel.cs" />
     <Compile Include="MVC\Manage\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="MVC\ProjectComment\ProjectCommentListViewModel.cs" />
+    <Compile Include="MVC\ProjectComment\ProjectCommentViewModel.cs" />
+    <Compile Include="MVC\ProjectReward\ProjectRewardListViewModel.cs" />
+    <Compile Include="MVC\ProjectReward\ProjectRewardViewModel.cs" />
+    <Compile Include="MVC\ProjectUpdate\ProjectUpdateListViewModel.cs" />
+    <Compile Include="MVC\ProjectUpdate\ProjectUpdateViewModel.cs" />
+    <Compile Include="MVC\Project\BasicProjectInfoViewModel.cs" />
+    <Compile Include="MVC\Project\ProjectAboutViewModel.cs" />
+    <Compile Include="MVC\Project\ProjectBackDisplayViewModel.cs" />
+    <Compile Include="MVC\Project\ProjectCreatorBasicInfoProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CF.Models.MVC.Account
 {
-    public class ForgotPasswordViewModel
+    public class ForgotPasswordViewModel : ICachableModel
     {
         [Required]
         [EmailAddress]

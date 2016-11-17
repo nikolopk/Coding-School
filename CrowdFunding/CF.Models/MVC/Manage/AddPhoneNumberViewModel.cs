@@ -2,7 +2,7 @@
 
 namespace CF.Models.MVC.Manage
 {
-    public class AddPhoneNumberViewModel
+    public class AddPhoneNumberViewModel : ICachableModel
     {
         [Required]
         [Phone]

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CF.Models.MVC.Account
 {
-    public class ExternalLoginListViewModel
+    public class ExternalLoginListViewModel : ICachableModel
     {
         public string ReturnUrl { get; set; }
     }

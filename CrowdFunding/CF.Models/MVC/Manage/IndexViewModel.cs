@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CF.Models.MVC.Manage
 {
-    public class IndexViewModel
+    public class IndexViewModel : ICachableModel
     {
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }

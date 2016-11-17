@@ -2,7 +2,7 @@
 
 namespace CF.Models.MVC.Account
 {
-    public class ResetPasswordViewModel
+    public class ResetPasswordViewModel : ICachableModel
     {
         [Required]
         [EmailAddress]

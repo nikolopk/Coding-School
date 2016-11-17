@@ -2,7 +2,7 @@
 
 namespace CF.Models.MVC.Category
 {
-    public class CategoryListViewModel
+    public class CategoryListViewModel : ICachableModel
     {
         public CategoryListViewModel()
         {

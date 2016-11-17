@@ -2,7 +2,7 @@
 
 namespace CF.Models.MVC.Account
 {
-    public class RegisterViewModel
+    public class RegisterViewModel : ICachableModel
     {
         [Required]
         [EmailAddress]

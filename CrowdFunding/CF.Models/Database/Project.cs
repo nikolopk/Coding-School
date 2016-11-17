@@ -1,7 +1,7 @@
 namespace CF.Models.Database
 {
     // Project
-    public class Project : IDbModel
+    public class Project : ICachableModel
     {
         public int Id { get; set; } // Id (Primary key)
         public int CreatorId { get; set; } // CreatorId

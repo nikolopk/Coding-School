@@ -2,7 +2,7 @@
 
 namespace CF.Models.MVC.Manage
 {
-    public class ChangePasswordViewModel
+    public class ChangePasswordViewModel : ICachableModel
     {
         [Required]
         [DataType(DataType.Password)]

@@ -13,8 +13,13 @@ namespace CF.EntityManagers.AModule
     {
         protected override void Load(ContainerBuilder builder)
         {
-
             builder.RegisterType<CategoryManager>().As<IManageCategory>();
+            builder.RegisterType<ProjectManager>().As<IManageProject>();
+            builder.RegisterType<ProjectBackManager>().As<IBackProject>();
+            builder.RegisterType<ProjectCommentManager>().As<IManageProjectComment>();
+            builder.RegisterType<ProjectRewardManager>().As<IManageProjectReward>();
+            builder.RegisterType<ProjectUpdateIManager>().As<IManageProjectUpdate>();
+            builder.RegisterType<UserProfileManager>().As<IManageUserProfile>();
         }
     }
 }
