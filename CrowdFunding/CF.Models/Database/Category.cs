@@ -1,7 +1,7 @@
 namespace CF.Models.Database
 {
     // Category
-    public class Category : IDbModel
+    public class Category : ICachableModel
     {
         public int Id { get; set; } // Id (Primary key)
         public string Name { get; set; } // Name (length: 50)

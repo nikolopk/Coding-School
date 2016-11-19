@@ -5,7 +5,11 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using CF.MVC.Models;
+using CF.Models.MVC;
+using System.Web.Helpers;
+using System.Security.Claims;
+using CF.Controllers;
+using CF.Models.MVC.Account;
 
 namespace CF.MVC
 {
@@ -54,15 +58,17 @@ namespace CF.MVC
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "157653824703226",
+               appSecret: "9cb4f13e82ac4bb8a7c650a2ec1fdda2");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+
+            // AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;
         }
     }
 }

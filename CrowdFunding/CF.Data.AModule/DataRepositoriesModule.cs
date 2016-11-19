@@ -10,9 +10,6 @@ namespace CF.Data.AModule
 {
     public class DataRepositoriesModule : Module
     {
-
-        public int UnitOfWorkTimeoutInSecs { get; set; }
-        public IsolationLevelEnum UnitOfWorkIsolationLevel { get; set; }
         protected override void Load(ContainerBuilder builder)
         {
             builder.Register(c => new UnitOfWorkManager())

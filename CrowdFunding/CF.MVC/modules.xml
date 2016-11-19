@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<autofac>
+  <modules>
+    <module type="EntityManagers.AModule.EntityManagersModule, EntityManagers.AModule">
+    </module>
+    <module type="DataRepositories.AModule.DataRepositoriesModule, DataRepositories.AModule">
+
+    </module>
+    <module type="Controllers.AModule.ControllersModule, Controllers.AModule">
+    </module>
+    <module type="Logging.Log4Net.AModule.Log4NetLoggerModule, Logging.Log4Net.AModule">
+    </module>
+    <module type="Models.AModule.ModelsModule, Models.AModule">
+    </module>
+    
+
+  </modules>
+</autofac>

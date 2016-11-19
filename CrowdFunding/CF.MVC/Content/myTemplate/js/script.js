@@ -8,6 +8,7 @@
 $(function(){
     var sys_show_popup_login = $(".sys_show_popup_login"),
         sys_popup_common = $("#sys_popup_common");
+    var ROOT = '@Url.Content("~/Content/myTemplate/")';
 		
 	/* Homepage Slider
 	---------------------------------------------------------- */	
@@ -36,7 +37,7 @@ $(function(){
 	$('#sys_lst_tweets').tweet({
 			modpath: '/twitter/',
 			count: 2,
-			loading_text: '<p class="rs ta-c fc-white">loading Twitter <br /><img src="images/ajax-loader.gif" alt="loading"/></p>',
+			loading_text: '<p class="rs ta-c fc-white">loading Twitter <br /><img src="'+ROOT+'/images/ajax-loader.gif" alt="loading"/></p>',
 			username: 'megadrupal',
 			template: '<p class="rs tweet-mind">{text}</p><p class="rs timestamp">{time}</p><i class="icon iTwitter"></i>',
 	});

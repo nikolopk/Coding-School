@@ -1,7 +1,7 @@
 namespace CF.Models.Database
 {
     // ProjectStatus
-    public class ProjectStatus : IDbModel
+    public class ProjectStatus : ICachableModel
     {
         public int Id { get; set; } // Id (Primary key)
         public string Name { get; set; } // Name (length: 50)
