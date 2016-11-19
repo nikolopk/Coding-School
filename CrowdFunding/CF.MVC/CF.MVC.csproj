@@ -366,6 +366,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\myTemplate\images\fb_images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

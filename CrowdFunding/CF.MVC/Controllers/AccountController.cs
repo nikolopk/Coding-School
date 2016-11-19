@@ -57,7 +57,8 @@ namespace CF.MVC.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
+            //ViewBag.ReturnUrl = returnUrl;
+            Console.WriteLine("Hello from login");
             return View();
         }
 
@@ -139,7 +140,7 @@ namespace CF.MVC.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            return View("");
         }
 
         //
@@ -151,7 +152,8 @@ namespace CF.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                Console.WriteLine("Apo controller validation ok!");
+                var user = new ApplicationUser { FirstName = model.FName, LastName = model.LName, Email = model.Email, ConfirmEmail = model.ConfirmEmail };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

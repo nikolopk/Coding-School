@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 
 namespace CF.MVC.Models
 {
@@ -16,6 +17,10 @@ namespace CF.MVC.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public String FirstName { get; set; }
+        public String LastName { get; set; }
+        public String ConfirmEmail { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

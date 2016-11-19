@@ -65,9 +65,23 @@ namespace CF.MVC.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "First Name")]
+        public string FName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Confirm Email")]
+        [Compare("Email", ErrorMessage = "The email and confirmation email do not match.")]
+        public string ConfirmEmail { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -79,6 +93,12 @@ namespace CF.MVC.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class RegisterLoginViewModel
+    {
+        public RegisterViewModel RegisterViewModel { get; set; }
+        public LoginViewModel LoginViewModel { get; set; }
     }
 
     public class ResetPasswordViewModel
