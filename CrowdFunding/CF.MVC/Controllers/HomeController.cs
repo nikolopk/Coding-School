@@ -26,5 +26,10 @@ namespace CF.MVC.Controllers
 
             return View();
         }
+
+        public ActionResult userProfile()
+        {
+             return View();
+        }
     }
 }
