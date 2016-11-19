@@ -1,9 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@using CF.MVC.Models
+@model RegisterViewModel
+
+
+<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>@ViewBag.Title | 4Viva</title>
 
     @* TEMPLATE HEADER FILES*@
     <meta charset="utf-8">
@@ -41,16 +45,13 @@
                 <div class="grid_12">
                     <nav class="top-menu">
                         <ul id="main-menu" class="nav nav-horizontal clearfix">
-                            @*<li class="active"><a href="index.html">Home</a></li>*@
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
                             <li class="sep"></li>
                             <li><a href="all-pages.html">All Pages</a></li>
                             <li class="sep"></li>
                             <li><a href="how-it-work.html">Help</a></li>
                             <li class="sep"></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li class="sep"></li>
-                            <li>@Html.ActionLink("Profile", "UserProfile", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                         </ul>
                         <a id="btn-toogle-menu" class="btn-toogle-menu" href="#alternate-menu">
                             <span class="line-bar"></span>
@@ -67,9 +68,9 @@
                         </div>
                     </nav>
                     <div class="top-message clearfix">
-                        <i class="icon iFolder"></i>
-                        <span class="txt-message">Be the change you want to see in the world.</span>
-                        <i class="icon iX"></i>
+                        <i class="icon iNext"></i>
+                            <span class="txt-message">Be the change you want to see in the world.</span>
+                        <!----<i class="icon iX"></i>-->
                         <div class="clear"></div>
                     </div>
                     <i id="sys_btn_toggle_search" class="icon iBtnRed make-right"></i>
@@ -80,8 +81,8 @@
             <div class="grid_12 header-content">
                 <div id="sys_header_right" class="header-right">
                     <div class="account-panel">
-                           @Html.ActionLink("Register", "Register", "Account", null, new { @class = "btn btn-red" })
-                           @Html.ActionLink("Login", "Login", "Account", null, new { @class = "btn btn-black" })
+                        <a href="#" class="btn btn-red sys_show_popup_login">Register</a>
+                        <a href="#" class="btn btn-black sys_show_popup_login">Login</a>
                     </div>
                     <div class="form-search">
                         <form action="#">
@@ -95,7 +96,9 @@
                 </div>
                 <div class="header-left">
                     <h1 id="logo">
-                        <a href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/Content/myTemplate/")images/myLogo2.png" alt="$SITE_NAME" /></a>
+                        <a href="@Url.Action()">
+                            <img src="@Url.Content("~/Content/myTemplate/")images/myLogo.png" alt="$SITE_NAME"  />
+                        </a>
                     </h1>
                     <div class="main-nav clearfix">
                         <div class="nav-item">
@@ -104,7 +107,7 @@
                         </div>
                         <span class="sep"></span>
                         <div class="nav-item">
-                            <a href="~/ProjectView/Create" class="nav-title">Start</a>
+                            <a href="#" class="nav-title">Start</a>
                             <p class="rs nav-description">Your Project</p>
                         </div>
                     </div>
@@ -121,21 +124,21 @@
         <div class="container_12 main-footer">
             <div class="grid_3 about-us">
                 <h3 class="rs title">About</h3>
-                <p class="rs description">Donec rutrum elit ac arcu bibendum rhoncus in vitae turpis. Quisque fermentum gravida eros non faucibus. Curabitur fermentum, arcu sed cursus commodo.</p>
-                <p class="rs email"><a class="fc-default  be-fc-orange" href="mailto:info@megadrupal.com">info@megadrupal.com</a></p>
-                <p class="rs">+1 (555) 555 - 55 - 55</p>
+                <p class="rs description">4Viva is one of those platforms that gives you space to work with people who know you, love you, and support you.</p>
+                <p class="rs email"><a class="fc-default  be-fc-orange" href="mailto:info@4viva.com">info@4viva.com</a></p>
+                <p class="rs">+30 (555) 555 - 55 - 55</p>
             </div><!--end: .contact-info -->
-            <div class="grid_3 recent-tweets">
+            <!----<div class="grid_3 recent-tweets">
                 <h3 class="rs title">Recent Tweets</h3>
                 <div class="lst-tweets" id="sys_lst_tweets">
 
                 </div>
-            </div><!--end: .recent-tweets -->
+            </div>--><!--end: .recent-tweets -->
             <div class="clear clear-2col"></div>
-            <div class="grid_3 email-newsletter">
+            <!--<div class="grid_3 email-newsletter">
                 <h3 class="rs title">Newsletter Signup</h3>
                 <div class="inner">
-                    <p class="rs description">Nam aliquet, velit quis consequat interdum, odio dolor elementum.</p>
+                    <p class="rs description">Stay in touch with the latest projects.</p>
                     <form action="#">
                         <div class="form form-email">
                             <label class="lbl" for="txt-email">
@@ -145,12 +148,12 @@
                         </div>
                     </form>
                 </div>
-            </div><!--end: .email-newsletter -->
+            </div>--><!--end: .email-newsletter -->
             <div class="grid_3">
                 <h3 class="rs title">Discover &amp; Create</h3>
                 <div class="footer-menu">
                     <ul class="rs">
-                        <li><a class="be-fc-orange" href="#">What is Kickstars</a></li>
+                        <li><a class="be-fc-orange" href="#">What is 4Viva</a></li>
                         <li><a class="be-fc-orange" href="#">Start a project</a></li>
                         <li><a class="be-fc-orange" href="#">Project Guidlines</a></li>
                         <li><a class="be-fc-orange" href="#">Press</a></li>
@@ -171,7 +174,10 @@
         <div class="copyright">
             <div class="container_12">
                 <div class="grid_12">
-                    <a class="logo-footer" href="index.html"><img src="@Url.Content("~/Content/myTemplate/")images/logo-2.png" alt="$SITE_NAME" /></a>
+                    <a class="logo-footer" href="@Url.Action()">
+                        <img src="@Url.Content("~/Content/myTemplate/")images/myLogo-2.png" alt="$SITE_NAME" />
+                    </a>
+                    <!--<a class="logo-footer" href="index.html"><img src="@Url.Content("~/Content/myTemplate/")images/myLogo-2.png" alt="$SITE_NAME" /></a>-->
                     <p class="rs term-privacy">
                         <a class="fw-b be-fc-orange" href="single.html">Terms & Conditions</a>
                         <span class="sep">/</span>
@@ -179,7 +185,7 @@
                         <span class="sep">/</span>
                         <a class="fw-b be-fc-orange" href="#">FAQ</a>
                     </p>
-                    <p class="rs ta-c fc-gray-dark site-copyright">HTML by <a href="http://megadrupal.com" title="Drupal Developers" target="_blank">MegaDrupal</a>. Designed by <a href="http://bestwebsoft.com/" title="Web development company" target="_blank">BestWebSoft</a>.</p>
+                    <p class="rs ta-c fc-gray-dark site-copyright">© 2016 - Designed by <a href="#" title="" target="_blank">Viva Team 4</a>.</p>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -193,40 +199,50 @@
             </div>
             <div class="grid_6 prefix_1">
                 <div class="form login-form">
-                    <form action="#">
+                    <form action="@Url.Action()">
                         <h3 class="rs title-form">Register</h3>
                         <div class="box-white">
-                            <h4 class="rs title-box">New to Viva4</h4>
-                            <p class="rs">A Viva4 account is required to continue.</p>
+                            <h4 class="rs title-box">New to 4Viva?</h4>
+                            <p class="rs">A 4Viva account is required to continue.</p>
                             <div class="form-action">
+                            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-action", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
                                 <div class="wrap-2col clearfix">
                                     <div class="col">
                                         <label for="txt_fname">
-                                            <input id="txt_fname" class="txt fill-width" type="text" placeholder="Enter first name" />
+                                            <!--<input id="txt_fname" class="txt fill-width" type="text" placeholder="Enter first name" />-->
+                                            @Html.TextBoxFor(m => m.FName, new { @class = "txt fill-width", placeholder= "Enter first name" })
                                         </label>
                                         <label for="txt_email">
-                                            <input id="txt_email" class="txt fill-width" type="email" placeholder="Enter your e-mail address" />
+                                            <!--<input id="txt_email" class="txt fill-width" type="email" placeholder="Enter your e-mail address" />-->
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "txt fill-width", placeholder = "Enter your e-mail address" })
                                         </label>
                                         <label for="txt_re_email">
-                                            <input id="txt_re_email" class="txt fill-width" type="email" placeholder="Re-enter your e-mail adress" />
+                                            <!--<input id="txt_re_email" class="txt fill-width" type="email" placeholder="Re-enter your e-mail adress" />-->
+                                            @Html.TextBoxFor(m => m.ConfirmEmail, new { @class = "txt fill-width", placeholder = "Re-enter your e-mail address" })
                                         </label>
                                     </div>
                                     <div class="col">
 
                                         <label for="txt_lname">
-                                            <input id="txt_lname" class="txt fill-width" type="text" placeholder="Enter last name" />
+                                            <!--<input id="txt_lname" class="txt fill-width" type="text" placeholder="Enter last name" />-->
+                                            @Html.TextBoxFor(m => m.LName, new { @class = "txt fill-width", placeholder = "Enter last name" })
                                         </label>
                                         <label for="txt_password">
-                                            <input id="txt_password" class="txt fill-width" type="password" placeholder="Enter password" />
+                                            <!--<input id="txt_password" class="txt fill-width" type="password" placeholder="Enter password" />-->
+                                            @Html.TextBoxFor(m => m.Password, new { @class = "txt fill-width", placeholder = "Enter password" })
                                         </label>
                                         <label for="txt_re_password">
-                                            <input id="txt_re_password" class="txt fill-width" type="password" placeholder="Re-enter password" />
+                                            <!--<input id="txt_re_password" class="txt fill-width" type="password" placeholder="Re-enter password" />-->
+                                            @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "txt fill-width", placeholder = "Re-enter password" })
                                         </label>
                                     </div>
                                 </div>
+                            }
                                 <p class="rs pb10">By signing up, you agree to our <a href="#" class="fc-orange">terms of use</a> and <a href="#" class="fc-orange">privacy policy</a>.</p>
                                 <p class="rs ta-c">
-                                    <button class="btn btn-red btn-submit" type="submit">Register</button>
+                                    <button class="btn btn-red btn-submit" type="submit" value="Register">Register</button>
                                 </p>
                             </div>
                         </div>
@@ -240,6 +256,7 @@
                         <div class="box-white">
                             <h4 class="rs title-box">Already Have an Account?</h4>
                             <p class="rs">Please log in to continue.</p>
+                            
                             <div class="form-action">
                                 <label for="txt_email_login">
                                     <input id="txt_email_login" class="txt fill-width" type="email" placeholder="Enter your e-mail address" />
@@ -268,3 +285,6 @@
     </div>
 </body>
 </html>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
