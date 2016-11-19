@@ -2,7 +2,7 @@ namespace CF.Models.Database
 {
 
     // BackerProject
-    public class BackerProject : IDbModel
+    public class BackerProject : ICachableModel
     {
         public int Id { get; set; } // Id (Primary key)
         public int ProjectId { get; set; } // ProjectId

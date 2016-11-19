@@ -1,7 +1,7 @@
 namespace CF.Models.Database
 { 
     // Reward
-    public class Reward : IDbModel
+    public class Reward : ICachableModel
     {
         public int Id { get; set; } // Id (Primary key)
         public int ProjectId { get; set; } // ProjectId

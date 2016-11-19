@@ -1,6 +1,6 @@
 ﻿namespace CF.Models
 {
-    public interface IDbModel
+    public interface ICachableModel
     {
     }
 }

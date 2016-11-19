@@ -10,9 +10,10 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using CF.MVC.Models;
+using CF.Models.MVC;
+using CF.Models.MVC.Account;
 
-namespace CF.MVC
+namespace CF.Controllers
 {
     public class EmailService : IIdentityMessageService
     {
