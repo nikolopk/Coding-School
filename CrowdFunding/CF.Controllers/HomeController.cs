@@ -6,9 +6,10 @@ using System.Web.Mvc;
 
 namespace CF.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
-        [AllowAnonymous]
+        
         public ActionResult Index()
         {
             return View();
@@ -20,7 +21,7 @@ namespace CF.Controllers
 
             return View();
         }
-        [Authorize]
+        
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
