@@ -1,4 +1,4 @@
-﻿@using CF.MVC.Models
+﻿@using CF.Models.MVC.Account
 @model RegisterViewModel
 
 
@@ -212,7 +212,7 @@
                                     <div class="col">
                                         <label for="txt_fname">
                                             <!--<input id="txt_fname" class="txt fill-width" type="text" placeholder="Enter first name" />-->
-                                            @Html.TextBoxFor(m => m.FName, new { @class = "txt fill-width", placeholder= "Enter first name" })
+                                            @Html.TextBoxFor(m => m.FirstName, new { @class = "txt fill-width", placeholder= "Enter first name" })
                                         </label>
                                         <label for="txt_email">
                                             <!--<input id="txt_email" class="txt fill-width" type="email" placeholder="Enter your e-mail address" />-->
@@ -227,7 +227,7 @@
 
                                         <label for="txt_lname">
                                             <!--<input id="txt_lname" class="txt fill-width" type="text" placeholder="Enter last name" />-->
-                                            @Html.TextBoxFor(m => m.LName, new { @class = "txt fill-width", placeholder = "Enter last name" })
+                                            @Html.TextBoxFor(m => m.LastName, new { @class = "txt fill-width", placeholder = "Enter last name" })
                                         </label>
                                         <label for="txt_password">
                                             <!--<input id="txt_password" class="txt fill-width" type="password" placeholder="Enter password" />-->
