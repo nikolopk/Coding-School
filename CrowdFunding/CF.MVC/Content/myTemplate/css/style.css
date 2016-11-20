@@ -808,8 +808,9 @@ a.fc-gray-dark,.fc-gray-dark{color: #999}
     .iPlugGray         {width:11px;height:11px;background-position: -34px -16px}
     .iPlugRed          {width:11px;height:11px;background-position: -45px -16px}
     .iLocation         {width:09px;height:13px;background-position: -56px -16px}
-    .iNext             {width:11px;height:16px;background-position: -65px -16px}
-    .iNext:hover       {width:11px;height:16px;background-position: -76px -16px}
+    /*.iNext             {width:11px;height:16px;background-position: -65px -16px}
+    .iNext:hover       {width:11px;height:16px;background-position: -76px -16px}*/
+    .iNext             {width:11px;height:16px;background-position: -76px -16px}
     .iPrev             {width:11px;height:16px;background-position: -98px -16px}
     .iPrev:hover       {width:11px;height:16px;background-position: -87px -16px}
     /*row3*/
@@ -1222,7 +1223,7 @@ a.fc-gray-dark,.fc-gray-dark{color: #999}
 }
 #header .txt-message{
     color: #92999d;
-    margin: 0 20px 0 10px;
+    margin: 0 20px 10px 5px;
 }
 #header .wrap-top-menu .iBtnRed{
     display: none;

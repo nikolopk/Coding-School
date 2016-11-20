@@ -9,6 +9,12 @@ namespace CF.Models.MVC.Account
         [Display(Name = "Email")]
         public string Email { get; set; }
 
+        public string ConfirmEmail { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]

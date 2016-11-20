@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace CF.MVC.Controllers
 {
+    [AllowAnonymous]
     public class ProjectViewController : Controller
     {
         // GET: ProjectView

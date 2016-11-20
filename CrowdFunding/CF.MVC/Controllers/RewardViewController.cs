@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace CF.MVC.Controllers
 {
+    [AllowAnonymous]
     public class RewardViewController : Controller
     {
         // GET: RewardView
