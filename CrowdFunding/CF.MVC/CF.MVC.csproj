@@ -598,9 +598,17 @@
       <Project>{1F2AEF8F-9796-457B-9665-6810BAE20913}</Project>
       <Name>CF.EntityManagers.AModule</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CF.Models.AModule\CF.Models.AModule.csproj">
+      <Project>{626c9dab-7666-4923-b599-2794388b7c16}</Project>
+      <Name>CF.Models.AModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CF.Models\CF.Models.csproj">
       <Project>{1716A568-D5AC-4DC6-BF54-94615B178C73}</Project>
       <Name>CF.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CF.Public\CF.Public.csproj">
+      <Project>{1f277a82-b9fd-40ef-9d38-70db4ce8e411}</Project>
+      <Name>CF.Public</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
