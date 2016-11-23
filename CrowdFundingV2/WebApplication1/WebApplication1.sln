@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CF.Data", "CF.Data\CF.Data.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CF.EntityManagers", "CF.EntityManagers\CF.EntityManagers.csproj", "{B7DF280E-D0FB-4BFC-88F5-BAC07DEF4015}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CF.POCOGenerator", "CF.POCOGenerator\CF.POCOGenerator.csproj", "{61296AEC-1835-4FCC-8482-912083E3D599}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CF.Public", "CF.Public\CF.Public.csproj", "{0BD7CBF1-4D8E-416F-9049-93839A1745E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{B7DF280E-D0FB-4BFC-88F5-BAC07DEF4015}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7DF280E-D0FB-4BFC-88F5-BAC07DEF4015}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7DF280E-D0FB-4BFC-88F5-BAC07DEF4015}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61296AEC-1835-4FCC-8482-912083E3D599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61296AEC-1835-4FCC-8482-912083E3D599}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61296AEC-1835-4FCC-8482-912083E3D599}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61296AEC-1835-4FCC-8482-912083E3D599}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BD7CBF1-4D8E-416F-9049-93839A1745E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BD7CBF1-4D8E-416F-9049-93839A1745E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BD7CBF1-4D8E-416F-9049-93839A1745E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BD7CBF1-4D8E-416F-9049-93839A1745E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

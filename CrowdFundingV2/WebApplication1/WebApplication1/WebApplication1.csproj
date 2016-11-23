@@ -311,6 +311,12 @@
       <DependentUpon>201611201109095_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CF.EntityManagers\CF.EntityManagers.csproj">
+      <Project>{b7df280e-d0fb-4bfc-88f5-bac07def4015}</Project>
+      <Name>CF.EntityManagers</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
