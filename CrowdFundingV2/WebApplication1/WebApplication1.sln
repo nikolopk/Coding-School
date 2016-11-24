@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CF.POCOGenerator", "CF.POCO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CF.EntityManagers", "CF.EntityManagers\CF.EntityManagers.csproj", "{A531331E-2198-4E9E-87AE-C2D96B3EE2DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CF.Public", "CF.Public\CF.Public.csproj", "{3A56C08E-298F-4C2B-B7A2-2F2AFD341EF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A531331E-2198-4E9E-87AE-C2D96B3EE2DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A531331E-2198-4E9E-87AE-C2D96B3EE2DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A531331E-2198-4E9E-87AE-C2D96B3EE2DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A56C08E-298F-4C2B-B7A2-2F2AFD341EF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A56C08E-298F-4C2B-B7A2-2F2AFD341EF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A56C08E-298F-4C2B-B7A2-2F2AFD341EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A56C08E-298F-4C2B-B7A2-2F2AFD341EF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
