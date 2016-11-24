@@ -207,8 +207,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BackerProjectsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\ProjectUpdatesController.cs" />
+    <Compile Include="Controllers\RewardsController.cs" />
+    <Compile Include="Controllers\UserProjectCommentsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -298,6 +304,36 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Shared\Info.cshtml" />
+    <Content Include="Views\Rewards\Create.cshtml" />
+    <Content Include="Views\Rewards\Delete.cshtml" />
+    <Content Include="Views\Rewards\Details.cshtml" />
+    <Content Include="Views\Rewards\Edit.cshtml" />
+    <Content Include="Views\Rewards\Index.cshtml" />
+    <Content Include="Views\UserProjectComments\Create.cshtml" />
+    <Content Include="Views\UserProjectComments\Delete.cshtml" />
+    <Content Include="Views\UserProjectComments\Details.cshtml" />
+    <Content Include="Views\UserProjectComments\Edit.cshtml" />
+    <Content Include="Views\UserProjectComments\Index.cshtml" />
+    <Content Include="Views\ProjectUpdates\Create.cshtml" />
+    <Content Include="Views\ProjectUpdates\Delete.cshtml" />
+    <Content Include="Views\ProjectUpdates\Details.cshtml" />
+    <Content Include="Views\ProjectUpdates\Edit.cshtml" />
+    <Content Include="Views\ProjectUpdates\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Projects\Create.cshtml" />
+    <Content Include="Views\Projects\Delete.cshtml" />
+    <Content Include="Views\Projects\Details.cshtml" />
+    <Content Include="Views\Projects\Edit.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\BackerProjects\Create.cshtml" />
+    <Content Include="Views\BackerProjects\Delete.cshtml" />
+    <Content Include="Views\BackerProjects\Details.cshtml" />
+    <Content Include="Views\BackerProjects\Edit.cshtml" />
+    <Content Include="Views\BackerProjects\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -312,9 +348,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CF.Data\CF.Data.csproj">
+      <Project>{20e57005-5793-48cd-ac04-045e42a91992}</Project>
+      <Name>CF.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CF.EntityManagers\CF.EntityManagers.csproj">
       <Project>{b7df280e-d0fb-4bfc-88f5-bac07def4015}</Project>
       <Name>CF.EntityManagers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CF.Models\CF.Models.csproj">
+      <Project>{6b213a9e-27f9-48cd-a7a1-77b5cfaea6d5}</Project>
+      <Name>CF.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

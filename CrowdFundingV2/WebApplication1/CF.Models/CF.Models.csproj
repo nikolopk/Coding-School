@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -52,11 +53,17 @@
     <Compile Include="Database\Reward.cs" />
     <Compile Include="Database\User.cs" />
     <Compile Include="Database\UserProjectComment.cs" />
+    <Compile Include="ICachableModel.cs" />
+    <Compile Include="MVC\Project\BasicProjectInfoViewModel.cs" />
+    <Compile Include="MVC\Project\ProjectAboutViewModel.cs" />
+    <Compile Include="MVC\Project\ProjectBackDisplayViewModel.cs" />
+    <Compile Include="MVC\Project\ProjectCreatorBasicInfoProfileViewModel.cs" />
+    <Compile Include="MVC\Project\ProjectViewModel.cs" />
+    <Compile Include="MVC\Project\RewardViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
-    <Folder Include="MVC\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

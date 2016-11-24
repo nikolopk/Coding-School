@@ -64,9 +64,9 @@
     <Compile Include="Mappings\UserMapping.cs" />
     <Compile Include="Mappings\UserProjectCommentMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IProjectRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repositories\" />
     <Folder Include="UnitOfWork\" />
   </ItemGroup>
   <ItemGroup>

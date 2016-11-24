@@ -5,16 +5,7 @@ namespace CF.Models.Database
     public class User
     {
         public int Id { get; set; } // Id (Primary key)
-        public string Email { get; set; } // Email (length: 200)
-        public string Password { get; set; } // Password (length: 50)
-        public string FirstName { get; set; } // FirstName (length: 200)
-        public string LastName { get; set; } // LastName (length: 200)
         public string PhotoUrl { get; set; } // PhotoUrl (length: 200)
-        public string CardNumber { get; set; } // CardNumber (length: 50)
-        public System.DateTime? ExpirationDate { get; set; } // ExpirationDate
-        public short? SecurityCode { get; set; } // SecurityCode
-        public System.Guid? VerificationGuid { get; set; } // VerificationGuid
-        public bool? IsVerified { get; set; } // IsVerified
         public string AspNetUsersId { get; set; } // AspNetUsersId (length: 128)
 
         // Reverse navigation

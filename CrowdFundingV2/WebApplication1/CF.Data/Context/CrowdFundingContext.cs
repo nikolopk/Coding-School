@@ -97,8 +97,8 @@ namespace CF.Data.Context
             modelBuilder.Configurations.Add(new UserProjectCommentMapping(schema));
             return modelBuilder;
         }
-        
 
+        public System.Data.Entity.DbSet<CF.Models.MVC.Project.ProjectCreatorBasicInfoProfileViewModel> ProjectCreatorBasicInfoProfileViewModels { get; set; }
     }
 }
 // </auto-generated>
