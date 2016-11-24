@@ -20,6 +20,6 @@ namespace CF.MVC.Models
         [Display(Name = "Verified?")]
         public bool isVerified { get; set; }
         public System.Collections.Generic.ICollection<RewardViewModel> Rewards { get; set; } // Reward.FK_Reward_Project
-        
+        public List<CF.Models.Database.Category> Category { get; set; }
     }
 }

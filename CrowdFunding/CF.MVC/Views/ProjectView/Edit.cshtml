@@ -4,77 +4,6 @@
     ViewBag.Title = "Edit Project";
     Layout = "~/Views/Shared/_myTemplate.cshtml";
 }
-
-<h2>Edit</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>ProjectViewModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="form-group">
-            //@Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-               // @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-               // @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            //@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-               // @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-               // @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-           // @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                //@Html.EditorFor(model => model.CategoryId, new { htmlAttributes = new { @class = "form-control" } })
-                //@Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            //@Html.LabelFor(model => model.DueDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                //@Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @class = "form-control" } })
-               // @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-           // @Html.LabelFor(model => model.TargetAmount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                //@Html.EditorFor(model => model.TargetAmount, new { htmlAttributes = new { @class = "form-control" } })
-                //@Html.ValidationMessageFor(model => model.TargetAmount, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            //@Html.LabelFor(model => model.isVerified, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    //@Html.EditorFor(model => model.isVerified)
-                   // @Html.ValidationMessageFor(model => model.isVerified, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
@@ -156,8 +85,8 @@
                                                 @Html.ValidationMessageFor(model => model.isVerified, "", new { @class = "txt" })
                                             </div>
                                         </div>
-                                        <p class="wrap-btn-submit rs ta-r">
-                                            <button class="btn btn-red btn-submit-all">Save all settings</button>
+                                        <p class="btn wrap-btn-submit rs ta-r">
+                                            @Html.ActionLink("Submit Changes!", "Edit", "ProjectView", null, new { @class = "btn btn-red btn-submit-all" })
                                         </p>
                                     </form>
                                 </div>
@@ -271,6 +200,7 @@
                                             <p class="rs comment-content"> Morbi eget arcu. Morbi porta, libero id ullamcorper nonummy, nibh ligula pulvinar metus, eget consectetuer augue nisi quis lacus. Ut ac mi quis lacus mollis aliquam. Curabitur iaculis tempus eros. Curabitur vel mi sit amet magna malesuada ultrices</p>
                                             <p class="rs time-post">5 days ago</p>
                                         </div>
+                                    </div>
                                     </div><!--end: .comment-item -->
                                 </div>
                             </div><!--end: .tab-pane -->

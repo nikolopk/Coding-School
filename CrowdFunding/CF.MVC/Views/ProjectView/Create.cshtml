@@ -31,6 +31,7 @@
                             @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "lbl" })
                             <div class="val">
                                 @Html.EditorFor(model => model.CategoryId, new { htmlAttributes = new { @class = "txt" } })
+                                @*@Html.DropDownListFor(c=>c.CategoryId, new SelectList(Model.CategoryId, "CategoryId", "Value"))*@
                                 @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
                             </div>
                         </div>

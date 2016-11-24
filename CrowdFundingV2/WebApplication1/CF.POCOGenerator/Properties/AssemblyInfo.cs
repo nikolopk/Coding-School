@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CF.Data")]
+[assembly: AssemblyTitle("CF.POCOGenerator")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CF.Data")]
+[assembly: AssemblyProduct("CF.POCOGenerator")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("70756fbe-d7a2-4436-b88a-8ab1aa46d848")]
+[assembly: Guid("a2771ca5-1c4e-4328-8f69-3a833aa39d96")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -96,7 +96,7 @@
                 </div>
                 <div class="header-left">
                     <h1 id="logo">
-                        <a href="@Url.Action()">
+                        <a href="@Url.Action("Index", "Home")">
                             <img src="@Url.Content("~/Content/myTemplate/")images/myLogo.png" alt="$SITE_NAME"  />
                         </a>
                     </h1>
@@ -107,7 +107,7 @@
                         </div>
                         <span class="sep"></span>
                         <div class="nav-item">
-                            <a href="#" class="nav-title">Start</a>
+                            <a href="@Url.Action("Create", "ProjectView")" class="nav-title">Start</a>
                             <p class="rs nav-description">Your Project</p>
                         </div>
                     </div>
@@ -154,7 +154,7 @@
                 <div class="footer-menu">
                     <ul class="rs">
                         <li><a class="be-fc-orange" href="#">What is 4Viva</a></li>
-                        <li><a class="be-fc-orange" href="#">Start a project</a></li>
+                        <li><a class="be-fc-orange" href="@Url.Action("Create", "ProjectView")">Start a project</a></li>
                         <li><a class="be-fc-orange" href="#">Project Guidlines</a></li>
                         <li><a class="be-fc-orange" href="#">Press</a></li>
                         <li><a class="be-fc-orange" href="#">Stats</a></li>
