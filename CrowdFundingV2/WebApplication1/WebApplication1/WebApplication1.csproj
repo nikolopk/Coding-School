@@ -334,9 +334,15 @@
     <Content Include="Views\BackerProjects\Details.cshtml" />
     <Content Include="Views\BackerProjects\Edit.cshtml" />
     <Content Include="Views\BackerProjects\Index.cshtml" />
+    <Content Include="Views\Shared\_mytemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\mytemplate\ajax\" />
+    <Folder Include="Content\mytemplate\css\" />
+    <Folder Include="Content\mytemplate\images\" />
+    <Folder Include="Content\mytemplate\js\" />
+    <Folder Include="Content\mytemplate\twitter\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
