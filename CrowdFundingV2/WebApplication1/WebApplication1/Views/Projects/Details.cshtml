@@ -7,7 +7,7 @@
 }
 
 <div id="wrapper">
-
+   
     <div class="layout-2cols">
         <div class="content grid_8">
             <div class="project-detail">
@@ -293,10 +293,26 @@
                         <i class="icon iClock"></i>
                         <span class="val"><span class="fw-b">Funding ends: </span>Apr 8, 2013</span>
                     </div>
-                    <a class="btn btn-green btn-buck-project" href="#">
-                        <span class="lbl">Buck This Project</span>
-                        <span class="desc">$1 minimum pledge</span>
-                    </a>
+                    @*Invoke the js from demo viva payments *@
+                    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+                    <script src="https://demo.vivapayments.com/web/checkout/js"></script>
+
+                    <form id="myform" method="post">
+                        <button type="button"
+                            data-vp-sourcecode="Default"
+                            data-vp-publickey="Ob/Mdq9m9azAOHhsX1m8FHOYYaa95hY+mPAqGuJAyAQ="
+                            data-vp-baseurl="https://demo.vivapayments.com"
+                            data-vp-lang="el"
+                            data-vp-amount="1000"
+                            data-vp-customeremail="customer@vivawallet.com"
+                            data-vp-customerfirstname = "John"
+                            data-vp-customersurname = "Smith"
+                            data-vp-merchantref="test merchant ref"
+                            data-vp-expandcard="true"
+                            data-vp-description="My product">
+                        </button>
+                    </form>
+                 
                     <p class="rs description">This project will only be funded if at least $15,000 is pledged by Wednesday May 8, 2:05pm EDT.</p>
                 </div>
             </div><!--end: .project-runtime -->
