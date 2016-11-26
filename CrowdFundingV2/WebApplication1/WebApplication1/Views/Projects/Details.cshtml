@@ -1,10 +1,14 @@
 ﻿@model CF.Models.Database.Project
 
+
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_myTemplate.cshtml";
 
 }
+
+
+
 
 <div id="wrapper">
    
@@ -19,9 +23,9 @@
                             <div class="thumb-img">
                                 <div class="rslides_container">
                                     <ul class="rslides" id="slider1">
-                                        <li><img src="images/ex/th-552x411-2.jpg" alt=""></li>
-                                        <li><img src="images/ex/th-552x411-1.jpg" alt=""></li>
-                                        <li><img src="images/ex/th-552x411-2.jpg" alt=""></li>
+                                        <li><img src="@Url.Content("~/Content/myTemplate/")images/ex/th-552x411-2.jpg" alt=""></li>
+                                        <li><img src="@Url.Content("~/Content/myTemplate/")images/ex/th-552x411-1.jpg" alt=""></li>
+                                        <li><img src="@Url.Content("~/Content/myTemplate/")images/ex/th-552x411-2.jpg" alt=""></li>
                                     </ul>
                                 </div>
                             </div>
@@ -67,7 +71,7 @@
                                     <p>Nam sit amet est sapien, a faucibus purus. Sed commodo facilisis tempus. Pellentesque placerat elementum adipiscing. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
                                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
                                     <p>
-                                        <img class="img-desc" src="images/ex/th-552x411-2.jpg" alt="$DESCRIPTION" />
+                                        <img class="img-desc" src="@Url.Content("~/Content/myTemplate/")images/ex/th-552x411-2.jpg" alt="$DESCRIPTION" />
                                         <span class="img-label">Me and project friends on meeting</span>
                                     </p>
                                     <p>Nam sit amet est sapien, a faucibus purus. Sed commodo facilisis tempus. Pellentesque placerat elementum adipiscing. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
@@ -96,7 +100,7 @@
                                     <div class="list-last-post">
                                         <div class="media other-post-item">
                                             <a href="#" class="thumb-left">
-                                                <img src="images/ex/th-90x90-1.jpg" alt="$TITLE">
+                                                <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$TITLE">
                                             </a>
                                             <div class="media-body">
                                                 <h4 class="rs title-other-post">
@@ -108,7 +112,7 @@
                                         </div><!--end: .other-post-item -->
                                         <div class="media other-post-item">
                                             <a href="#" class="thumb-left">
-                                                <img src="images/ex/th-90x90-2.jpg" alt="$TITLE">
+                                                <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-2.jpg" alt="$TITLE">
                                             </a>
                                             <div class="media-body">
                                                 <h4 class="rs title-other-post">
@@ -120,7 +124,7 @@
                                         </div><!--end: .other-post-item -->
                                         <div class="media other-post-item">
                                             <a href="#" class="thumb-left">
-                                                <img src="images/ex/th-90x90-3.jpg" alt="$TITLE">
+                                                <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-3.jpg" alt="$TITLE">
                                             </a>
                                             <div class="media-body">
                                                 <h4 class="rs title-other-post">
@@ -132,7 +136,7 @@
                                         </div><!--end: .other-post-item -->
                                         <div class="media other-post-item">
                                             <a href="#" class="thumb-left">
-                                                <img src="images/ex/th-90x90-4.jpg" alt="$TITLE">
+                                                <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-4.jpg" alt="$TITLE">
                                             </a>
                                             <div class="media-body">
                                                 <h4 class="rs title-other-post">
@@ -144,7 +148,7 @@
                                         </div><!--end: .other-post-item -->
                                         <div class="media other-post-item">
                                             <a href="#" class="thumb-left">
-                                                <img src="images/ex/th-90x90-1.jpg" alt="$TITLE">
+                                                <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$TITLE">
                                             </a>
                                             <div class="media-body">
                                                 <h4 class="rs title-other-post">
@@ -165,7 +169,7 @@
                                     <div class="project-author pb20">
                                         <div class="media">
                                             <a href="#" class="thumb-left">
-                                                <img src="images/ex/th-90x90-1.jpg" alt="$USER_NAME" />
+                                                <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$USER_NAME" />
                                             </a>
                                             <div class="media-body">
                                                 <h4 class="rs pb10"><a href="#" class="be-fc-orange fw-b">John Doe</a></h4>
@@ -177,7 +181,7 @@
                                     <div class="project-author pb20">
                                         <div class="media">
                                             <a href="#" class="thumb-left">
-                                                <img src="images/ex/th-90x90-1.jpg" alt="$USER_NAME" />
+                                                <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$USER_NAME" />
                                             </a>
                                             <div class="media-body">
                                                 <h4 class="rs pb10"><a href="#" class="be-fc-orange fw-b">John Doe</a></h4>
@@ -199,7 +203,7 @@
                                 <div class="box-list-comment">
                                     <div class="media comment-item">
                                         <a href="#" class="thumb-left">
-                                            <img src="images/ex/th-90x90-1.jpg" alt="$TITLE">
+                                            <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$TITLE">
                                         </a>
                                         <div class="media-body">
                                             <h4 class="rs comment-author">
@@ -212,7 +216,7 @@
                                     </div><!--end: .comment-item -->
                                     <div class="media comment-item">
                                         <a href="#" class="thumb-left">
-                                            <img src="images/ex/th-90x90-2.jpg" alt="$TITLE">
+                                            <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-2.jpg" alt="$TITLE">
                                         </a>
                                         <div class="media-body">
                                             <h4 class="rs comment-author">
@@ -225,7 +229,7 @@
                                     </div><!--end: .comment-item -->
                                     <div class="media comment-item lv2">
                                         <a href="#" class="thumb-left">
-                                            <img src="images/ex/th-90x90-3.jpg" alt="$TITLE">
+                                            <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-3.jpg" alt="$TITLE">
                                         </a>
                                         <div class="media-body">
                                             <h4 class="rs comment-author">
@@ -238,7 +242,7 @@
                                     </div><!--end: .comment-item -->
                                     <div class="media comment-item lv2">
                                         <a href="#" class="thumb-left">
-                                            <img src="images/ex/th-90x90-4.jpg" alt="$TITLE">
+                                            <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-4.jpg" alt="$TITLE">
                                         </a>
                                         <div class="media-body">
                                             <h4 class="rs comment-author">
@@ -251,7 +255,7 @@
                                     </div><!--end: .comment-item -->
                                     <div class="media comment-item lv3">
                                         <a href="#" class="thumb-left">
-                                            <img src="images/no-avatar.png" alt="$TITLE">
+                                            <img src="@Url.Content("~/Content/myTemplate/")images/no-avatar.png" alt="$TITLE">
                                         </a>
                                         <div class="media-body">
                                             <h4 class="rs comment-author">
@@ -264,7 +268,7 @@
                                     </div><!--end: .comment-item -->
                                     <div class="media comment-item">
                                         <a href="#" class="thumb-left">
-                                            <img src="images/ex/th-90x90-1.jpg" alt="$TITLE">
+                                            <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$TITLE">
                                         </a>
                                         <div class="media-body">
                                             <h4 class="rs comment-author">
@@ -293,6 +297,7 @@
                         <i class="icon iClock"></i>
                         <span class="val"><span class="fw-b">Funding ends: </span>Apr 8, 2013</span>
                     </div>
+<<<<<<< HEAD
                     @*Invoke the js from demo viva payments *@
                     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
                     <script src="https://demo.vivapayments.com/web/checkout/js"></script>
@@ -315,13 +320,31 @@
                  
                     <p class="rs description">This project will only be funded if at least $15,000 is pledged by Wednesday May 8, 2:05pm EDT.</p>
                 </div>
+=======
+                    <!--<a class="btn btn-green btn-buck-project" href="#">
+                        <span class="lbl">Buck This Project</span>
+                        <span class="desc">$1 minimum pledge</span>
+                    </a>-->
+                    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+                    <script src="https://demo.vivapayments.com/web/checkout/js"></script>
+                    <form id="myform" action="/checkout" method="post">
+                        <button type="button"
+                                data-vp-publickey="SnJMStPua7FuMFkXFatxfyUH2RLhammNPfVVqSlOQec="
+                                data-vp-baseurl="https://demo.vivapayments.com"
+                                data-vp-lang="el"
+                                data-vp-amount="1000"
+                                data-vp-description="My product"></button>
+                    </form>
+                        <p class="rs description">This project will only be funded if at least $15,000 is pledged by Wednesday May 8, 2:05pm EDT.</p>
+</div>
+>>>>>>> e6a8c3e20fc4767ea82579db6ade89a42f06cb96
             </div><!--end: .project-runtime -->
             <div class="project-author">
                 <div class="box-gray">
                     <h3 class="title-box">Project by</h3>
                     <div class="media">
                         <a href="#" class="thumb-left">
-                            <img src="images/ex/th-90x90-1.jpg" alt="$USER_NAME" />
+                            <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$USER_NAME" />
                         </a>
                         <div class="media-body">
                             <h4 class="rs pb10"><a href="#" class="be-fc-orange fw-b">John Doe</a></h4>
