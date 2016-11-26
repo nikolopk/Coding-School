@@ -107,7 +107,8 @@
                         </div>
                         <span class="sep"></span>
                         <div class="nav-item">
-                            <a href="@Url.Action("Create", "ProjectView")" class="nav-title">Start</a>
+                            @Html.ActionLink("Start", "Create", "Projects", null, new { @class = "nav-title" })
+                            
                             <p class="rs nav-description">Your Project</p>
                         </div>
                     </div>
