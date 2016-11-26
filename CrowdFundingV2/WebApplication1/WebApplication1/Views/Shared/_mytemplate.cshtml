@@ -1,5 +1,4 @@
 ﻿@using WebApplication1.Models
-@model RegisterViewModel
 
 
 <!DOCTYPE html>
@@ -193,7 +192,7 @@
             </div>
         </div>
     </footer><!--end: #footer -->
-    <div class="popup-common" id="sys_popup_common">
+    @*<div class="popup-common" id="sys_popup_common">
         <div class="overlay-bl-bg"></div>
         <div class="container_12 pop-content">
             <div class="grid_12 wrap-btn-close ta-r">
@@ -207,7 +206,7 @@
                             <h4 class="rs title-box">New to 4Viva?</h4>
                             <p class="rs">A 4Viva account is required to continue.</p>
                             <div class="form-action">
-                                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-action", role = "form" }))
+                                using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-action", role = "form" }))
                                 {
                                     @Html.AntiForgeryToken()
                                     <div class="wrap-2col clearfix">
@@ -284,7 +283,7 @@
             </div>
             <div class="clear"></div>
         </div>
-    </div>
+    </div>*@
 </body>
 </html>
 @section Scripts {
