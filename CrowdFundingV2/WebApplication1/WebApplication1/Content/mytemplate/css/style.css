@@ -2249,7 +2249,7 @@ a.fc-gray-dark,.fc-gray-dark{color: #999}
     padding-bottom: 20px;
 }
 .login-form .box-white{
-    height: 300px;
+    height: auto;
 }
 .login-form .title-box{
     padding-bottom: 0;
