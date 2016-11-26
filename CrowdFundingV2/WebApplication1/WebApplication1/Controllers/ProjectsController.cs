@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using CF.Data.Context;
 using CF.Models.Database;
 
@@ -15,6 +18,12 @@ namespace WebApplication1.Controllers
     public class ProjectsController : Controller
     {
         private CrowdFundingContext db = new CrowdFundingContext();
+        private readonly ApplicationUserManager _userManager;
+        
+        public ProjectsController(ApplicationUserManager userManager)
+        {
+            _userManager = userManager;
+        }
 
         // GET: Projects
         public async Task<ActionResult> Index()
@@ -41,9 +50,9 @@ namespace WebApplication1.Controllers
         // GET: Projects/Create
         public ActionResult Create()
         {
+            
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
             ViewBag.StatusId = new SelectList(db.ProjectStatus, "Id", "Name");
-            ViewBag.CreatorId = new SelectList(db.Users, "Id", "PhotoUrl");
             return View();
         }
 
@@ -52,18 +61,25 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<ActionResult> Create([Bind(Include = "Id,CreatorId,Title,Description,StatusId,CategoryId,DueDate,TargetAmount,CurrentFundAmount,Ratio,DateInserted,DateVerified,VerificationGuid")] Project project)
         {
+            var user = _userManager.FindById(User.Identity.GetUserId());
+            var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
+            project.CreatorId = myUser.Id;
+            project.StatusId = 1;
+            project.DateInserted = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 db.Projects.Add(project);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-
+            
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", project.CategoryId);
             ViewBag.StatusId = new SelectList(db.ProjectStatus, "Id", "Name", project.StatusId);
-            ViewBag.CreatorId = new SelectList(db.Users, "Id", "PhotoUrl", project.CreatorId);
+            
             return View(project);
         }
 
@@ -79,9 +95,15 @@ namespace WebApplication1.Controllers
             {
                 return HttpNotFound();
             }
+            var user = _userManager.FindById(User.Identity.GetUserId());
+            var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
+            if (project.CreatorId != myUser.Id)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", project.CategoryId);
             ViewBag.StatusId = new SelectList(db.ProjectStatus, "Id", "Name", project.StatusId);
-            ViewBag.CreatorId = new SelectList(db.Users, "Id", "PhotoUrl", project.CreatorId);
+
             return View(project);
         }
 
@@ -92,6 +114,13 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Id,CreatorId,Title,Description,StatusId,CategoryId,DueDate,TargetAmount,CurrentFundAmount,Ratio,DateInserted,DateVerified,VerificationGuid")] Project project)
         {
+            var user = _userManager.FindById(User.Identity.GetUserId());
+            var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
+            if (project.CreatorId != myUser.Id)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(project).State = EntityState.Modified;
