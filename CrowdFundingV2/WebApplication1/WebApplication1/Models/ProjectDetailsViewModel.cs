@@ -25,6 +25,9 @@ namespace WebApplication1.Models
 
         public List<Reward> Rewards { get; set; }
 
+        public List<ProjectUpdateViewModel> Updates { get; set; }
+        public List<ProjectCommentViewModel> Comments { get; set; }
+
         public int DaysLeft
         {
             get

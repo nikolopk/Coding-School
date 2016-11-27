@@ -181,7 +181,37 @@ namespace WebApplication1.Controllers
             {
                 return HttpNotFound();
             }
-            return View(project);
+
+            var user = project.User;
+            var aspNetUser = user.AspNetUser;
+            var viewModel = new ProjectDetailsViewModel()
+            {
+                CreatorId = user.Id,
+                Title = project.Title,
+                Description = project.Description,
+                DueDate = project.DueDate,
+                Ratio = (int)Math.Floor(project.Ratio * 100),
+                TargetAmount = project.TargetAmount,
+                CreatorNoProjects = user.Projects.Count(),
+                CurrentFund = project.CurrentFundAmount,
+                CreatorFullName = aspNetUser.FirstName + " " + aspNetUser.LastName,
+                CurrentBackerCount = project.BackerProjects.Count(),
+                DateInserted = project.DateInserted,
+                Id = project.Id,
+                Comments = project.UserProjectComments.Select(c => new ProjectCommentViewModel()
+                {
+                    CommentorFullName = c.User.AspNetUser.FirstName + " " + c.User.AspNetUser.LastName,
+                    DateInserted = c.DateInserted,
+                    Text = c.Text
+                }).ToList(),
+                Updates = project.ProjectUpdates.Select(u => new ProjectUpdateViewModel()
+                {
+                    FullName = aspNetUser.FirstName + " " + aspNetUser.LastName,
+                    DateInserted = u.DateInserted,
+                    Text = u.Text
+                }).ToList(),
+            };
+            return View(viewModel);
         }
 
         // GET: Projects/Edit/5
