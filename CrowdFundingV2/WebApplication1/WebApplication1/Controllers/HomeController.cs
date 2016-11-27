@@ -28,7 +28,7 @@ namespace WebApplication1.Controllers
                                CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
                                Description = y.Description,
                                CurrentFund = y.CurrentFundAmount,
-                               Ratio = y.Ratio * 100,
+                               Ratio = (int)Math.Floor((y.Ratio * 100)),
                                CurrentBackerCount = y.BackerProjects.Where(x => x.ProjectId == y.Id).Count(),
                                DueDate = y.DueDate,
                                NoComments = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),

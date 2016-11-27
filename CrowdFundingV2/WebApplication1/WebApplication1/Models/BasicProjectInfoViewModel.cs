@@ -8,7 +8,7 @@ namespace WebApplication1.Models
         public string CreatorFullName { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
-        public decimal Ratio { get; set; }
+        public int Ratio { get; set; }
 
         public int CurrentBackerCount { get; set; }
 
