@@ -208,6 +208,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BackerProjectsController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
@@ -225,6 +226,9 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BasicProjectInfoViewModel.cs" />
+    <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\HomeIndexViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProjectViewModel.cs" />
@@ -468,17 +472,15 @@
     <Content Include="Views\BackerProjects\Edit.cshtml" />
     <Content Include="Views\BackerProjects\Index.cshtml" />
     <Content Include="Views\Shared\_mytemplate.cshtml" />
-    <Content Include="Views\Shared\ProjectMainView.cshtml" />
     <Content Include="Views\Project\Create.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Project\Edit.cshtml" />
+    <Content Include="Views\Shared\_ProjectMainViewPartial.cshtml" />
+    <Content Include="Views\Project\ProjectByCreator.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-	<Folder Include="Content\mytemplate\ajax\" />
-    <Folder Include="Content\mytemplate\css\" />
-    <Folder Include="Content\mytemplate\images\" />
-    <Folder Include="Content\mytemplate\js\" />
+    <Folder Include="Views\Categories\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

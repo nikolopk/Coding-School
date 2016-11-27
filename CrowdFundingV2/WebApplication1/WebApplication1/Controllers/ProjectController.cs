@@ -7,7 +7,6 @@ using System.Web.Mvc;
 using WebApplication1.Models;
 using System.Data;
 using System.Data.Entity;
-using System.Linq;
 
 using Microsoft.AspNet.Identity;
 using CF.Models.Database;
@@ -30,8 +29,22 @@ namespace WebApplication1.Controllers
         // GET: Test
         public ActionResult Index()
         {
-            var projects = db.Projects.Include(p => p.Category).Include(p => p.ProjectStatu).Include(p => p.User);
-            return View(projects.ToList());
+            var project = db.Projects
+                           .Include(p => p.User)
+                           .Include(p => p.BackerProjects)
+                           .Include(p => p.UserProjectComments)
+                           .Select(y => new BasicProjectInfoViewModel()
+                           {
+                               Title = y.Title,
+                               CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
+                               Description = y.Description,
+                               CurrentFund = y.CurrentFundAmount,
+                               Ratio = y.Ratio * 100,
+                               CurrentBackerCount = y.BackerProjects.Where(x => x.ProjectId == y.Id).Count(),
+                               DueDate = y.DueDate,
+                               NoComments = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
+                           }).FirstOrDefault();
+            return View(project);
         }
 
         [HttpGet]
@@ -41,25 +54,68 @@ namespace WebApplication1.Controllers
             var user = _userManager.FindById(User.Identity.GetUserId());
             var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
 
+
             var model = new ProjectViewModel()
             {
                 Categories = db.Categories.ToList(),
                 Statuses = db.ProjectStatus.ToList(),
                 CreatorFullName = user.FirstName + " " + user.LastName,
                 CreatorId = myUser.Id,
-                NoProjects = db.Projects.Where(x =>x.CreatorId == myUser.Id).Count()
+                NoProjects = db.Projects.Where(x =>x.CreatorId == myUser.Id).Count(),
+                MyProjects = CreatorProjects(myUser.Id)
             };
 
             return View(model);
         }
 
+        public async Task<ActionResult> ProjectByCreator(int id)
+        {
+            var projects = db.Projects
+                           .Include(p => p.User)
+                           .Include(p => p.BackerProjects)
+                           .Include(p => p.UserProjectComments)
+                           .Where(x => x.CreatorId == id)
+                           .Select(y => new BasicProjectInfoViewModel()
+                           {
+                               Title = y.Title,
+                               CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
+                               Description = y.Description,
+                               CurrentFund = y.CurrentFundAmount,
+                               Ratio = y.Ratio * 100,
+                               CurrentBackerCount = y.BackerProjects.Where(x => x.ProjectId == y.Id).Count(),
+                               DueDate = y.DueDate,
+                               NoComments = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
+                           });
+
+
+
+            return View(await projects.ToListAsync());
+        }
+
         [HttpGet]
         [Authorize]
-        public ActionResult CreatorProjects(int id)
+        public IEnumerable<BasicProjectInfoViewModel> CreatorProjects(int id)
         {
-            var projects = db.Projects.Where(x => x.CreatorId == id).ToList();
+            var projects = db.Projects
+                           .Include(p => p.User)
+                           .Include(p => p.BackerProjects)
+                           .Include(p => p.UserProjectComments)
+                           .Where(x => x.CreatorId == id)
+                           .Select(y => new BasicProjectInfoViewModel()
+                                    {
+                                        Title = y.Title,
+                                        CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
+                                        Description = y.Description,
+                                        CurrentFund = y.CurrentFundAmount,
+                                        Ratio = y.Ratio * 100,
+                                        CurrentBackerCount = y.BackerProjects.Where(x=>x.ProjectId == y.Id).Count(),
+                                        DueDate = y.DueDate,
+                                        NoComments = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
+                                    }).ToList();
 
-            return View(projects);
+            
+
+            return projects;
         }
 
         [HttpPost]
@@ -98,7 +154,8 @@ namespace WebApplication1.Controllers
 
                 Categories = db.Categories.ToList(),
                 Statuses = db.ProjectStatus.ToList(),
-                Project = dbProject
+                Project = dbProject,
+                MyProjects = CreatorProjects(myUser.Id)
             };
 
 

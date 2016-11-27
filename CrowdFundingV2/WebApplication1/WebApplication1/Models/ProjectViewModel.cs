@@ -1,8 +1,6 @@
 ﻿using CF.Models.Database;
-using System;
+using CF.Models.MVC.Project;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace WebApplication1.Models
 {
@@ -17,5 +15,7 @@ namespace WebApplication1.Models
         public int NoProjects { get; set; }
 
         public Project Project { get; set; }
+
+        public IEnumerable<BasicProjectInfoViewModel> MyProjects { get; set; }
     }
 }
