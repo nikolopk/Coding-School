@@ -477,6 +477,7 @@
     <Content Include="Views\Project\Edit.cshtml" />
     <Content Include="Views\Shared\_ProjectMainViewPartial.cshtml" />
     <Content Include="Views\Project\ProjectByCreator.cshtml" />
+    <Content Include="Views\Shared\_PopularProjectViewPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

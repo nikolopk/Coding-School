@@ -9,5 +9,6 @@ namespace WebApplication1.Models
     {
         public List<CategoryViewModel> Categories { get; set; }
         public BasicProjectInfoViewModel TopProject { get; set; }
+        public List<BasicProjectInfoViewModel> PopularProjects { get; set; }
     }
 }
