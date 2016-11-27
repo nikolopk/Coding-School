@@ -38,11 +38,12 @@ namespace WebApplication1.Controllers
             return View(userProjectComment);
         }
 
+        [Authorize]
         // GET: UserProjectComments/Create
         public ActionResult Create()
         {
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title");
-            ViewBag.BackerId = new SelectList(db.Users, "Id", "Email");
+            // ViewBag.BackerId = new SelectList(db.Users, "Id", "Email");
             return View();
         }
 
