@@ -17,25 +17,20 @@
     <link rel="stylesheet" href="@Url.Content("~/Content/myTemplate/")css/animate.min.css" />
     <link rel="stylesheet" href="@Url.Content("~/Content/myTemplate/")css/md-slider.css" />
     <link rel="stylesheet" href="@Url.Content("~/Content/myTemplate/")css/style.css" />
+
     <!--[if lte IE 7]>
     <link rel="stylesheet" href="css/ie7.css"/>
     <![endif]-->
     <!--[if lte IE 8]>
     <link rel="stylesheet" href="css/ie8.css"/>
     <![endif]-->
+    
+    <link rel="stylesheet" href="@Url.Content("~/Content/myTemplate/")css/responsiveslides.css" />
     <link rel="stylesheet" href="@Url.Content("~/Content/myTemplate/")css/responsive.css" />
+
     <!--[if lt IE 9]>
     <script type="text/javascript" src="js/html5.js"></script>
     <![endif]-->
-    <script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/raphael-min.js"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/jquery.touchwipe.min.js"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/md_slider.min.js"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/jquery.sidr.min.js"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/jquery.tweet.min.js"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/pie.js"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/script.js"></script>
 </head>
 <body>
     <header id="header">
@@ -289,4 +284,5 @@
 </html>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/myTemplate")
 }

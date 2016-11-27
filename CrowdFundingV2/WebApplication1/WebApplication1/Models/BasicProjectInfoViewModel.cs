@@ -4,6 +4,7 @@ namespace WebApplication1.Models
 {
     public class BasicProjectInfoViewModel 
     {
+        public int Id { get; set; }
         public string Title { get; set; }
         public string CreatorFullName { get; set; }
         public string Description { get; set; }

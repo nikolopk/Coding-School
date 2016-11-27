@@ -24,6 +24,7 @@ namespace WebApplication1.Controllers
                            .Where(p => p.DueDate >= DateTime.Now)
                            .Select(y => new BasicProjectInfoViewModel()
                            {
+                               Id = y.Id,
                                Title = y.Title,
                                CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
                                Description = y.Description,
@@ -41,6 +42,7 @@ namespace WebApplication1.Controllers
                .Where(p => p.DueDate >= DateTime.Now)
                .Select(y => new BasicProjectInfoViewModel()
                {
+                   Id = y.Id,
                    Title = y.Title,
                    CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
                    Description = y.Description,

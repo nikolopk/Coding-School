@@ -35,6 +35,7 @@ namespace WebApplication1.Controllers
                            .Include(p => p.UserProjectComments)
                            .Select(y => new BasicProjectInfoViewModel()
                            {
+                               Id = y.Id,
                                Title = y.Title,
                                CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
                                Description = y.Description,
@@ -77,6 +78,7 @@ namespace WebApplication1.Controllers
                            .Where(x => x.CreatorId == id)
                            .Select(y => new BasicProjectInfoViewModel()
                            {
+                               Id = y.Id,
                                Title = y.Title,
                                CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
                                Description = y.Description,
@@ -103,6 +105,7 @@ namespace WebApplication1.Controllers
                            .Where(x => x.CreatorId == id)
                            .Select(y => new BasicProjectInfoViewModel()
                                     {
+                                        Id = y.Id,
                                         Title = y.Title,
                                         CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
                                         Description = y.Description,
@@ -163,6 +166,22 @@ namespace WebApplication1.Controllers
             //ViewBag.StatusId = new SelectList(db.ProjectStatus, "Id", "Name", project.StatusId);
 
             return View(viewModel);
+        }
+
+
+        // GET: Projects/Details/5
+        public async Task<ActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Project project = await db.Projects.FindAsync(id);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            return View(project);
         }
 
         // GET: Projects/Edit/5
