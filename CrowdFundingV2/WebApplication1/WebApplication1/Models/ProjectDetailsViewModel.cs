@@ -28,6 +28,8 @@ namespace WebApplication1.Models
         public List<ProjectUpdateViewModel> Updates { get; set; }
         public List<ProjectCommentViewModel> Comments { get; set; }
 
+        public List<BackerViewModel> Backers { get; set; }
+
         public int DaysLeft
         {
             get

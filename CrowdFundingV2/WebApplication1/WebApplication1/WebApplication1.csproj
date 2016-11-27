@@ -226,7 +226,9 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BackerViewModel.cs" />
     <Compile Include="Models\BasicProjectInfoViewModel.cs" />
+    <Compile Include="Models\CategoryDetailsViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\HomeIndexViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -483,6 +485,7 @@
     <Content Include="Views\Shared\_PopularProjectViewPartial.cshtml" />
     <Content Include="Views\Shared\_ProjectCommentPartial.cshtml" />
     <Content Include="Views\Shared\_ProjectUpdatePartial.cshtml" />
+    <Content Include="Views\Project\_BackerPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

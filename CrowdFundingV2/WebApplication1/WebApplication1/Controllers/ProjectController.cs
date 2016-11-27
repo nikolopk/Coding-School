@@ -210,6 +210,11 @@ namespace WebApplication1.Controllers
                     DateInserted = u.DateInserted,
                     Text = u.Text
                 }).ToList(),
+                Backers = project.BackerProjects.Select(b => new BackerViewModel()
+                {
+                    FullName = b.User.AspNetUser.FirstName + " " + b.User.AspNetUser.LastName,
+                    NoProjects = b.User.BackerProjects.Count()
+                }).ToList()
             };
             return View(viewModel);
         }

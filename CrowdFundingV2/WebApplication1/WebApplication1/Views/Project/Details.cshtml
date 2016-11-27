@@ -7,9 +7,6 @@
 
 }
 
-
-
-
 <div id="wrapper">
 
     <div class="layout-2cols">
@@ -32,7 +29,7 @@
                         </div>
                     </div><!--end: .top-project-info -->
                     <div class="bottom-project-info clearfix">
-                        <div class="project-progress sys_circle_progress" data-percent="87">
+                        <div class="project-progress sys_circle_progress" data-percent="@Model.Ratio">
                             <div class="sys_holder_sector"></div>
                         </div>
                         <div class="group-fee clearfix">
@@ -58,7 +55,7 @@
                     <ul class="nav nav-tabs clearfix">
                         <li class="active"><a href="#">About</a></li>
                         <li><a href="#" class="be-fc-orange">Updates (@Model.Updates.Count())</a></li>
-                        <li><a href="#" class="be-fc-orange">Backers (270)</a></li>
+                        <li><a href="#" class="be-fc-orange">Backers (@Model.Backers.Count())</a></li>
                         <li><a href="#" class="be-fc-orange">Comments (@Model.Comments.Count())</a></li>
                     </ul>
                     <div class="tab-content">
@@ -108,33 +105,14 @@
                             </div><!--end: .tab-pane(Updates) -->
                         </div>
                         <div>
-                            <h3 class="rs alternate-tab accordion-label">Backers (270)</h3>
+                            <h3 class="rs alternate-tab accordion-label">Backers (@Model.Backers.Count())</h3>
                             <div class="tab-pane accordion-content">
                                 <div class="tab-pane-inside">
-                                    <div class="project-author pb20">
-                                        <div class="media">
-                                            <a href="#" class="thumb-left">
-                                                <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$USER_NAME" />
-                                            </a>
-                                            <div class="media-body">
-                                                <h4 class="rs pb10"><a href="#" class="be-fc-orange fw-b">John Doe</a></h4>
-                                                <p class="rs">Chicago, IL</p>
-                                                <p class="rs fc-gray">5 projects</p>
-                                            </div>
-                                        </div>
-                                    </div><!--end: .project-author -->
-                                    <div class="project-author pb20">
-                                        <div class="media">
-                                            <a href="#" class="thumb-left">
-                                                <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$USER_NAME" />
-                                            </a>
-                                            <div class="media-body">
-                                                <h4 class="rs pb10"><a href="#" class="be-fc-orange fw-b">John Doe</a></h4>
-                                                <p class="rs">Chicago, IL</p>
-                                                <p class="rs fc-gray">5 projects</p>
-                                            </div>
-                                        </div>
-                                    </div><!--end: .project-author -->
+                                    @foreach(var backer in Model.Backers)
+                                    {
+                                        @Html.Partial("_BackerPartial", backer)
+
+                                    }
                                 </div>
                                 <div class="project-btn-action">
                                     <a class="btn btn-red" href="#">Ask a question</a>
@@ -173,7 +151,7 @@
                         <span class="lbl">Buck This Project</span>
                         <span class="desc">$1 minimum pledge</span>
                     </a>-->
-                    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+                    
                     <script src="https://demo.vivapayments.com/web/checkout/js"></script>
                     <form id="myform" action="/checkout" method="post">
                         <button type="button"
@@ -194,9 +172,8 @@
                             <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$USER_NAME" />
                         </a>
                         <div class="media-body">
-                            <h4 class="rs pb10"><a href="#" class="be-fc-orange fw-b">John Doe</a></h4>
-                            <p class="rs">Chicago, IL</p>
-                            <p class="rs fc-gray">5 projects</p>
+                            <h4 class="rs pb10"><a href="#" class="be-fc-orange fw-b">@Model.CreatorFullName</a></h4>
+                            <p class="rs fc-gray">@Model.CreatorNoProjects projects</p>
                         </div>
                     </div>
                     <div class="author-action">
@@ -311,9 +288,3 @@
     </div>
 
 </div>
-
-
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
