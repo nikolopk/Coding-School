@@ -30,19 +30,17 @@
 
                                     @Html.LabelFor(m => m.RememberMe, new { @class = "lbl_remember" })
                                     @Html.CheckBoxFor(m => m.RememberMe, new { @class = "chk_remember" })
-                                </div>
-                            </div>
-
-
-                            <p class="rs ta-c pb10">
-                                <input type="submit" value="Log in" class="btn btn-red btn-submit" />
-                            </p>
+                                    <p class="rs ta-c pb10">
+                                        <input type="submit" value="Log in" class="btn btn-red btn-submit" />
+                                    </p>
                                     <p class="rs ta-c">
                                         @Html.ActionLink("I forgot my password", "ForgotPassword", null, new { @class = "fc-orange" })
                                     </p>
                                     <p class="rs ta-c">
                                         @Html.ActionLink("Register as a new user", "Register", null, new { @class = "fc-orange" })
                                     </p>
+                                </div>
+                            </div>
                         }
                     </section>
                 </div>
