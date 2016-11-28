@@ -148,9 +148,9 @@ namespace WebApplication1.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Projects.Add(dbProject);
+                dbProject = db.Projects.Add(dbProject);
                 db.SaveChanges();
-                return RedirectToAction("Edit", dbProject.Id);
+                return RedirectToAction("Edit", new { id = dbProject.Id }); 
             }
             var viewModel = new Models.ProjectViewModel()
             {
@@ -218,6 +218,58 @@ namespace WebApplication1.Controllers
             };
             return View(viewModel);
         }
+
+        // GET: Projects/Edit/5
+        public async Task<ActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Project project = await db.Projects.FindAsync(id);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            var user = _userManager.FindById(User.Identity.GetUserId());
+            var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
+            if (project.CreatorId != myUser.Id)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", project.CategoryId);
+            ViewBag.StatusId = new SelectList(db.ProjectStatus, "Id", "Name", project.StatusId);
+
+            return View(project);
+        }
+
+        // POST: Projects/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,CreatorId,Title,Description,StatusId,CategoryId,DueDate,TargetAmount,CurrentFundAmount,Ratio,DateInserted,DateVerified,VerificationGuid")] Project project)
+        {
+            var user = _userManager.FindById(User.Identity.GetUserId());
+            var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
+            if (project.CreatorId != myUser.Id)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(project).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", project.CategoryId);
+            ViewBag.StatusId = new SelectList(db.ProjectStatus, "Id", "Name", project.StatusId);
+            ViewBag.CreatorId = new SelectList(db.Users, "Id", "PhotoUrl", project.CreatorId);
+            return View(project);
+        }
+
 
     }
 }
