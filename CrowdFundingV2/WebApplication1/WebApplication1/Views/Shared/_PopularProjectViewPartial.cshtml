@@ -20,18 +20,18 @@
         <div class="bottom-project-info clearfix">
             <div class="line-progress">
                 <div class="bg-progress">
-                    <span style="width: 50%"></span>
+                    <span style="width: @Model.Ratio%"></span>
                 </div>
             </div>
             <div class="group-fee clearfix">
                 <div class="fee-item">
                     <p class="rs lbl">Funded</p>
-                    <span class="val">@Model.Ratio %</span>
+                    <span class="val">@Model.Ratio%</span>
                 </div>
                 <div class="sep"></div>
                 <div class="fee-item">
                     <p class="rs lbl">Pledged</p>
-                    <span class="val">€ @Model.CurrentFund</span>
+                    <span class="val">€@Model.CurrentFund</span>
                 </div>
                 <div class="sep"></div>
                 <div class="fee-item">
