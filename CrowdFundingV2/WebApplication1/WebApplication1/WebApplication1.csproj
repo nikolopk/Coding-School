@@ -513,6 +513,10 @@
       <Project>{6b213a9e-27f9-48cd-a7a1-77b5cfaea6d5}</Project>
       <Name>CF.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CF.Public\CF.Public.csproj">
+      <Project>{3A56C08E-298F-4C2B-B7A2-2F2AFD341EF7}</Project>
+      <Name>CF.Public</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CF.EntityManagers</RootNamespace>
     <AssemblyName>CF.EntityManagers</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,11 +48,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserManager.cs" />
+    <Compile Include="DboUserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CF.Data\CF.Data.csproj">
+      <Project>{20e57005-5793-48cd-ac04-045e42a91992}</Project>
+      <Name>CF.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CF.Models\CF.Models.csproj">
+      <Project>{6b213a9e-27f9-48cd-a7a1-77b5cfaea6d5}</Project>
+      <Name>CF.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CF.Public\CF.Public.csproj">
+      <Project>{3a56c08e-298f-4c2b-b7a2-2f2afd341ef7}</Project>
+      <Name>CF.Public</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
