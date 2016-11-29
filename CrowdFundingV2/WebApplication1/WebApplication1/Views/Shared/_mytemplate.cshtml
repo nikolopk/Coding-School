@@ -11,34 +11,40 @@
     @* TEMPLATE HEADER FILES*@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="@Url.Content("~/Content/myTemplate/")css/normalize.css" />
     <link rel="stylesheet" href="@Url.Content("~/Content/myTemplate/")css/jquery.sidr.light.css" />
     <link rel="stylesheet" href="@Url.Content("~/Content/myTemplate/")css/animate.min.css" />
     <link rel="stylesheet" href="@Url.Content("~/Content/myTemplate/")css/md-slider.css" />
     <link rel="stylesheet" href="@Url.Content("~/Content/myTemplate/")css/style.css" />
+
     <!--[if lte IE 7]>
     <link rel="stylesheet" href="css/ie7.css"/>
     <![endif]-->
     <!--[if lte IE 8]>
     <link rel="stylesheet" href="css/ie8.css"/>
     <![endif]-->
+    
+    <link rel="stylesheet" href="@Url.Content("~/Content/myTemplate/")css/responsiveslides.css" />
     <link rel="stylesheet" href="@Url.Content("~/Content/myTemplate/")css/responsive.css" />
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="js/html5.js"></script>
-    <![endif]-->
+
     <script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/raphael-min.js"></script>
-    <script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/jquery-1.9.1.min.js"></script>
+    @*<script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/jquery-1.9.1.min.js"></script>*@
+    <script  src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/jquery.touchwipe.min.js"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/md_slider.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/responsiveslides.min.js"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/jquery.sidr.min.js"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/jquery.tweet.min.js"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/pie.js"></script>
     <script type="text/javascript" src="@Url.Content("~/Content/myTemplate/")js/script.js"></script>
-
-    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="https://demo.vivapayments.com/web/checkout/js"></script>
+
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="js/html5.js"></script>
+    <![endif]-->
 </head>
 <body>
     <header id="header">
@@ -62,10 +68,10 @@
                         </a>
                         <div id="right-menu">
                             <ul class="alternate-menu">
-                                <li><a href="index.html">Home</a></li>
+                                <li><a href="index.html">@Html.ActionLink("Home", "Index", "Home")</a></li>
                                 <li><a href="all-pages.html">All Pages</a></li>
                                 <li><a href="how-it-work.html">Help</a></li>
-                                <li><a href="contact.html">Contact us</a></li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                             </ul>
                         </div>
                     </nav>
@@ -100,7 +106,7 @@
                 <div class="header-left">
                     <h1 id="logo">
                         <a href="@Url.Action("Index", "Home")">
-                            <img src="@Url.Content("~/Content/myTemplate/")images/myLogo.png" alt="$SITE_NAME" />
+                            <img src="@Url.Content("~/Content/myTemplate/")images/myLogo.png" alt="4Viva" />
                         </a>
                     </h1>
                     <div class="main-nav clearfix">
@@ -110,7 +116,7 @@
                         </div>
                         <span class="sep"></span>
                         <div class="nav-item">
-                            @Html.ActionLink("Start", "Create", "Projects", null, new { @class = "nav-title" })
+                            @Html.ActionLink("Start", "Create", "Project", null, new { @class = "nav-title" })
                             
                             <p class="rs nav-description">Your Project</p>
                         </div>
@@ -160,7 +166,7 @@
                 <div class="footer-menu">
                     <ul class="rs">
                         <li><a class="be-fc-orange" href="#">What is 4Viva</a></li>
-                        <li><a class="be-fc-orange" href="@Url.Action("Create", "ProjectView")">Start a project</a></li>
+                        <li><a class="be-fc-orange" href="@Url.Action("Create", "Project")">Start a project</a></li>
                         <li><a class="be-fc-orange" href="#">Project Guidlines</a></li>
                         <li><a class="be-fc-orange" href="#">Press</a></li>
                         <li><a class="be-fc-orange" href="#">Stats</a></li>
@@ -181,7 +187,7 @@
             <div class="container_12">
                 <div class="grid_12">
                     <a class="logo-footer" href="@Url.Action()">
-                        <img src="@Url.Content("~/Content/myTemplate/")images/myLogo-2.png" alt="$SITE_NAME" />
+                        <img src="@Url.Content("~/Content/myTemplate/")images/myLogo-2.png" alt="4Viva" />
                     </a>
                     <p class="rs term-privacy">
                         <a class="fw-b be-fc-orange" href="single.html">Terms & Conditions</a>
@@ -292,4 +298,5 @@
 </html>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/myTemplate")
 }

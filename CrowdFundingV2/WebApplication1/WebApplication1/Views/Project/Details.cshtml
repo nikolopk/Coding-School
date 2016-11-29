@@ -1,5 +1,5 @@
-﻿@model CF.Models.Database.Project
-
+﻿@model WebApplication1.Models.ProjectDetailsViewModel
+@using System.Globalization;
 
 @{
     ViewBag.Title = "Details";
@@ -7,16 +7,13 @@
 
 }
 
-
-
-
 <div id="wrapper">
    
     <div class="layout-2cols">
         <div class="content grid_8">
             <div class="project-detail">
-                <h2 class="rs project-title">LYK and Bear #1: No Food Deed Unpunished</h2>
-                <p class="rs post-by">by <a href="#">Jonh Doe</a></p>
+                <h2 class="rs project-title">@Model.Title</h2>
+                <p class="rs post-by">by <a href="#">@Model.CreatorFullName</a></p>
                 <div class="project-short big-thumb">
                     <div class="top-project-info">
                         <div class="content-info-short clearfix">
@@ -32,23 +29,23 @@
                         </div>
                     </div><!--end: .top-project-info -->
                     <div class="bottom-project-info clearfix">
-                        <div class="project-progress sys_circle_progress" data-percent="87">
+                        <div class="project-progress sys_circle_progress" data-percent="@Model.Ratio">
                             <div class="sys_holder_sector"></div>
                         </div>
                         <div class="group-fee clearfix">
                             <div class="fee-item">
                                 <p class="rs lbl">Bankers</p>
-                                <span class="val">270</span>
+                                <span class="val">@Model.CurrentBackerCount</span>
                             </div>
                             <div class="sep"></div>
                             <div class="fee-item">
                                 <p class="rs lbl">Pledged</p>
-                                <span class="val">$38,000</span>
+                                <span class="val">€@Model.CurrentFund</span>
                             </div>
                             <div class="sep"></div>
                             <div class="fee-item">
                                 <p class="rs lbl">Days Left</p>
-                                <span class="val">25</span>
+                                <span class="val">@Model.DaysLeft</span>
                             </div>
                         </div>
                         <div class="clear"></div>
@@ -57,19 +54,19 @@
                 <div class="project-tab-detail tabbable accordion">
                     <ul class="nav nav-tabs clearfix">
                         <li class="active"><a href="#">About</a></li>
-                        <li><a href="#" class="be-fc-orange">Updates (0)</a></li>
-                        <li><a href="#" class="be-fc-orange">Backers (270)</a></li>
-                        <li><a href="#" class="be-fc-orange">Comments (2)</a></li>
+                        <li><a href="#" class="be-fc-orange">Updates (@Model.Updates.Count())</a></li>
+                        <li><a href="#" class="be-fc-orange">Backers (@Model.Backers.Count())</a></li>
+                        <li><a href="#" class="be-fc-orange">Comments (@Model.Comments.Count())</a></li>
                     </ul>
                     <div class="tab-content">
                         <div>
                             <h3 class="rs alternate-tab accordion-label">About</h3>
                             <div class="tab-pane active accordion-content">
                                 <div class="editor-content">
-                                    <h3 class="rs title-inside">LYK and Bear #1: No Food Deed Unpunished</h3>
-                                    <p class="rs post-by">by <a href="#" class="fw-b fc-gray be-fc-orange">Ray Sumser</a> in <span class="fw-b fc-gray">New York, NY</span></p>
-                                    <p>Nam sit amet est sapien, a faucibus purus. Sed commodo facilisis tempus. Pellentesque placerat elementum adipiscing. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
+                                    <h3 class="rs title-inside">@Model.Title</h3>
+                                    <p class="rs post-by">by <a href="#" class="fw-b fc-gray be-fc-orange">@Model.CreatorFullName</a> </p>
+                                    <p>@Model.Description</p>
+                                    
                                     <p>
                                         <img class="img-desc" src="@Url.Content("~/Content/myTemplate/")images/ex/th-552x411-2.jpg" alt="$DESCRIPTION" />
                                         <span class="img-label">Me and project friends on meeting</span>
@@ -94,102 +91,28 @@
                             </div><!--end: .tab-pane(About) -->
                         </div>
                         <div>
-                            <h3 class="rs alternate-tab accordion-label">Updates (0)</h3>
+                            <h3 class="rs alternate-tab accordion-label">Updates (@Model.Updates.Count())</h3>
                             <div class="tab-pane accordion-content">
                                 <div class="tab-pane-inside">
                                     <div class="list-last-post">
-                                        <div class="media other-post-item">
-                                            <a href="#" class="thumb-left">
-                                                <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$TITLE">
-                                            </a>
-                                            <div class="media-body">
-                                                <h4 class="rs title-other-post">
-                                                    <a href="#" class="be-fc-orange fw-b">John Doe</a>
-                                                </h4>
-                                                <p class="rs fc-gray time-post pb10">posted 5 days ago</p>
-                                                <p class="rs description">Nam nec sem ac risus congue varius. Maecenas interdum ipsum tempor ipsum fringilla eu vehicula urna vehicula.</p>
-                                            </div>
-                                        </div><!--end: .other-post-item -->
-                                        <div class="media other-post-item">
-                                            <a href="#" class="thumb-left">
-                                                <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-2.jpg" alt="$TITLE">
-                                            </a>
-                                            <div class="media-body">
-                                                <h4 class="rs title-other-post">
-                                                    <a href="#" class="be-fc-orange fw-b">John Doe</a>
-                                                </h4>
-                                                <p class="rs fc-gray time-post pb10">posted 5 days ago</p>
-                                                <p class="rs description">Nam nec sem ac risus congue varius. Maecenas interdum ipsum tempor ipsum fringilla eu vehicula urna vehicula.</p>
-                                            </div>
-                                        </div><!--end: .other-post-item -->
-                                        <div class="media other-post-item">
-                                            <a href="#" class="thumb-left">
-                                                <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-3.jpg" alt="$TITLE">
-                                            </a>
-                                            <div class="media-body">
-                                                <h4 class="rs title-other-post">
-                                                    <a href="#" class="be-fc-orange fw-b">John Doe</a>
-                                                </h4>
-                                                <p class="rs fc-gray time-post pb10">posted 5 days ago</p>
-                                                <p class="rs description">Nam nec sem ac risus congue varius. Maecenas interdum ipsum tempor ipsum fringilla eu vehicula urna vehicula.</p>
-                                            </div>
-                                        </div><!--end: .other-post-item -->
-                                        <div class="media other-post-item">
-                                            <a href="#" class="thumb-left">
-                                                <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-4.jpg" alt="$TITLE">
-                                            </a>
-                                            <div class="media-body">
-                                                <h4 class="rs title-other-post">
-                                                    <a href="#" class="be-fc-orange fw-b">John Doe</a>
-                                                </h4>
-                                                <p class="rs fc-gray time-post pb10">posted 5 days ago</p>
-                                                <p class="rs description">Nam nec sem ac risus congue varius. Maecenas interdum ipsum tempor ipsum fringilla eu vehicula urna vehicula.</p>
-                                            </div>
-                                        </div><!--end: .other-post-item -->
-                                        <div class="media other-post-item">
-                                            <a href="#" class="thumb-left">
-                                                <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$TITLE">
-                                            </a>
-                                            <div class="media-body">
-                                                <h4 class="rs title-other-post">
-                                                    <a href="#" class="be-fc-orange fw-b">John Doe</a>
-                                                </h4>
-                                                <p class="rs fc-gray time-post pb10">posted 5 days ago</p>
-                                                <p class="rs description">Nam nec sem ac risus congue varius. Maecenas interdum ipsum tempor ipsum fringilla eu vehicula urna vehicula.</p>
-                                            </div>
-                                        </div><!--end: .other-post-item -->
+                                        @foreach (var update in Model.Updates)
+                                        {
+                                            @Html.Partial("_ProjectUpdatePartial", update)
+
+                                        }
                                     </div>
                                 </div>
                             </div><!--end: .tab-pane(Updates) -->
                         </div>
                         <div>
-                            <h3 class="rs alternate-tab accordion-label">Backers (270)</h3>
+                            <h3 class="rs alternate-tab accordion-label">Backers (@Model.Backers.Count())</h3>
                             <div class="tab-pane accordion-content">
                                 <div class="tab-pane-inside">
-                                    <div class="project-author pb20">
-                                        <div class="media">
-                                            <a href="#" class="thumb-left">
-                                                <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$USER_NAME" />
-                                            </a>
-                                            <div class="media-body">
-                                                <h4 class="rs pb10"><a href="#" class="be-fc-orange fw-b">John Doe</a></h4>
-                                                <p class="rs">Chicago, IL</p>
-                                                <p class="rs fc-gray">5 projects</p>
-                                            </div>
-                                        </div>
-                                    </div><!--end: .project-author -->
-                                    <div class="project-author pb20">
-                                        <div class="media">
-                                            <a href="#" class="thumb-left">
-                                                <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$USER_NAME" />
-                                            </a>
-                                            <div class="media-body">
-                                                <h4 class="rs pb10"><a href="#" class="be-fc-orange fw-b">John Doe</a></h4>
-                                                <p class="rs">Chicago, IL</p>
-                                                <p class="rs fc-gray">5 projects</p>
-                                            </div>
-                                        </div>
-                                    </div><!--end: .project-author -->
+                                    @foreach (var backer in Model.Backers)
+                                    {
+                                        @Html.Partial("_BackerPartial", backer)
+
+                                    }
                                 </div>
                                 <div class="project-btn-action">
                                     <a class="btn btn-red" href="#">Ask a question</a>
@@ -198,87 +121,14 @@
                             </div><!--end: .tab-pane(Backers) -->
                         </div>
                         <div>
-                            <h3 class="rs active alternate-tab accordion-label">Comments (2)</h3>
+                            <h3 class="rs active alternate-tab accordion-label">Comments (@Model.Comments.Count())</h3>
                             <div class="tab-pane accordion-content">
                                 <div class="box-list-comment">
-                                    <div class="media comment-item">
-                                        <a href="#" class="thumb-left">
-                                            <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$TITLE">
-                                        </a>
-                                        <div class="media-body">
-                                            <h4 class="rs comment-author">
-                                                <a href="#" class="be-fc-orange fw-b">John Doe</a>
-                                                <span class="fc-gray">say:</span>
-                                            </h4>
-                                            <p class="rs comment-content"> Fusce tellus. Sed metus augue, convallis et, vehicula ut, pulvinar eu, ante. Integer orci tellus, tristique vitae, consequat nec, porta vel, lectus</p>
-                                            <p class="rs time-post">5 days ago</p>
-                                        </div>
-                                    </div><!--end: .comment-item -->
-                                    <div class="media comment-item">
-                                        <a href="#" class="thumb-left">
-                                            <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-2.jpg" alt="$TITLE">
-                                        </a>
-                                        <div class="media-body">
-                                            <h4 class="rs comment-author">
-                                                <a href="#" class="be-fc-orange fw-b">Eminem</a>
-                                                <span class="fc-gray">say:</span>
-                                            </h4>
-                                            <p class="rs comment-content">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In posuere felis nec tortor. Pellentesque faucibus. Ut accumsan ultricies elit.</p>
-                                            <p class="rs time-post">5 days ago</p>
-                                        </div>
-                                    </div><!--end: .comment-item -->
-                                    <div class="media comment-item lv2">
-                                        <a href="#" class="thumb-left">
-                                            <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-3.jpg" alt="$TITLE">
-                                        </a>
-                                        <div class="media-body">
-                                            <h4 class="rs comment-author">
-                                                <a href="#" class="be-fc-orange fw-b">Snoop Dogg</a>
-                                                <span class="fc-gray">say:</span>
-                                            </h4>
-                                            <p class="rs comment-content">Nam nec sem ac risus congue varius. Maecenas interdum ipsum tempor ipsum fringilla eu vehicula urna vehicula.</p>
-                                            <p class="rs time-post">5 days ago</p>
-                                        </div>
-                                    </div><!--end: .comment-item -->
-                                    <div class="media comment-item lv2">
-                                        <a href="#" class="thumb-left">
-                                            <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-4.jpg" alt="$TITLE">
-                                        </a>
-                                        <div class="media-body">
-                                            <h4 class="rs comment-author">
-                                                <a href="#" class="be-fc-orange fw-b">Obama</a>
-                                                <span class="fc-gray">say:</span>
-                                            </h4>
-                                            <p class="rs comment-content">Curabitur vel dolor ultrices ipsum dictum tristique. Praesent vitae lacus. Ut velit enim, vestibulum non, fermentum nec,</p>
-                                            <p class="rs time-post">5 days ago</p>
-                                        </div>
-                                    </div><!--end: .comment-item -->
-                                    <div class="media comment-item lv3">
-                                        <a href="#" class="thumb-left">
-                                            <img src="@Url.Content("~/Content/myTemplate/")images/no-avatar.png" alt="$TITLE">
-                                        </a>
-                                        <div class="media-body">
-                                            <h4 class="rs comment-author">
-                                                <a href="#" class="be-fc-orange fw-b">Mark Lenon</a>
-                                                <span class="fc-gray">say:</span>
-                                            </h4>
-                                            <p class="rs comment-content">Nam nec sem ac risus congue varius. Maecenas interdum ipsum tempor ipsum fringilla eu vehicula urna vehicula.</p>
-                                            <p class="rs time-post">5 days ago</p>
-                                        </div>
-                                    </div><!--end: .comment-item -->
-                                    <div class="media comment-item">
-                                        <a href="#" class="thumb-left">
-                                            <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$TITLE">
-                                        </a>
-                                        <div class="media-body">
-                                            <h4 class="rs comment-author">
-                                                <a href="#" class="be-fc-orange fw-b">Dr. Dre</a>
-                                                <span class="fc-gray">say:</span>
-                                            </h4>
-                                            <p class="rs comment-content"> Morbi eget arcu. Morbi porta, libero id ullamcorper nonummy, nibh ligula pulvinar metus, eget consectetuer augue nisi quis lacus. Ut ac mi quis lacus mollis aliquam. Curabitur iaculis tempus eros. Curabitur vel mi sit amet magna malesuada ultrices</p>
-                                            <p class="rs time-post">5 days ago</p>
-                                        </div>
-                                    </div><!--end: .comment-item -->
+                                    @foreach (var comment in Model.Comments)
+                                    {
+                                        @Html.Partial("_ProjectCommentPartial", comment)
+
+                                    }
                                 </div>
                             </div><!--end: .tab-pane(Comments) -->
                         </div>
@@ -291,11 +141,11 @@
                 <div class="box-gray">
                     <div class="project-date clearfix">
                         <i class="icon iCalendar"></i>
-                        <span class="val"><span class="fw-b">Launched: </span>Apr 8, 2013</span>
+                        <span class="val"><span class="fw-b">Launched: </span>@Model.DateInserted.ToString("dd-MM-yyyy HH:mm")</span>
                     </div>
                     <div class="project-date clearfix">
                         <i class="icon iClock"></i>
-                        <span class="val"><span class="fw-b">Funding ends: </span>Apr 8, 2013</span>
+                        <span class="val"><span class="fw-b">Funding ends: </span>@Model.DueDate.ToString("dd-MM-yyyy HH:mm")</span>
                     </div>
 <<<<<<< HEAD
                     @*Invoke the js from demo viva payments *@
@@ -325,9 +175,9 @@
                         <span class="lbl">Buck This Project</span>
                         <span class="desc">$1 minimum pledge</span>
                     </a>-->
-                    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-                    <script src="https://demo.vivapayments.com/web/checkout/js"></script>
-                    <form id="myform" action="/checkout" method="post">
+                    
+                    
+                    <form id="myform1" action="/checkout" method="post" style="margin-left:20px;">
                         <button type="button"
                                 data-vp-publickey="SnJMStPua7FuMFkXFatxfyUH2RLhammNPfVVqSlOQec="
                                 data-vp-baseurl="https://demo.vivapayments.com"
@@ -335,7 +185,10 @@
                                 data-vp-amount="1000"
                                 data-vp-description="My product"></button>
                     </form>
-                        <p class="rs description">This project will only be funded if at least $15,000 is pledged by Wednesday May 8, 2:05pm EDT.</p>
+                        <p class="rs description">This project will only be funded if at least €@Model.TargetAmount is pledged by @{
+                                CultureInfo ci = new CultureInfo("en-US"); }
+                            @Model.DueDate.ToString("ddd dd MMMM yyyy HH:mm", ci)
+                                GMT.</p>
 </div>
 >>>>>>> e6a8c3e20fc4767ea82579db6ade89a42f06cb96
             </div><!--end: .project-runtime -->
@@ -347,9 +200,8 @@
                             <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$USER_NAME" />
                         </a>
                         <div class="media-body">
-                            <h4 class="rs pb10"><a href="#" class="be-fc-orange fw-b">John Doe</a></h4>
-                            <p class="rs">Chicago, IL</p>
-                            <p class="rs fc-gray">5 projects</p>
+                            <h4 class="rs pb10"><a href="#" class="be-fc-orange fw-b">@Model.CreatorFullName</a></h4>
+                            <p class="rs fc-gray">@Model.CreatorNoProjects projects</p>
                         </div>
                     </div>
                     <div class="author-action">
@@ -373,7 +225,15 @@
                                 <p class="rs fw-b pb20">Ocupated (2 of 10)</p>
                                 <p class="rs"><span class="fw-b">Estimated delivery:</span> Aug 2013</p>
                                 <p class="rs fw-thin fc-gray pb20">Ships within the US only</p>
-                                <p class="rs ta-c"><a class="btn big btn-red" href="#">Buck this project</a></p>
+                                @*<p class="rs ta-c"><a class="btn big btn-red" href="#">Buck this project</a></p>*@
+                                @*<form id="myform2" action="/checkout" method="post">
+                                    <button type="button"
+                                            data-vp-publickey="SnJMStPua7FuMFkXFatxfyUH2RLhammNPfVVqSlOQec="
+                                            data-vp-baseurl="https://demo.vivapayments.com"
+                                            data-vp-lang="el"
+                                            data-vp-amount="100"
+                                            data-vp-description="My product17"></button>
+                                </form>*@
                             </div>
                         </div>
                     </li><!--end: pledge-item -->
@@ -464,9 +324,3 @@
     </div>
 
 </div>
-
-
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CF.EntityManagers
+namespace CF.Public
 {
-    public class UserManager
+    public interface IManageDboUser
     {
+        Task CreateDboUser(string id);
     }
 }

@@ -1,0 +1,10 @@
+﻿@model List<WebApplication1.Models.BasicProjectInfoViewModel>
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_myTemplate.cshtml";
+}
+
+@foreach (var item in Model) {
+    @Html.Partial("_ProjectMainViewPartial", item);
+}

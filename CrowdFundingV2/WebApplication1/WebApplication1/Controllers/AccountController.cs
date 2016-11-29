@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebApplication1.Models;
+using CF.Public;
 
 namespace WebApplication1.Controllers
 {
@@ -19,16 +20,21 @@ namespace WebApplication1.Controllers
         private readonly ApplicationUserManager _userManager;
         private readonly ApplicationSignInManager _signInManager;
         private readonly IAuthenticationManager _authManager;
+        private readonly IManageDboUser _dboUserManager;
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IAuthenticationManager authManager)
+        public AccountController(ApplicationUserManager userManager, 
+                                ApplicationSignInManager signInManager, 
+                                IAuthenticationManager authManager, 
+                                IManageDboUser dboUserManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _authManager = authManager;
+            _dboUserManager = dboUserManager;
         }
 
         public ApplicationSignInManager SignInManager
@@ -54,6 +60,15 @@ namespace WebApplication1.Controllers
                 return _authManager;
             }
         }
+
+        private IManageDboUser DboUserManager
+        {
+            get
+            {
+                return _dboUserManager;
+            }
+        }
+
 
         //
         // GET: /Account/Login
@@ -182,6 +197,8 @@ namespace WebApplication1.Controllers
                     //  await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
                     string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Confirm your account");
+
+                    await DboUserManager.CreateDboUser(user.Id);
 
                     // Uncomment to debug locally 
                     // TempData["ViewBagLink"] = callbackUrl;

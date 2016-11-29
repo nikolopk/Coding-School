@@ -9,6 +9,13 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using CF.Data.Context;
+using CF.Models.Database;
+using WebApplication1.Models;
+
 namespace WebApplication1.Controllers {
     public class ProjectsController : Controller
     {
@@ -27,56 +34,25 @@ namespace WebApplication1.Controllers {
             return View(await projects.ToListAsync());
         }
 
-        // GET: Projects/Details/5
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Project project = await db.Projects.FindAsync(id);
-            if (project == null)
-            {
-                return HttpNotFound();
-            }
-            return View(project);
-        }
 
-        // GET: Projects/Create
+        [HttpGet]
         public ActionResult Create()
         {
-            
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
-            ViewBag.StatusId = new SelectList(db.ProjectStatus, "Id", "Name");
-            return View();
-        }
-
-        // POST: Projects/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize]
-        public async Task<ActionResult> Create([Bind(Include = "Id,CreatorId,Title,Description,StatusId,CategoryId,DueDate,TargetAmount,CurrentFundAmount,Ratio,DateInserted,DateVerified,VerificationGuid")] Project project)
-        {
-            var user = _userManager.FindById(User.Identity.GetUserId());
-            var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
-            project.CreatorId = myUser.Id;
-            project.StatusId = 1;
-            project.DateInserted = DateTime.Now;
-
-            if (ModelState.IsValid)
+            var model = new ProjectViewModel()
             {
-                db.Projects.Add(project);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", project.CategoryId);
-            ViewBag.StatusId = new SelectList(db.ProjectStatus, "Id", "Name", project.StatusId);
-            
-            return View(project);
+                Categories = db.Categories.ToList(),
+                Statuses = db.ProjectStatus.ToList()
+            };
+
+            return View(model);
         }
+
+        [HttpPost]
+        public ActionResult Status(ProjectViewModel model)
+        {
+            return new EmptyResult();
+        }
+
 
         // GET: Projects/Edit/5
         public async Task<ActionResult> Edit(int? id)
@@ -85,6 +61,7 @@ namespace WebApplication1.Controllers {
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Project project = await db.Projects.FindAsync(id);
             if (project == null)
             {
@@ -107,7 +84,7 @@ namespace WebApplication1.Controllers {
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,CreatorId,Title,Description,StatusId,CategoryId,DueDate,TargetAmount,CurrentFundAmount,Ratio,DateInserted,DateVerified,VerificationGuid")] Project project)
+        public ActionResult Edit([Bind(Include = "Id,CreatorId,Title,Description,StatusId,CategoryId,DueDate,TargetAmount,CurrentFundAmount,Ratio,DateInserted,DateVerified,VerificationGuid")] Project project)
         {
             var user = _userManager.FindById(User.Identity.GetUserId());
             var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
@@ -119,7 +96,7 @@ namespace WebApplication1.Controllers {
             if (ModelState.IsValid)
             {
                 db.Entry(project).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", project.CategoryId);
@@ -128,6 +105,58 @@ namespace WebApplication1.Controllers {
             return View(project);
         }
 
+
+        // POST: Projects/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public ActionResult Create(ProjectViewModel project)
+        {
+            var user = _userManager.FindById(User.Identity.GetUserId());
+            var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
+            var dbProject = new Project()
+            {
+                CategoryId = project.SelectedCategoryId,
+                CreatorId=myUser.Id,
+                DateInserted=DateTime.Now,
+                CurrentFundAmount = project.Project.CurrentFundAmount,
+                Description = project.Project.Description,
+                Ratio = project.Project.Ratio,
+                StatusId = project.Project.StatusId,
+                DueDate = project.Project.DueDate,
+                TargetAmount = project.Project.TargetAmount,
+                Title = project.Project.Title
+                
+            };
+
+            //project.CreatorId = myUser.Id;
+            //project.StatusId = 1;
+            //project.DateInserted = DateTime.Now;
+
+            if (ModelState.IsValid)
+            {
+                db.Projects.Add(dbProject);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            var viewModel = new Models.ProjectViewModel()
+            {
+
+                Categories = db.Categories.ToList(),
+                Statuses = db.ProjectStatus.ToList(),
+                Project = dbProject
+            };
+            
+
+            //ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", project.CategoryId);
+            //ViewBag.StatusId = new SelectList(db.ProjectStatus, "Id", "Name", project.StatusId);
+
+            return View(viewModel);
+        }
+
+        
         // GET: Projects/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
