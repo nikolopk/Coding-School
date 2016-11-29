@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CF.Data.Context;
+using CF.Models.Database;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -14,8 +16,7 @@ using CF.Data.Context;
 using CF.Models.Database;
 using WebApplication1.Models;
 
-namespace WebApplication1.Controllers
-{
+namespace WebApplication1.Controllers {
     public class ProjectsController : Controller
     {
         private CrowdFundingContext db = new CrowdFundingContext();
@@ -190,5 +191,15 @@ namespace WebApplication1.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //POST : API/id
+        [HttpPost]
+        public async Task<ActionResult> BuckProject(object o , EventArgs e)
+        {
+            
+            bool sucesss = new PaymentManager().SendPaymentAsync(o,e);
+            return View();
+        }
+
     }
 }
