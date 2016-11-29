@@ -15,16 +15,19 @@ using Microsoft.Owin.Security;
 using CF.Data.Context;
 using CF.Models.Database;
 using WebApplication1.Models;
+using CF.Public;
 
 namespace WebApplication1.Controllers {
     public class ProjectsController : Controller
     {
         private CrowdFundingContext db = new CrowdFundingContext();
         private readonly ApplicationUserManager _userManager;
-        
-        public ProjectsController(ApplicationUserManager userManager)
+        private readonly IPayWithVivaWallet _paymentManager;
+
+        public ProjectsController(ApplicationUserManager userManager, IPayWithVivaWallet paymentManager)
         {
             _userManager = userManager;
+            _paymentManager = paymentManager;
         }
 
         // GET: Projects
@@ -196,8 +199,7 @@ namespace WebApplication1.Controllers {
         [HttpPost]
         public async Task<ActionResult> BuckProject(object o , EventArgs e)
         {
-            var paymentManager = new PaymentManager();
-            bool sucesss = await paymentManager.SendPaymentAsync(o,e);
+            bool sucesss = await _paymentManager.SendPaymentAsync(o,e);
             return View();
         }
 

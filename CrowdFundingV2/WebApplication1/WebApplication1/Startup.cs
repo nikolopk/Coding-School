@@ -28,6 +28,7 @@ namespace WebApplication1
             builder.Register<IAuthenticationManager>(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
             builder.Register<IDataProtectionProvider>(c => app.GetDataProtectionProvider()).InstancePerRequest();
             builder.RegisterType<DboUserManager>().As<IManageDboUser>();
+            builder.RegisterType<PaymentManager>().As<IPayWithVivaWallet>();
 
             // REGISTER CONTROLLERS SO DEPENDENCIES ARE CONSTRUCTOR INJECTED
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
