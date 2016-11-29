@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CF.Data.Context;
+using CF.Models.Database;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -14,8 +16,7 @@ using CF.Data.Context;
 using CF.Models.Database;
 using WebApplication1.Models;
 
-namespace WebApplication1.Controllers
-{
+namespace WebApplication1.Controllers {
     public class ProjectsController : Controller
     {
         private CrowdFundingContext db = new CrowdFundingContext();
@@ -51,6 +52,59 @@ namespace WebApplication1.Controllers
         {
             return new EmptyResult();
         }
+
+
+        // GET: Projects/Edit/5
+        public async Task<ActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Project project = await db.Projects.FindAsync(id);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            var user = _userManager.FindById(User.Identity.GetUserId());
+            var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
+            if (project.CreatorId != myUser.Id)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", project.CategoryId);
+            ViewBag.StatusId = new SelectList(db.ProjectStatus, "Id", "Name", project.StatusId);
+
+            return View(project);
+        }
+
+        // POST: Projects/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,CreatorId,Title,Description,StatusId,CategoryId,DueDate,TargetAmount,CurrentFundAmount,Ratio,DateInserted,DateVerified,VerificationGuid")] Project project)
+        {
+            var user = _userManager.FindById(User.Identity.GetUserId());
+            var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
+            if (project.CreatorId != myUser.Id)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(project).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", project.CategoryId);
+            ViewBag.StatusId = new SelectList(db.ProjectStatus, "Id", "Name", project.StatusId);
+            ViewBag.CreatorId = new SelectList(db.Users, "Id", "PhotoUrl", project.CreatorId);
+            return View(project);
+        }
+
 
         // POST: Projects/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -137,5 +191,15 @@ namespace WebApplication1.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //POST : API/id
+        [HttpPost]
+        public async Task<ActionResult> BuckProject(object o , EventArgs e)
+        {
+            
+            bool sucesss = new PaymentManager().SendPaymentAsync(o,e);
+            return View();
+        }
+
     }
 }

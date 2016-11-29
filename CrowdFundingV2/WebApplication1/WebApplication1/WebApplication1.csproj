@@ -73,6 +73,10 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SendGrid, Version=6.3.4.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
       <HintPath>..\packages\Sendgrid.6.3.4\lib\SendGrid.dll</HintPath>
       <Private>True</Private>
@@ -233,6 +237,7 @@
     <Compile Include="Models\HomeIndexViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="PaymentManager.cs" />
     <Compile Include="Models\ProjectCommentViewModel.cs" />
     <Compile Include="Models\ProjectDetailsViewModel.cs" />
     <Compile Include="Models\ProjectUpdateViewModel.cs" />
@@ -512,6 +517,10 @@
     <ProjectReference Include="..\CF.Models\CF.Models.csproj">
       <Project>{6b213a9e-27f9-48cd-a7a1-77b5cfaea6d5}</Project>
       <Name>CF.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CF.Public\CF.Public.csproj">
+      <Project>{3A56C08E-298F-4C2B-B7A2-2F2AFD341EF7}</Project>
+      <Name>CF.Public</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

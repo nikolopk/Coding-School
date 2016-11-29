@@ -148,9 +148,9 @@ namespace WebApplication1.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Projects.Add(dbProject);
+                dbProject = db.Projects.Add(dbProject);
                 db.SaveChanges();
-                return RedirectToAction("Edit", dbProject.Id);
+                return RedirectToAction("Edit", new { id = dbProject.Id }); 
             }
             var viewModel = new Models.ProjectViewModel()
             {
@@ -249,7 +249,7 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public  ActionResult Edit([Bind(Include = "Id,CreatorId,Title,Description,StatusId,CategoryId,DueDate,TargetAmount,CurrentFundAmount,Ratio,DateInserted,DateVerified,VerificationGuid")] Project project)
+        public ActionResult Edit([Bind(Include = "Id,CreatorId,Title,Description,StatusId,CategoryId,DueDate,TargetAmount,CurrentFundAmount,Ratio,DateInserted,DateVerified,VerificationGuid")] Project project)
         {
             var user = _userManager.FindById(User.Identity.GetUserId());
             var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
@@ -269,6 +269,7 @@ namespace WebApplication1.Controllers
             ViewBag.CreatorId = new SelectList(db.Users, "Id", "PhotoUrl", project.CreatorId);
             return View(project);
         }
+
 
     }
 }
