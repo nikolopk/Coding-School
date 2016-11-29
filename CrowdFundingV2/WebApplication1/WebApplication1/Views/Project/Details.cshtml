@@ -108,6 +108,7 @@
                             <h3 class="rs alternate-tab accordion-label">Backers (@Model.Backers.Count())</h3>
                             <div class="tab-pane accordion-content">
                                 <div class="tab-pane-inside">
+                                    <a class="post-new-comment be-fc-orange" href="/UserProjectComments/Create/@Model.Id"><i class="icon iPost"></i> Post a comment</a>
                                     @foreach (var backer in Model.Backers)
                                     {
                                         @Html.Partial("_BackerPartial", backer)
