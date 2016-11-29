@@ -196,8 +196,8 @@ namespace WebApplication1.Controllers {
         [HttpPost]
         public async Task<ActionResult> BuckProject(object o , EventArgs e)
         {
-            
-            bool sucesss = new PaymentManager().SendPaymentAsync(o,e);
+            var paymentManager = new PaymentManager();
+            bool sucesss = await paymentManager.SendPaymentAsync(o,e);
             return View();
         }
 
