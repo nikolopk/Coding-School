@@ -1,14 +1,15 @@
 ﻿using RestSharp;
 using RestSharp.Authenticators;
 using System;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace WebApplication1 {
-    public partial class PaymentManager {
+    public class PaymentManager {
         private const string merchantId = "6466348D-85B2-4CBC-978B-422C688D2D45";
         private const string apiKey = "Y^!xL#";
 
-        public async bool SendPaymentAsync( object sender, EventArgs e ) {
+        public async Task<bool> SendPaymentAsync( object sender, EventArgs e ) {
             if ( HttpContext.Current.Request.HttpMethod == "POST" ) {
                 var cl = new RestClient("https://demo.vivapayments.com/api/") {
                     Authenticator = new HttpBasicAuthenticator(merchantId, apiKey)
@@ -37,6 +38,7 @@ namespace WebApplication1 {
 
    
             }
+            return false;
         }
     }
 
