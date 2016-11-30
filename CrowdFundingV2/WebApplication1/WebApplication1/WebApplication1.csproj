@@ -491,10 +491,10 @@
     <Content Include="Views\Shared\_ProjectCommentPartial.cshtml" />
     <Content Include="Views\Shared\_ProjectUpdatePartial.cshtml" />
     <Content Include="Views\Project\_BackerPartial.cshtml" />
+    <Content Include="Views\Categories\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Categories\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
