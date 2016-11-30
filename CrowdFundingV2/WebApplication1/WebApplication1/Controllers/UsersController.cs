@@ -9,12 +9,14 @@ using System.Web;
 using System.Web.Mvc;
 using CF.Data.Context;
 using CF.Models.Database;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
     public class UsersController : Controller
     {
         private CrowdFundingContext db = new CrowdFundingContext();
+
 
         // GET: Users
         public async Task<ActionResult> Index()
@@ -76,7 +78,15 @@ namespace WebApplication1.Controllers
                 return HttpNotFound();
             }
             ViewBag.AspNetUsersId = new SelectList(db.AspNetUsers, "Id", "Email", user.AspNetUsersId);
-            return View(user);
+            var aspnetUser = user.AspNetUser;
+            var viewModel = new UserDetailsViewModel()
+            {
+                Email = aspnetUser.Email,
+                FirstName = aspnetUser.FirstName,
+                LastName = aspnetUser.LastName,
+                PhoneNumber = aspnetUser.PhoneNumber
+            };
+            return View(viewModel);
         }
 
         // POST: Users/Edit/5
@@ -84,16 +94,26 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,PhotoUrl,AspNetUsersId")] User user)
+        public async Task<ActionResult> Edit(UserDetailsViewModel userViewModel)
         {
             if (ModelState.IsValid)
             {
+                var user = await db.Users.FindAsync(userViewModel.Id);
+                if(user == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                user = new CF.Models.Database.User()
+                {
+                   // AspNetUser = aspnetUser,
+                };
                 db.Entry(user).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.AspNetUsersId = new SelectList(db.AspNetUsers, "Id", "Email", user.AspNetUsersId);
-            return View(user);
+            //ViewBag.AspNetUsersId = new SelectList(db.AspNetUsers, "Id", "Email", user.AspNetUsersId);
+            return View(userViewModel);
         }
 
         // GET: Users/Delete/5
