@@ -272,11 +272,28 @@ namespace WebApplication1.Controllers {
         [HttpPost]
         public async Task<ActionResult> BuckProject(int id )
         {
+            var user = _userManager.FindById(User.Identity.GetUserId());
+            var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
+
             var viewModel = new BuckProjectViewModel()
             {
-                projectId = id,
-                transaction = await new PaymentManager().SendPaymentAsync()
+                BuckerId = myUser.Id,
+                ProjectId = id,
+                Transaction = await new PaymentManager().SendPaymentAsync()
             };
+
+            if(viewModel.Transaction)
+            {
+                var backerProject = new BackerProject()
+                {
+                    Amount = viewModel.Amount,
+                    ProjectId = viewModel.ProjectId,
+                    UserId = viewModel.BuckerId
+                };
+
+                db.BackerProjects.Add(backerProject);
+                await db.SaveChangesAsync();
+            }
             return View(viewModel);
         }
 
