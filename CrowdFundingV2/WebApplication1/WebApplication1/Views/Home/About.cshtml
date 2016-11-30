@@ -1,7 +1,58 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Help";
+    Layout = "~/Views/Shared/_myTemplate.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<div class="container_12">
+    <div class="how-it-work">
+        <div class="grid_12 short-introduce">
+            <h3 class="rs title"><span class="fc-black">Easy way to realize</span> your dream</h3>
+            <div class="box-introduce">
+                <div class="wrap-2col">
+                    <div class="left-intro">
+                        <h4 class="rs title-intro">Start your project at 4Viva!</h4>
+                        <p class="rs pb20">Crowdfunding has created the opportunity for entrepreneurs to raise hundreds of thousands or millions
+                         of dollars from anyone with money to invest. Crowdfunding websites such as 4Viva, Kickstarter and Indiegogo attract thousands of
+                         people hoping to invest in the next big thing.</p>
+                        <p class="rs pb20">Crowdfunding provides a forum to anyone with an idea to pitch it in front of waiting investors. 
+                        One of the more amusing projects to receive funding was from an individual who wanted to create a new potato salad recipe.
+                         His fundraising goal was $10, but he raised more $55,000 from 6,911 backers.</p>
+                        <a class="btn btn-red btn-star-project" href="@Url.Action("Create", "Project")">
+                            <span class="lbl">Start project</span>
+                            <span class="desc">Dream it. Fund it. Make it. Ship it.</span>
+                        </a>
+                        <p class="rs ta-c description-btn">Affordable, easy, and secure. All around the world.</p>
+                    </div>
+                    <div class="right-intro"><img src="@Url.Content("~/Content/myTemplate/")images/crowdfunding-project.jpg" class="" alt="$DESCRIPTION" /></div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div class="grid_6 box-text-content">
+            <h4 class="rs title-in-box">What is 'Crowdfunding'</h4>
+            <p class="rs">Crowdfunding is the use of small amounts of capital from a large number of individuals to finance a new business venture.
+             Crowdfunding makes use of the easy accessibility of vast networks of people through social media and crowdfunding websites to bring
+             investors and entrepreneurs together.</p>
+        </div>
+        <div class="grid_6 box-text-content">
+            <h4 class="rs title-in-box">Raise funds and grow your community with a crowdfunding campaign</h4>
+            <p class="rs">4Viva campaigns pair the freedom to tell your story your way with expert resources created by our team of strategists. Flexibility + empowerment = crowdfunding success.</p>
+        </div>
+        <div class="clear"></div>
+        <div class="grid_4 box-text-content">
+            <h4 class="rs title-in-box">Integrated analytics.</h4>
+            <p class="rs">Launch smart! Use audience analytics and feedback to adjust your campaign on the fly for maximum impact.</p>
+        </div>
+        <div class="grid_4 box-text-content">
+            <h4 class="rs title-in-box">Meet the team.</h4>
+            <p class="rs">We're a team of 5 people based in Athens, Greece. Half of us work on the product (designing and coding), and the other half work with the community. We love what we do, and who we do it with.</p>
+        </div>
+        <div class="grid_4 box-text-content">
+            <h4 class="rs title-in-box">4iva is not a store.</h4>
+            <p class="rs">People aren't buying things that already exist — they're helping to create new things. Creating things isn't always easy. Some projects will go wonderfully, and others will run into obstacles. Be prepared for a little bit of each.</p>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+

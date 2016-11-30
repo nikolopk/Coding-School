@@ -9,16 +9,19 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using CF.Public;
 
 namespace WebApplication1.Controllers {
     public class ProjectsController : Controller
     {
         private CrowdFundingContext db = new CrowdFundingContext();
         private readonly ApplicationUserManager _userManager;
-        
-        public ProjectsController(ApplicationUserManager userManager)
+        private readonly IPayWithVivaWallet _paymentManager;
+
+        public ProjectsController(ApplicationUserManager userManager, IPayWithVivaWallet paymentManager)
         {
             _userManager = userManager;
+            _paymentManager = paymentManager;
         }
 
         // GET: Projects
@@ -187,6 +190,5 @@ namespace WebApplication1.Controllers {
         }
 
   
-
     }
 }
