@@ -1,4 +1,4 @@
-﻿@model WebApplication1.Models.ProjectViewModel
+﻿@model WebApplication1.Models.ProjectEditViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -12,8 +12,8 @@
                 <ul class="nav nav-tabs clearfix">
                     <li class="active"><a href="#">Profile</a></li>
                     <li><a href="#" class="be-fc-orange">Account</a></li>
-                    <li class="disable"><a href="#" class="be-fc-orange">Notifications</a></li>
-                    <li><a href="#" class="be-fc-orange">Inbox</a></li>
+                    <li><a href="#" class="be-fc-orange">Updates</a></li>
+                    <li><a href="#" class="be-fc-orange">Comments</a></li>
                     <li><a href="#" class="be-fc-orange">Projects</a></li>
                 </ul>
                 <div class="tab-content">
@@ -121,94 +121,52 @@
                         </div><!--end: .tab-pane -->
                     </div>
                     <div>
-                        <h3 class="rs alternate-tab accordion-label">Notifications</h3>
+                        <h3 class="rs alternate-tab accordion-label">Updates</h3>
                         <div class="tab-pane accordion-content">
-                            <br /> Notifications<br /> <br /> <br /> <br /><br /><br />
-
+                            <a class="post-new-comment be-fc-orange" href="/ProjectUpdates/Create/@Model.Id"><i class="icon iPost"></i> Post an Update</a>
+                            <div class="box-list-comment">
+                                
+                                @foreach (var update in Model.Updates)
+                                {
+                                    <div class="media comment-item">
+                                        <a href="#" class="thumb-left">
+                                            <img src="images/ex/th-90x90-1.jpg" alt="$TITLE">
+                                        </a>
+                                        <div class="media-body">
+                                            <h4 class="rs comment-author">
+                                                <a href="#" class="be-fc-orange fw-b">@update.FullName</a>
+                                                <span class="fc-gray">say:</span>
+                                            </h4>
+                                            <p class="rs comment-content"> @update.Text</p>
+                                            <p class="rs time-post">on @update.DateInserted</p>
+                                        </div>
+                                    </div><!--end: .comment-item -->
+                                }
+                            </div>
                         </div><!--end: .tab-pane -->
                     </div>
                     <div>
-                        <h3 class="rs alternate-tab accordion-label">Inbox</h3>
+                        <h3 class="rs alternate-tab accordion-label">Comments</h3>
                         <div class="tab-pane accordion-content">
+                            <a class="post-new-comment be-fc-orange" href="/UserProjectComments/Create/@Model.Id"><i class="icon iPost"></i> Post a Comment</a>
                             <div class="box-list-comment">
+
+                                @foreach (var comment in Model.Comments)
+                                {
                                 <div class="media comment-item">
                                     <a href="#" class="thumb-left">
                                         <img src="images/ex/th-90x90-1.jpg" alt="$TITLE">
                                     </a>
                                     <div class="media-body">
                                         <h4 class="rs comment-author">
-                                            <a href="#" class="be-fc-orange fw-b">John Doe</a>
+                                            <a href="#" class="be-fc-orange fw-b">@comment.CommentorFullName</a>
                                             <span class="fc-gray">say:</span>
                                         </h4>
-                                        <p class="rs comment-content"> Fusce tellus. Sed metus augue, convallis et, vehicula ut, pulvinar eu, ante. Integer orci tellus, tristique vitae, consequat nec, porta vel, lectus</p>
-                                        <p class="rs time-post">5 days ago</p>
+                                        <p class="rs comment-content"> @comment.Text</p>
+                                        <p class="rs time-post">on @comment.DateInserted</p>
                                     </div>
                                 </div><!--end: .comment-item -->
-                                <div class="media comment-item">
-                                    <a href="#" class="thumb-left">
-                                        <img src="images/ex/th-90x90-2.jpg" alt="$TITLE">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="rs comment-author">
-                                            <a href="#" class="be-fc-orange fw-b">Eminem</a>
-                                            <span class="fc-gray">say:</span>
-                                        </h4>
-                                        <p class="rs comment-content">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In posuere felis nec tortor. Pellentesque faucibus. Ut accumsan ultricies elit.</p>
-                                        <p class="rs time-post">5 days ago</p>
-                                    </div>
-                                </div><!--end: .comment-item -->
-                                <div class="media comment-item">
-                                    <a href="#" class="thumb-left">
-                                        <img src="images/ex/th-90x90-3.jpg" alt="$TITLE">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="rs comment-author">
-                                            <a href="#" class="be-fc-orange fw-b">Snoop Dogg</a>
-                                            <span class="fc-gray">say:</span>
-                                        </h4>
-                                        <p class="rs comment-content">Nam nec sem ac risus congue varius. Maecenas interdum ipsum tempor ipsum fringilla eu vehicula urna vehicula.</p>
-                                        <p class="rs time-post">5 days ago</p>
-                                    </div>
-                                </div><!--end: .comment-item -->
-                                <div class="media comment-item">
-                                    <a href="#" class="thumb-left">
-                                        <img src="images/ex/th-90x90-4.jpg" alt="$TITLE">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="rs comment-author">
-                                            <a href="#" class="be-fc-orange fw-b">Obama</a>
-                                            <span class="fc-gray">say:</span>
-                                        </h4>
-                                        <p class="rs comment-content">Curabitur vel dolor ultrices ipsum dictum tristique. Praesent vitae lacus. Ut velit enim, vestibulum non, fermentum nec,</p>
-                                        <p class="rs time-post">5 days ago</p>
-                                    </div>
-                                </div><!--end: .comment-item -->
-                                <div class="media comment-item">
-                                    <a href="#" class="thumb-left">
-                                        <img src="images/no-avatar.png" alt="$TITLE">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="rs comment-author">
-                                            <a href="#" class="be-fc-orange fw-b">Mark Lenon</a>
-                                            <span class="fc-gray">say:</span>
-                                        </h4>
-                                        <p class="rs comment-content">Nam nec sem ac risus congue varius. Maecenas interdum ipsum tempor ipsum fringilla eu vehicula urna vehicula.</p>
-                                        <p class="rs time-post">5 days ago</p>
-                                    </div>
-                                </div><!--end: .comment-item -->
-                                <div class="media comment-item">
-                                    <a href="#" class="thumb-left">
-                                        <img src="images/ex/th-90x90-1.jpg" alt="$TITLE">
-                                    </a>
-                                    <div class="media-body">
-                                        <h4 class="rs comment-author">
-                                            <a href="#" class="be-fc-orange fw-b">Dr. Dre</a>
-                                            <span class="fc-gray">say:</span>
-                                        </h4>
-                                        <p class="rs comment-content"> Morbi eget arcu. Morbi porta, libero id ullamcorper nonummy, nibh ligula pulvinar metus, eget consectetuer augue nisi quis lacus. Ut ac mi quis lacus mollis aliquam. Curabitur iaculis tempus eros. Curabitur vel mi sit amet magna malesuada ultrices</p>
-                                        <p class="rs time-post">5 days ago</p>
-                                    </div>
-                                </div><!--end: .comment-item -->
+                                }
                             </div>
                         </div><!--end: .tab-pane -->
                     </div>
@@ -224,7 +182,7 @@
                                             <img src="images/ex/th-292x204-1.jpg" alt="$TITLE">
                                         </a>
                                         <div class="wrap-short-detail">
-                                            <h3 class="rs acticle-title"><a class="be-fc-orange" href="#">@project.Title</a></h3>
+                                            <h3 class="rs acticle-title"><a class="be-fc-orange" href="/project/edit/@project.Id">@project.Title</a></h3>
                                             <p class="rs tiny-desc">by <a href="#" class="fw-b fc-gray be-fc-orange">@project.CreatorFullName</a> </p>
                                             <p class="rs title-description">@project.Description</p>
                                         </div>

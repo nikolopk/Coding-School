@@ -236,8 +236,9 @@ namespace WebApplication1.Controllers {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var model = new ProjectViewModel()
+            var model = new ProjectEditViewModel()
             {
+                Id = project.Id,
                 Categories = db.Categories.ToList(),
                 Statuses = db.ProjectStatus.ToList(),
                 CreatorFullName = user.FirstName + " " + user.LastName,
@@ -246,7 +247,19 @@ namespace WebApplication1.Controllers {
                 SelectedStatusId = project.StatusId,
                 NoProjects = db.Projects.Where(x => x.CreatorId == myUser.Id).Count(),
                 MyProjects = CreatorProjects(myUser.Id),
-                Project = project
+                Project = project,
+                Comments = db.UserProjectComments.Where(x => x.ProjectId == project.Id).Select(y => new ProjectCommentViewModel()
+                {
+                    CommentorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
+                    DateInserted = y.DateInserted,
+                    Text = y.Text
+                }).ToList(),
+                Updates = db.ProjectUpdates.Where(x=>x.ProjectId == project.Id).Select(y => new ProjectUpdateViewModel()
+                {
+                     FullName = user.FirstName + " " + user.LastName,
+                     DateInserted = y.DateInserted,
+                     Text = y.Text
+                }).ToList()
             };
 
             return View(model);
@@ -262,7 +275,7 @@ namespace WebApplication1.Controllers {
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ProjectViewModel viewModel)
+        public ActionResult Edit(ProjectEditViewModel viewModel)
         {
             var user = _userManager.FindById(User.Identity.GetUserId());
             var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();

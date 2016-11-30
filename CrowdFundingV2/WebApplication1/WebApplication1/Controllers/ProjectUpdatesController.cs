@@ -39,7 +39,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: ProjectUpdates/Create
-        public ActionResult Create()
+        public ActionResult Create(int? projectId)
         {
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title");
             return View();
