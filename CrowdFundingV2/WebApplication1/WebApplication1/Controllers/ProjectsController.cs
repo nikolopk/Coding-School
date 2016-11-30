@@ -8,12 +8,6 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using CF.Data.Context;
-using CF.Models.Database;
 using WebApplication1.Models;
 using CF.Public;
 
@@ -195,13 +189,6 @@ namespace WebApplication1.Controllers {
             base.Dispose(disposing);
         }
 
-        //POST : API/id
-        [HttpPost]
-        public async Task<ActionResult> BuckProject(object o , EventArgs e)
-        {
-            bool sucesss = await _paymentManager.SendPaymentAsync(o,e);
-            return View();
-        }
-
+  
     }
 }

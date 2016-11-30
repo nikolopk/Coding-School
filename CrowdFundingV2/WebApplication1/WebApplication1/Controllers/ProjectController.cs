@@ -1,20 +1,17 @@
 ﻿using CF.Data.Context;
+using CF.Models.Database;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using WebApplication1.Models;
 using System.Data;
 using System.Data.Entity;
-
-using Microsoft.AspNet.Identity;
-using CF.Models.Database;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using System.Web.Mvc;
+using WebApplication1.Models;
 
-namespace WebApplication1.Controllers
-{
+namespace WebApplication1.Controllers {
     public class ProjectController : Controller
     {
         private CrowdFundingContext db = new CrowdFundingContext();
@@ -270,6 +267,18 @@ namespace WebApplication1.Controllers
             return View(project);
         }
 
+
+        //POST : API/id
+        [HttpPost]
+        public async Task<ActionResult> BuckProject(int id )
+        {
+            var viewModel = new BuckProjectViewModel()
+            {
+                projectId = id,
+                transaction = await new PaymentManager().SendPaymentAsync()
+            };
+            return View(viewModel);
+        }
 
     }
 }
