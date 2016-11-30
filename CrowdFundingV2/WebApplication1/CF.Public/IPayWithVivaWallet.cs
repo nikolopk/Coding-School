@@ -8,6 +8,6 @@ namespace CF.Public
 {
     public interface IPayWithVivaWallet
     {
-        Task<bool> SendPaymentAsync(object sender, EventArgs e);
+        Task<bool> SendPaymentAsync();
     }
 }
