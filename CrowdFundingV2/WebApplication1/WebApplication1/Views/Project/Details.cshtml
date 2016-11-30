@@ -8,7 +8,7 @@
 }
 
 <div id="wrapper">
-
+   
     <div class="layout-2cols">
         <div class="content grid_8">
             <div class="project-detail">
@@ -108,6 +108,7 @@
                             <h3 class="rs alternate-tab accordion-label">Backers (@Model.Backers.Count())</h3>
                             <div class="tab-pane accordion-content">
                                 <div class="tab-pane-inside">
+                                    <a class="post-new-comment be-fc-orange" href="/UserProjectComments/Create/@Model.Id"><i class="icon iPost"></i> Post a comment</a>
                                     @foreach (var backer in Model.Backers)
                                     {
                                         @Html.Partial("_BackerPartial", backer)
@@ -147,13 +148,14 @@
                         <i class="icon iClock"></i>
                         <span class="val"><span class="fw-b">Funding ends: </span>@Model.DueDate.ToString("dd-MM-yyyy HH:mm")</span>
                     </div>
+
                     <!--<a class="btn btn-green btn-buck-project" href="#">
                         <span class="lbl">Buck This Project</span>
                         <span class="desc">$1 minimum pledge</span>
                     </a>-->
                     
                     
-                    <form id="myform1" action="/checkout" method="post" style="margin-left:20px;">
+                    <form id="myform1" action=@Url.Action("BuckProject", "Project", new { id = @Model.Id}) method="post" style="margin-left:20px;">
                         <button type="button"
                                 data-vp-publickey="SnJMStPua7FuMFkXFatxfyUH2RLhammNPfVVqSlOQec="
                                 data-vp-baseurl="https://demo.vivapayments.com"
@@ -165,7 +167,7 @@
                                 CultureInfo ci = new CultureInfo("en-US"); }
                             @Model.DueDate.ToString("ddd dd MMMM yyyy HH:mm", ci)
                                 GMT.</p>
-</div>
+                </div>
             </div><!--end: .project-runtime -->
             <div class="project-author">
                 <div class="box-gray">

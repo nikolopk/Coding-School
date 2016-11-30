@@ -1,0 +1,17 @@
+﻿@model WebApplication1.Models.BuckProjectViewModel
+@using System.Globalization;
+@{
+    ViewBag.Title = "BuckProject";
+    Layout = "~/Views/Shared/_myTemplate.cshtml";
+
+}
+<meta http-equiv="refresh" content="4; url=@Url.Action("Details", "Project", new {id= @Model.projectId})" />
+@{
+    if ( Model.transaction ) {
+        <h2>Successful Payment !!! You will be redirected back to the project. </h2>
+    }
+    else {
+        <h3>Payment Failed !!! You will be redirected back to the project. </h3>
+    }
+
+}
