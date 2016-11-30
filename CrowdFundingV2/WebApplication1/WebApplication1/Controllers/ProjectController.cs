@@ -235,10 +235,26 @@ namespace WebApplication1.Controllers {
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", project.CategoryId);
-            ViewBag.StatusId = new SelectList(db.ProjectStatus, "Id", "Name", project.StatusId);
 
-            return View(project);
+            var model = new ProjectViewModel()
+            {
+                Categories = db.Categories.ToList(),
+                Statuses = db.ProjectStatus.ToList(),
+                CreatorFullName = user.FirstName + " " + user.LastName,
+                CreatorId = myUser.Id,
+                SelectedCategoryId = project.CategoryId,
+                SelectedStatusId = project.StatusId,
+                NoProjects = db.Projects.Where(x => x.CreatorId == myUser.Id).Count(),
+                MyProjects = CreatorProjects(myUser.Id),
+                Project = project
+            };
+
+            return View(model);
+
+            //ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", project.CategoryId);
+            //ViewBag.StatusId = new SelectList(db.ProjectStatus, "Id", "Name", project.StatusId);
+
+            //return View(project);
         }
 
         // POST: Projects/Edit/5
@@ -246,25 +262,31 @@ namespace WebApplication1.Controllers {
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CreatorId,Title,Description,StatusId,CategoryId,DueDate,TargetAmount,CurrentFundAmount,Ratio,DateInserted,DateVerified,VerificationGuid")] Project project)
+        public ActionResult Edit(ProjectViewModel viewModel)
         {
             var user = _userManager.FindById(User.Identity.GetUserId());
             var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
-            if (project.CreatorId != myUser.Id)
+            if (viewModel.Project.CreatorId != myUser.Id)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             if (ModelState.IsValid)
             {
+                var project = db.Projects.Find(viewModel.Project.Id);
+                project.DueDate = viewModel.Project.DueDate;
+                project.Description = viewModel.Project.Description;
+                project.TargetAmount = viewModel.Project.TargetAmount;
+                project.Ratio = (project.CurrentFundAmount / viewModel.Project.TargetAmount);
+                project.Title = viewModel.Project.Title;
+                project.CategoryId = viewModel.SelectedCategoryId;
+                project.StatusId = viewModel.SelectedStatusId;
+
                 db.Entry(project).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", project.CategoryId);
-            ViewBag.StatusId = new SelectList(db.ProjectStatus, "Id", "Name", project.StatusId);
-            ViewBag.CreatorId = new SelectList(db.Users, "Id", "PhotoUrl", project.CreatorId);
-            return View(project);
+            return View(viewModel);
         }
 
 
