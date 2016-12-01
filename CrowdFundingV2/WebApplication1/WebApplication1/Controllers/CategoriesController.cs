@@ -16,9 +16,9 @@ namespace WebApplication1.Controllers
     {
         private CrowdFundingContext db = new CrowdFundingContext();
 
-        public ActionResult Index()
+        public ActionResult Index(int catId)
         {
-            var popularProject = db.Projects
+            var categoryPopularProject = db.Projects
                .Include(p => p.User)
                .Include(p => p.BackerProjects)
                .Include(p => p.UserProjectComments)
@@ -34,9 +34,14 @@ namespace WebApplication1.Controllers
                    CurrentBackerCount = y.BackerProjects.Where(x => x.ProjectId == y.Id).Count(),
                    DueDate = y.DueDate,
                    NoComments = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
-               }).Take(4);
+               });
 
-            return View("Category");
+            var viewModel = new CategoryDetailsViewModel()
+            {
+                PopularProjects = categoryPopularProject.ToList()
+            };
+
+            return View(viewModel);
         }
     }
 }

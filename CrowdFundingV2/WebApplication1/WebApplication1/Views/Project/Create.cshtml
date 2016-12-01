@@ -87,15 +87,15 @@
                         <div>
                             <h3 class="rs alternate-tab accordion-label">Projects</h3>
                             <div class="tab-pane accordion-content">
-                                <div class="box-marked-project project-short inside-tab">
-                                    
+                                @*<div class="box-marked-project project-short inside-tab">*@
+                                 
                                 @foreach(var item in Model.MyProjects)
                                 {
                                     @Html.Partial("_ProjectMainViewPartial", item);
                                 }
+                 
 
-                                    
-                                </div><!--end: .box-marked-project -->
+                                @*</div><!--end: .box-marked-project -->*@
                                 
                             </div><!--end: .tab-pane -->
                         </div>
@@ -108,7 +108,7 @@
                 <h3 class="title-box">Project by</h3>
                 <div class="media">
                     <a href="#" class="thumb-left">
-                        <img src="images/ex/th-90x90-1.jpg" alt="$USER_NAME" />
+                        <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$USER_NAME" />
                     </a>
                     <div class="media-body">
                         <h4 class="rs pb10"> @Html.ActionLink(Model.CreatorFullName, "Edit", "Users", new { id = Model.CreatorId }, new  { @class = "be-fc-orange fw-b" }) </h4>

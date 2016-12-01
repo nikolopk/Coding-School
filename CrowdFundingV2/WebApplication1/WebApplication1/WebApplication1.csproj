@@ -493,10 +493,10 @@
     <Content Include="Views\Shared\_ProjectUpdatePartial.cshtml" />
     <Content Include="Views\Project\_BackerPartial.cshtml" />
     <Content Include="Views\Project\BuckProject.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Categories\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
