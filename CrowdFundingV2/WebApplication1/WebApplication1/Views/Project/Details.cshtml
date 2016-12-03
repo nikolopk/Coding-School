@@ -128,7 +128,6 @@
                                 <div class="box-list-comment">
                                     @foreach ( var comment in Model.Comments ) {
                                         @Html.Partial("_ProjectCommentPartial", comment)
-
                                     }
                                 </div>
                             </div><!--end: .tab-pane(Comments) -->
@@ -193,11 +192,11 @@
             <div class="wrap-nav-pledge">
                 <ul class="rs nav nav-pledge accordion">
 
-                    @foreach(var reward in Model.Rewards)
+                    @*@foreach(var reward in Model.Rewards)
                     { 
-                        @Html.Partial("Details","Reward", reward)
+                        @Html.Partial("Rewards/Details", reward)
+                    }*@
 
-                    }
                    
                 </ul>
             </div><!--end: .wrap-nav-pledge -->
