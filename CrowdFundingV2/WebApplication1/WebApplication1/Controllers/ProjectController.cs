@@ -14,7 +14,7 @@ using WebApplication1.Models;
 namespace WebApplication1.Controllers {
     public class ProjectController : Controller
     {
-        private CrowdFundingContext db = new CrowdFundingContext();
+        private readonly CrowdFundingContext db = new CrowdFundingContext();
         private readonly ApplicationUserManager _userManager;
 
 
@@ -38,18 +38,12 @@ namespace WebApplication1.Controllers {
                                Description        = y.Description,
                                CurrentFund        = y.CurrentFundAmount,
                                Ratio              = (int)Math.Floor((y.Ratio * 100)),
-                               CurrentBackerCount = y.BackerProjects.Where(x => x.ProjectId == y.Id).Count(),
+                               CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
                                DueDate            = y.DueDate,
-                               NoComments         = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
+                               NoComments         = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
                            }).FirstOrDefault();
             return View(project);
         }
-
-        //[HttpGet]
-        //public ActionResult Search()
-        //{
-
-        //}
 
         [HttpGet]
         [Authorize]
@@ -65,7 +59,7 @@ namespace WebApplication1.Controllers {
                 Statuses        = db.ProjectStatus.ToList(),
                 CreatorFullName = user.FirstName + " " + user.LastName,
                 CreatorId       = myUser.Id,
-                NoProjects      = db.Projects.Where(x =>x.CreatorId == myUser.Id).Count(),
+                NoProjects      = db.Projects.Count(x => x.CreatorId == myUser.Id),
                 MyProjects      = CreatorProjects(myUser.Id)
             };
 
@@ -87,9 +81,9 @@ namespace WebApplication1.Controllers {
                                Description        = y.Description,
                                CurrentFund        = y.CurrentFundAmount,
                                Ratio              = (int)Math.Floor((y.Ratio * 100)),
-                               CurrentBackerCount = y.BackerProjects.Where(x => x.ProjectId == y.Id).Count(),
+                               CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
                                DueDate            = y.DueDate,
-                               NoComments         = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
+                               NoComments         = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
                            });
 
 
@@ -114,9 +108,9 @@ namespace WebApplication1.Controllers {
                                         Description        = y.Description,
                                         CurrentFund        = y.CurrentFundAmount,
                                         Ratio              = (int)Math.Floor((y.Ratio * 100)),
-                                        CurrentBackerCount = y.BackerProjects.Where(x=>x.ProjectId == y.Id).Count(),
+                                        CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
                                         DueDate            = y.DueDate,
-                                        NoComments         = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
+                                        NoComments         = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
                                     }).ToList();
 
             
@@ -145,10 +139,6 @@ namespace WebApplication1.Controllers {
 
             };
 
-            //project.CreatorId = myUser.Id;
-            //project.StatusId = 1;
-            //project.DateInserted = DateTime.Now;
-
             if (ModelState.IsValid)
             {
                 dbProject = db.Projects.Add(dbProject);
@@ -157,16 +147,11 @@ namespace WebApplication1.Controllers {
             }
             var viewModel = new Models.ProjectViewModel()
             {
-
                 Categories = db.Categories.ToList(),
                 Statuses   = db.ProjectStatus.ToList(),
                 Project    = dbProject,
                 MyProjects = CreatorProjects(myUser.Id)
             };
-
-
-            //ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", project.CategoryId);
-            //ViewBag.StatusId = new SelectList(db.ProjectStatus, "Id", "Name", project.StatusId);
 
             return View(viewModel);
         }
@@ -196,10 +181,10 @@ namespace WebApplication1.Controllers {
                 DueDate            = project.DueDate,
                 Ratio              = (int)Math.Floor(project.Ratio * 100),
                 TargetAmount       = project.TargetAmount,
-                CreatorNoProjects  = user.Projects.Count(),
+                CreatorNoProjects  = user.Projects.Count,
                 CurrentFund        = project.CurrentFundAmount,
                 CreatorFullName    = aspNetUser.FirstName + " " + aspNetUser.LastName,
-                CurrentBackerCount = project.BackerProjects.Count(),
+                CurrentBackerCount = project.BackerProjects.Count,
                 DateInserted       = project.DateInserted,
                 Id                 = project.Id,
                 Comments           = project.UserProjectComments.Select(c => new ProjectCommentViewModel()
@@ -217,7 +202,7 @@ namespace WebApplication1.Controllers {
                 Backers = project.BackerProjects.Select(b => new BackerViewModel()
                 {
                     FullName   = b.User.AspNetUser.FirstName + " " + b.User.AspNetUser.LastName,
-                    NoProjects = b.User.BackerProjects.Count()
+                    NoProjects = b.User.BackerProjects.Count
                 }).ToList(),
                 Rewards = project.Rewards.Select(r => new RewardViewModel()
                 {
@@ -265,7 +250,7 @@ namespace WebApplication1.Controllers {
                 CreatorId          = myUser.Id,
                 SelectedCategoryId = project.CategoryId,
                 SelectedStatusId   = project.StatusId,
-                NoProjects         = db.Projects.Where(x => x.CreatorId == myUser.Id).Count(),
+                NoProjects         = db.Projects.Count(x => x.CreatorId == myUser.Id),
                 MyProjects         = CreatorProjects(myUser.Id),
                 Project            = project,
                 Comments           = db.UserProjectComments.Where(x => x.ProjectId == project.Id).Select(y => new ProjectCommentViewModel()
@@ -291,11 +276,6 @@ namespace WebApplication1.Controllers {
             };
 
             return View(model);
-
-            //ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", project.CategoryId);
-            //ViewBag.StatusId = new SelectList(db.ProjectStatus, "Id", "Name", project.StatusId);
-
-            //return View(project);
         }
 
         // POST: Projects/Edit/5

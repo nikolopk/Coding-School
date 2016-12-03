@@ -45,6 +45,12 @@
     <Compile Include="IPayWithVivaWallet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CF.Models\CF.Models.csproj">
+      <Project>{6B213A9E-27F9-48CD-A7A1-77B5CFAEA6D5}</Project>
+      <Name>CF.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
