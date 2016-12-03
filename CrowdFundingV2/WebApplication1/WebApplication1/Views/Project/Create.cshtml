@@ -67,10 +67,14 @@
                                             </div>
                                         </div>
                                         <div class="row-item clearfix">
+                                        
+                                            
                                             @Html.LabelFor(model => model.Project.DueDate, "Due Date", htmlAttributes: new { @class = "lbl" })
                                             <div class="val">
+                                                
                                                 @Html.TextBoxFor(model => model.Project.DueDate, new { @class = "txt", @placeholder = "Due Date of the project" })
                                                 @Html.ValidationMessageFor(model => model.Project.DueDate, "", new { @class = "text-danger" })
+                                                
                                             </div>
                                         </div>
                                         <p class="wrap-btn-submit rs ta-r">
@@ -101,7 +105,8 @@
                         <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$USER_NAME" />
                     </a>
                     <div class="media-body">
-                    <h4 class="rs pb10"> @Html.ActionLink(Model.CreatorFullName, "Edit", "Users", new { id = Model.CreatorId }, new { @class = "be-fc-orange fw-b" }) </h4>
+                    <h4 class="rs pb10"
+                        > @Html.ActionLink(Model.CreatorFullName, "Edit", "Users", new { id = Model.CreatorId }, new { @class = "be-fc-orange fw-b" }) </h4>
                     <p class="rs fc-gray">@Model.NoProjects projects</p>
                     </div>
                 </div>

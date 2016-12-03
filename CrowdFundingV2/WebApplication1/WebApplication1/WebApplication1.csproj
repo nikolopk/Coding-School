@@ -258,6 +258,7 @@
     <Content Include="Content\mytemplate\css\animate.min.css" />
     <Content Include="Content\mytemplate\css\ie7.css" />
     <Content Include="Content\mytemplate\css\ie8.css" />
+    <Content Include="Content\mytemplate\css\jquery-ui.css" />
     <Content Include="Content\mytemplate\css\jquery.sidr.light.css" />
     <Content Include="Content\mytemplate\css\md-slider.css" />
     <Content Include="Content\mytemplate\css\normalize.css" />
