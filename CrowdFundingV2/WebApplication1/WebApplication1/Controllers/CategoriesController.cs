@@ -19,7 +19,16 @@ namespace WebApplication1.Controllers
         
         public ActionResult Get(int? id)
         {
-            if(id == null)
+            var categories = db.Categories
+                .Include(p => p.Projects)
+                .Select(y => new CategoryViewModel()
+                {
+                    Id = y.Id,
+                    Name = y.Name,
+                    NoProjects = y.Projects.Where(x => x.DueDate >= DateTime.Now).Count()
+                });
+
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -63,7 +72,8 @@ namespace WebApplication1.Controllers
                 Id = category.Id,
                 Name = category.Name,
                 NoProjects = category.NoProjects,
-                PopularProjects = categoryPopularProject.ToList()
+                PopularProjects = categoryPopularProject.ToList(),
+                Categories = categories.ToList()
             };
 
             return View("Index",viewModel);
