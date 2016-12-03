@@ -9,12 +9,20 @@ using System.Web;
 using System.Web.Mvc;
 using CF.Data.Context;
 using CF.Models.Database;
+using WebApplication1.Models;
+using Microsoft.AspNet.Identity;
 
 namespace WebApplication1.Controllers
 {
     public class UserProjectCommentsController : Controller
     {
         private CrowdFundingContext db = new CrowdFundingContext();
+        private readonly ApplicationUserManager _userManager;
+
+        public UserProjectCommentsController(ApplicationUserManager userManager)
+        {
+            _userManager = userManager;
+        }
 
         // GET: UserProjectComments
         public async Task<ActionResult> Index()
@@ -50,8 +58,6 @@ namespace WebApplication1.Controllers
             {
                 ProjectId = projectId.Value
             };
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title");
-            // ViewBag.BackerId = new SelectList(db.Users, "Id", "Email");
             return View(viewModel);
         }
 
@@ -60,18 +66,26 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,BackerId,ProjectId,Text,DateInserted")] UserProjectComment userProjectComment)
+        public async Task<ActionResult> Create(ProjectCommentViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                db.UserProjectComments.Add(userProjectComment);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
+                var user = _userManager.FindById(User.Identity.GetUserId());
+                var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
 
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title", userProjectComment.ProjectId);
-            ViewBag.BackerId = new SelectList(db.Users, "Id", "Email", userProjectComment.BackerId);
-            return View(userProjectComment);
+                var comment = new UserProjectComment()
+                {
+                    ProjectId = viewModel.ProjectId,
+                    Text = viewModel.Text,
+                    BackerId = myUser.Id,
+                    DateInserted = DateTime.Now
+                };
+                db.UserProjectComments.Add(comment);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Details", "Project", new { id = viewModel.ProjectId });
+            }
+            
+            return View(viewModel);
         }
 
         // GET: UserProjectComments/Edit/5
