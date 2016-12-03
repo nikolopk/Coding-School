@@ -19,7 +19,7 @@ namespace CF.Data.Mappings
             Property(x => x.Id).HasColumnName(@"Id").IsRequired().HasColumnType("int").HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.ProjectId).HasColumnName(@"ProjectId").IsRequired().HasColumnType("int");
             Property(x => x.UserId).HasColumnName(@"UserId").IsRequired().HasColumnType("int");
-            Property(x => x.Amount).HasColumnName(@"Amount").IsRequired().HasColumnType("decimal").HasPrecision(18,2);
+            Property(x => x.Amount).HasColumnName(@"Amount").IsRequired().HasColumnType("int");
             Property(x => x.DateInserted).HasColumnName(@"DateInserted").IsRequired().HasColumnType("datetime");
             Property(x => x.PaymentStatus).HasColumnName(@"PaymentStatus").IsRequired().HasColumnType("nvarchar").HasMaxLength(50);
 

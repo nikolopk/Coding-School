@@ -28,8 +28,9 @@ namespace CF.POCOGenerator
             HasKey(x => x.Id);
 
             Property(x => x.Id).HasColumnName(@"Id").IsRequired().HasColumnType("int").HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
-            Property(x => x.PhotoUrl).HasColumnName(@"PhotoUrl").IsOptional().HasColumnType("nvarchar").HasMaxLength(200);
             Property(x => x.AspNetUsersId).HasColumnName(@"AspNetUsersId").IsOptional().HasColumnType("nvarchar").HasMaxLength(128);
+            Property(x => x.PhotoUrl).HasColumnName(@"PhotoUrl").IsOptional().HasColumnType("nvarchar(max)");
+            Property(x => x.Image).HasColumnName(@"Image").IsOptional().HasColumnType("varbinary");
 
             // Foreign keys
             HasOptional(a => a.AspNetUser).WithMany(b => b.Users).HasForeignKey(c => c.AspNetUsersId).WillCascadeOnDelete(false); // FK_User_AspNetUsers

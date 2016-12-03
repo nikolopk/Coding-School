@@ -5,7 +5,9 @@ namespace CF.Models.Database
     public class User
     {
         public int Id { get; set; } // Id (Primary key)
-        public string PhotoUrl { get; set; } // PhotoUrl (length: 200)
+        public string PhotoUrl { get; set; } // PhotoUrl
+        public byte[] Image { get; set; } // Image
+
         public string AspNetUsersId { get; set; } // AspNetUsersId (length: 128)
 
         // Reverse navigation

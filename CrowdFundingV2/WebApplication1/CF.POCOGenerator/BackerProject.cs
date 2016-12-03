@@ -20,7 +20,7 @@ namespace CF.POCOGenerator
         public int Id { get; set; } // Id (Primary key)
         public int ProjectId { get; set; } // ProjectId
         public int UserId { get; set; } // UserId
-        public decimal Amount { get; set; } // Amount
+        public int Amount { get; set; } // Amount
         public System.DateTime DateInserted { get; set; } // DateInserted
         public string PaymentStatus { get; set; } // PaymentStatus (length: 50)
 
