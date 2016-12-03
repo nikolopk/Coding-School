@@ -78,8 +78,9 @@
                     <div class="top-message clearfix">
                         <i class="icon iNext"></i>
                         @if (Request.IsAuthenticated)
-                        {                  
-                            <span class="txt-message">Hello @User.Identity.GetUserName()!</span>
+                        {
+                            string[] username = User.Identity.GetUserName().Split('@');
+                            <span class="txt-message">Hello, @username[0]!</span>
                         }
                         else {
                             <span class="txt-message">Be the change you want to see in the world.</span>
