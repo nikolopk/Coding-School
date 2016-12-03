@@ -29,7 +29,7 @@
                                     @using (Html.BeginForm("Create", "Project", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                                     {
                                         <div class="row-item clearfix">
-                                            @Html.LabelFor(model => model.Project.CategoryId, "CategoryId", htmlAttributes: new { @class = "lbl" })
+                                            @Html.LabelFor(model => model.Project.CategoryId, "Category", htmlAttributes: new { @class = "lbl" })
                                             <div class="val">
                                                 <select name="@Html.NameFor(m => m.SelectedCategoryId)" class="txt">
                                                     @foreach (var c in Model.Categories)
