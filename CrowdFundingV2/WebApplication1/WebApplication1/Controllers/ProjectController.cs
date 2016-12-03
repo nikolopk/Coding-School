@@ -211,7 +211,16 @@ namespace WebApplication1.Controllers {
                 {
                     FullName = b.User.AspNetUser.FirstName + " " + b.User.AspNetUser.LastName,
                     NoProjects = b.User.BackerProjects.Count()
-                }).ToList()
+                }).ToList(),
+                Rewards = project.Rewards.Select(r => new RewardViewModel()
+                {
+                    Id = project.Id,
+                    ProjectId = project.Id,
+                    CurrentAvailable = r.CurrentAvailable,
+                    Description = r.Description,
+                    MaxAvailable = r.MaxAvailable
+                }
+                ).ToList()
             };
             return View(viewModel);
         }
@@ -254,11 +263,19 @@ namespace WebApplication1.Controllers {
                     DateInserted = y.DateInserted,
                     Text = y.Text
                 }).ToList(),
-                Updates = db.ProjectUpdates.Where(x=>x.ProjectId == project.Id).Select(y => new ProjectUpdateViewModel()
+                Updates = db.ProjectUpdates.Where(x => x.ProjectId == project.Id).Select(y => new ProjectUpdateViewModel()
                 {
-                     FullName = user.FirstName + " " + user.LastName,
-                     DateInserted = y.DateInserted,
-                     Text = y.Text
+                    FullName = user.FirstName + " " + user.LastName,
+                    DateInserted = y.DateInserted,
+                    Text = y.Text
+                }).ToList(),
+                Rewards = db.Rewards.Where(x => x.ProjectId == project.Id).Select(y => new RewardViewModel()
+                {
+                    Title = y.Name,
+                    ProjectId = project.Id,
+                    CurrentAvailable = y.CurrentAvailable,
+                    Description = y.Description,
+                    MaxAvailable = y.MaxAvailable
                 }).ToList()
             };
 

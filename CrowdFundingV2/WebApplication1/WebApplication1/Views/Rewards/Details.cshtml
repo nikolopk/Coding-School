@@ -1,82 +1,20 @@
-﻿@model CF.Models.Database.Reward
+﻿@model  WebApplication1.Models.RewardViewModel
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Reward</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Project.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Project.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateInserted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateInserted)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RequiredAmount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RequiredAmount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MaxAvailable)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaxAvailable)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CurrentAvailable)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CurrentAvailable)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsAvailable)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsAvailable)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<li>
+    <div class=" pledge-label accordion-label clearfix">
+        <i class="icon iPlugGray"></i>
+        <span class="pledge-amount">@Model.Title</span>
+        <span class="count-val">(@Model.CurrentAvailable of @Model.MaxAvailable)</span>
+    </div>
+    <div class=" pledge-content accordion-content">
+        <div class="pledge-detail">
+            @Html.HiddenFor(model => model.ProjectId)
+            <p class="rs pledge-description">@Model.Description</p>
+            <p class="rs ta-c"><a class="btn big btn-red" href="Project/BuckProject/@Model.ProjectId">Buck this project</a></p>
+        </div>
+    </div>
+</li><!--end: pledge-item -->

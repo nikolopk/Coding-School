@@ -163,19 +163,7 @@
                     }
 
 
-                    @*<form id="myform1" action=@Url.Action("BuckProject", "Project", new {id = @Model.Id}) method="post" style="margin-left: 20px;">
-
-
-                            <button type="button"
-                                    data-vp-publickey="SnJMStPua7FuMFkXFatxfyUH2RLhammNPfVVqSlOQec="
-                                    data-vp-baseurl="https://demo.vivapayments.com"
-                                    data-vp-lang="el"
-                                    data-vp-amount="1500"
-                                    data-vp-description="My product">
-
-                            </button>
-                        </form>*@
-                    <p class="rs description">
+                        <p class="rs description">
                         This project will only be funded if at least €@Model.TargetAmount is pledged by @{
                             CultureInfo ci = new CultureInfo("en-US"); }
                         @Model.DueDate.ToString("ddd dd MMMM yyyy HH:mm", ci)
@@ -204,110 +192,13 @@
             <div class="clear clear-2col"></div>
             <div class="wrap-nav-pledge">
                 <ul class="rs nav nav-pledge accordion">
-                    <li>
-                        <div class=" pledge-label accordion-label clearfix">
-                            <i class="icon iPlugGray"></i>
-                            <span class="pledge-amount">Pledge $17 or more</span>
-                            <span class="count-val">(12 of 31)</span>
-                        </div>
-                        <div class=" pledge-content accordion-content">
-                            <div class="pledge-detail">
-                                <p class="rs pledge-description">Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-                                <p class="rs fw-b pb20">Ocupated (2 of 10)</p>
-                                <p class="rs"><span class="fw-b">Estimated delivery:</span> Aug 2013</p>
-                                <p class="rs fw-thin fc-gray pb20">Ships within the US only</p>
-                                @*<p class="rs ta-c"><a class="btn big btn-red" href="#">Buck this project</a></p>*@
-                                @*<form id="myform2" action="/checkout" method="post">
-                                        <button type="button"
-                                                data-vp-publickey="SnJMStPua7FuMFkXFatxfyUH2RLhammNPfVVqSlOQec="
-                                                data-vp-baseurl="https://demo.vivapayments.com"
-                                                data-vp-lang="el"
-                                                data-vp-amount="100"
-                                                data-vp-description="My product17"></button>
-                                    </form>*@
-                            </div>
-                        </div>
-                    </li><!--end: pledge-item -->
-                    <li>
-                        <div class=" pledge-label accordion-label clearfix">
-                            <i class="icon iPlugGray"></i>
-                            <span class="pledge-amount">Pledge $32 or more</span>
-                            <span class="count-val">(42 of 111)</span>
-                        </div>
-                        <div class=" pledge-content accordion-content">
-                            <div class="pledge-detail">
-                                <p class="rs pledge-description">Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-                                <p class="rs fw-b pb20">Ocupated (2 of 10)</p>
-                                <p class="rs"><span class="fw-b">Estimated delivery:</span> Aug 2013</p>
-                                <p class="rs fw-thin fc-gray pb20">Ships within the US only</p>
-                                <p class="rs ta-c"><a class="btn big btn-red" href="#">Buck this project</a></p>
-                            </div>
-                        </div>
-                    </li><!--end: pledge-item -->
-                    <li>
-                        <div class="active pledge-label accordion-label clearfix">
-                            <i class="icon iPlugGray"></i>
-                            <span class="pledge-amount">Pledge $50 or more</span>
-                            <span class="count-val">(7 of 13)</span>
-                        </div>
-                        <div class="active pledge-content accordion-content">
-                            <div class="pledge-detail">
-                                <p class="rs pledge-description">Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-                                <p class="rs fw-b pb20">Ocupated (2 of 10)</p>
-                                <p class="rs"><span class="fw-b">Estimated delivery:</span> Aug 2013</p>
-                                <p class="rs fw-thin fc-gray pb20">Ships within the US only</p>
-                                <p class="rs ta-c"><a class="btn big btn-red" href="#">Buck this project</a></p>
-                            </div>
-                        </div>
-                    </li><!--end: pledge-item -->
-                    <li>
-                        <div class=" pledge-label accordion-label clearfix">
-                            <i class="icon iPlugGray"></i>
-                            <span class="pledge-amount">Pledge $54 or more</span>
-                            <span class="count-val">(2 of 10)</span>
-                        </div>
-                        <div class=" pledge-content accordion-content">
-                            <div class="pledge-detail">
-                                <p class="rs pledge-description">Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-                                <p class="rs fw-b pb20">Ocupated (12 of 30)</p>
-                                <p class="rs"><span class="fw-b">Estimated delivery:</span> Aug 2013</p>
-                                <p class="rs fw-thin fc-gray pb20">Ships within the US only</p>
-                                <p class="rs ta-c"><a class="btn big btn-red" href="#">Buck this project</a></p>
-                            </div>
-                        </div>
-                    </li><!--end: pledge-item -->
-                    <li>
-                        <div class="pledge-label accordion-label clearfix">
-                            <i class="icon iPlugGray"></i>
-                            <span class="pledge-amount">Pledge $130 or more</span>
-                            <span class="count-val">(23 of 47)</span>
-                        </div>
-                        <div class="pledge-content accordion-content">
-                            <div class="pledge-detail">
-                                <p class="rs pledge-description">Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-                                <p class="rs fw-b pb20">Ocupated (2 of 10)</p>
-                                <p class="rs"><span class="fw-b">Estimated delivery:</span> Aug 2013</p>
-                                <p class="rs fw-thin fc-gray pb20">Ships within the US only</p>
-                                <p class="rs ta-c"><a class="btn big btn-red" href="#">Buck this project</a></p>
-                            </div>
-                        </div>
-                    </li><!--end: pledge-item -->
-                    <li>
-                        <div class="pledge-label accordion-label clearfix">
-                            <i class="icon iPlugGray"></i>
-                            <span class="pledge-amount">Pledge $110 or more</span>
-                            <span class="count-val">(23 of 39)</span>
-                        </div>
-                        <div class="pledge-content accordion-content">
-                            <div class="pledge-detail">
-                                <p class="rs pledge-description">Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
-                                <p class="rs fw-b pb20">Ocupated (2 of 10)</p>
-                                <p class="rs"><span class="fw-b">Estimated delivery:</span> Aug 2013</p>
-                                <p class="rs fw-thin fc-gray pb20">Ships within the US only</p>
-                                <p class="rs ta-c"><a class="btn big btn-red" href="#">Buck this project</a></p>
-                            </div>
-                        </div>
-                    </li><!--end: pledge-item -->
+
+                    @foreach(var reward in Model.Rewards)
+                    { 
+                        @Html.Partial("Details","Reward", reward)
+
+                    }
+                   
                 </ul>
             </div><!--end: .wrap-nav-pledge -->
         </div><!--end: .sidebar -->

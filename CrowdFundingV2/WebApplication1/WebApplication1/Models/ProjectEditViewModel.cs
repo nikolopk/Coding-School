@@ -23,7 +23,7 @@ namespace WebApplication1.Models
 
         public string Description { get; set; }
 
-        public List<Reward> Rewards { get; set; }
+        public List<RewardViewModel> Rewards { get; set; }
 
         public List<ProjectUpdateViewModel> Updates { get; set; }
         public List<ProjectCommentViewModel> Comments { get; set; }
