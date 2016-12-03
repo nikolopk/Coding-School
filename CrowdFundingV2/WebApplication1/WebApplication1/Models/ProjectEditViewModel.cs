@@ -14,7 +14,7 @@ namespace WebApplication1.Models
         public string CreatorFullName { get; set; }
         public DateTime DateInserted { get; set; }
         public DateTime DueDate { get; set; }
-        public decimal TargetAmount { get; set; }
+        public int TargetAmount { get; set; }
         public int Ratio { get; set; }
 
         public int CurrentBackerCount { get; set; }

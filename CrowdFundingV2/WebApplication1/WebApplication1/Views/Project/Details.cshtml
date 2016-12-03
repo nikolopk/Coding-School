@@ -191,10 +191,10 @@
             <div class="wrap-nav-pledge">
                 <ul class="rs nav nav-pledge accordion">
 
-                    @*@foreach(var reward in Model.Rewards)
+                    @foreach(var reward in Model.Rewards)
                     { 
-                        @Html.Partial("Rewards/Details", reward)
-                    }*@
+                        @Html.Partial("~/Views/Rewards/Details.cshtml", reward)
+                    }
 
                    
                 </ul>
