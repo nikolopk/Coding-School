@@ -33,8 +33,8 @@ namespace WebApplication1.Controllers {
                              .Include(p => p.Projects)
                              .Select(y => new CategoryViewModel()
                              {
-                                 Id = y.Id,
-                                 Name = y.Name,
+                                 Id         = y.Id,
+                                 Name       = y.Name,
                                  NoProjects = y.Projects.Where(x=>x.DueDate >= DateTime.Now).Count()
                              })
                              .Where(x => x.Id == id).FirstOrDefault();
@@ -45,22 +45,22 @@ namespace WebApplication1.Controllers {
             }
 
             var categoryStaffProject = db.Projects
-               .Include(p => p.User)
-               .Include(p => p.BackerProjects)
-               .Include(p => p.UserProjectComments)
-               .Where(p => p.CategoryId == id && p.DueDate >= DateTime.Now)
-               .OrderByDescending(x => x.DateInserted)
-               .Select(y => new BasicProjectInfoViewModel()
+               .Include(p            => p.User)
+               .Include(p            => p.BackerProjects)
+               .Include(p            => p.UserProjectComments)
+               .Where(p              => p.CategoryId == id && p.DueDate >= DateTime.Now)
+               .OrderByDescending(x  => x.DateInserted)
+               .Select(y             => new BasicProjectInfoViewModel()
                {
-                   Id = y.Id,
-                   Title = y.Title,
-                   CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
-                   Description = y.Description,
-                   CurrentFund = y.CurrentFundAmount,
-                   Ratio = (int)Math.Floor((y.Ratio * 100)),
+                   Id                 = y.Id,
+                   Title              = y.Title,
+                   CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
+                   Description        = y.Description,
+                   CurrentFund        = y.CurrentFundAmount,
+                   Ratio              = (int)Math.Floor((y.Ratio * 100)),
                    CurrentBackerCount = y.BackerProjects.Where(x => x.ProjectId == y.Id).Count(),
-                   DueDate = y.DueDate,
-                   NoComments = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
+                   DueDate            = y.DueDate,
+                   NoComments         = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
                });
 
             var categoryDisplayProject = categoryStaffProject.ToList();
@@ -84,42 +84,42 @@ namespace WebApplication1.Controllers {
                })
                .OrderByDescending(x => x.CurrentBackerCount);
 
-            var yesterday = DateTime.Now.AddDays(-1);
+            var yesterday            = DateTime.Now.AddDays(-1);
             var categoryTodayProject = db.Projects
-               .Include(p => p.User)
-               .Include(p => p.BackerProjects)
-               .Include(p => p.UserProjectComments)
-               .Where(p => p.CategoryId == id && p.DueDate >= DateTime.Now && p.DateInserted > yesterday)
-               .Select(y => new BasicProjectInfoViewModel()
+               .Include(p            => p.User)
+               .Include(p            => p.BackerProjects)
+               .Include(p            => p.UserProjectComments)
+               .Where(p              => p.CategoryId == id && p.DueDate >= DateTime.Now && p.DateInserted > yesterday)
+               .Select(y             => new BasicProjectInfoViewModel()
                {
-                   Id = y.Id,
-                   Title = y.Title,
-                   CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
-                   Description = y.Description,
-                   CurrentFund = y.CurrentFundAmount,
-                   Ratio = (int)Math.Floor((y.Ratio * 100)),
+                   Id                 = y.Id,
+                   Title              = y.Title,
+                   CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
+                   Description        = y.Description,
+                   CurrentFund        = y.CurrentFundAmount,
+                   Ratio              = (int)Math.Floor((y.Ratio * 100)),
                    CurrentBackerCount = y.BackerProjects.Where(x => x.ProjectId == y.Id).Count(),
-                   DueDate = y.DueDate,
-                   NoComments = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
+                   DueDate            = y.DueDate,
+                   NoComments         = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
                })
                .OrderByDescending(x => x.CurrentBackerCount);
 
             var categoryFundedProject = db.Projects
-               .Include(p => p.User)
-               .Include(p => p.BackerProjects)
-               .Include(p => p.UserProjectComments)
-               .Where(p => p.CategoryId == id && p.DueDate >= DateTime.Now)
-               .Select(y => new BasicProjectInfoViewModel()
+               .Include(p             => p.User)
+               .Include(p             => p.BackerProjects)
+               .Include(p             => p.UserProjectComments)
+               .Where(p               => p.CategoryId == id && p.DueDate >= DateTime.Now)
+               .Select(y              => new BasicProjectInfoViewModel()
                {
-                   Id = y.Id,
-                   Title = y.Title,
-                   CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
-                   Description = y.Description,
-                   CurrentFund = y.CurrentFundAmount,
-                   Ratio = (int)Math.Floor((y.Ratio * 100)),
+                   Id                 = y.Id,
+                   Title              = y.Title,
+                   CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
+                   Description        = y.Description,
+                   CurrentFund        = y.CurrentFundAmount,
+                   Ratio              = (int)Math.Floor((y.Ratio * 100)),
                    CurrentBackerCount = y.BackerProjects.Where(x => x.ProjectId == y.Id).Count(),
-                   DueDate = y.DueDate,
-                   NoComments = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
+                   DueDate            = y.DueDate,
+                   NoComments         = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
                })
                .OrderByDescending(x => x.CurrentFund);
 
@@ -138,15 +138,15 @@ namespace WebApplication1.Controllers {
 
             var viewModel = new CategoryDetailsViewModel()
             {
-                 Id = category.Id,
-                Name = category.Name,
-                NoProjects = category.NoProjects,
-                StaffProjects = categoryStaffProject.ToList(),
+                 Id             = category.Id,
+                Name            = category.Name,
+                NoProjects      = category.NoProjects,
+                StaffProjects   = categoryStaffProject.ToList(),
                 PopularProjects = categoryPopularProject.ToList(),
-                TodayProjects = categoryTodayProject.ToList(),
-                FundedProjects = categoryFundedProject.ToList(),
+                TodayProjects   = categoryTodayProject.ToList(),
+                FundedProjects  = categoryFundedProject.ToList(),
                 DisplayProjects = categoryDisplayProject,
-                Categories = categories.ToList()
+                Categories      = categories.ToList()
             };
 
             return View("Index",viewModel);
