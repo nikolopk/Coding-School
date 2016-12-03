@@ -37,7 +37,15 @@ namespace WebApplication1.Controllers
             {
                 return HttpNotFound();
             }
-            return View(user);
+            var viewModel = new UserDetailsViewModel()
+            {
+                Email = user.AspNetUser.Email,
+                FirstName = user.AspNetUser.FirstName,
+                LastName = user.AspNetUser.LastName,
+                PhoneNumber = user.AspNetUser.PhoneNumber,
+                PhotoUrl = user.PhotoUrl
+            };
+            return View(viewModel);
         }
 
         // GET: Users/Create
