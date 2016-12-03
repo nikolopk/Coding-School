@@ -5,16 +5,22 @@
 }
 
 <li>
-    <div class=" pledge-label accordion-label clearfix">
+    <div class="pledge-label accordion-label clearfix">
         <i class="icon iPlugGray"></i>
         <span class="pledge-amount">@Model.Title</span>
         <span class="count-val">(@Model.CurrentAvailable of @Model.MaxAvailable)</span>
     </div>
-    <div class=" pledge-content accordion-content">
+    <div class="pledge-content accordion-content">
         <div class="pledge-detail">
             @Html.HiddenFor(model => model.ProjectId)
             <p class="rs pledge-description">@Model.Description</p>
-            <p class="rs ta-c"><a class="btn big btn-red" href="Project/BuckProject/@Model.ProjectId">Buck this project</a></p>
+            @using (Html.BeginForm("BuckProject", "Project") ) {
+                @Html.Label("Amount : ");
+                @Html.TextBox("amount", "", new { @type = "number", @step = "1", @min = Model.MinAmount, @max = Model.MaxAmount});
+                @Html.Hidden("id", @Model.Id);
+                <input type="submit" value="Buck This Project" class="btn big btn-red" ) />
+            }
+            @*<p class="rs ta-c"><a class="btn big btn-red" href=>Buck this project</a></p>*@
         </div>
     </div>
 </li><!--end: pledge-item -->

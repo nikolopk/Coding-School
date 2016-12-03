@@ -243,6 +243,7 @@
     <Compile Include="Models\ProjectDetailsViewModel.cs" />
     <Compile Include="Models\ProjectUpdateViewModel.cs" />
     <Compile Include="Models\ProjectViewModel.cs" />
+    <Compile Include="Models\TransactionViewModel.cs" />
     <Compile Include="Models\RewardViewModel.cs" />
     <Compile Include="Models\UserDetailsViewModel.cs" />
     <Compile Include="PaymentManager.cs" />
@@ -257,6 +258,7 @@
     <Content Include="Content\mytemplate\css\animate.min.css" />
     <Content Include="Content\mytemplate\css\ie7.css" />
     <Content Include="Content\mytemplate\css\ie8.css" />
+    <Content Include="Content\mytemplate\css\jquery-ui.css" />
     <Content Include="Content\mytemplate\css\jquery.sidr.light.css" />
     <Content Include="Content\mytemplate\css\md-slider.css" />
     <Content Include="Content\mytemplate\css\normalize.css" />
@@ -496,6 +498,7 @@
     <Content Include="Views\Shared\_ProjectUpdatePartial.cshtml" />
     <Content Include="Views\Project\_BackerPartial.cshtml" />
     <Content Include="Views\Project\BuckProject.cshtml" />
+    <Content Include="Views\Project\VivaPayment.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

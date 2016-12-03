@@ -218,7 +218,10 @@ namespace WebApplication1.Controllers {
                     ProjectId = project.Id,
                     CurrentAvailable = r.CurrentAvailable,
                     Description = r.Description,
-                    MaxAvailable = r.MaxAvailable
+                    MaxAvailable = r.MaxAvailable,
+                    MaxAmount = r.MaxRequiredAmount,
+                    MinAmount = r.MinRequiredAmount,
+                    Title = r.Name
                 }
                 ).ToList()
             };
@@ -303,14 +306,14 @@ namespace WebApplication1.Controllers {
 
             if (ModelState.IsValid)
             {
-                var project = db.Projects.Find(viewModel.Project.Id);
-                project.DueDate = viewModel.Project.DueDate;
-                project.Description = viewModel.Project.Description;
+                var project          = db.Projects.Find(viewModel.Project.Id);
+                project.DueDate      = viewModel.Project.DueDate;
+                project.Description  = viewModel.Project.Description;
                 project.TargetAmount = viewModel.Project.TargetAmount;
-                project.Ratio = (project.CurrentFundAmount / viewModel.Project.TargetAmount);
-                project.Title = viewModel.Project.Title;
-                project.CategoryId = viewModel.SelectedCategoryId;
-                project.StatusId = viewModel.SelectedStatusId;
+                project.Ratio        = (project.CurrentFundAmount / viewModel.Project.TargetAmount);
+                project.Title        = viewModel.Project.Title;
+                project.CategoryId   = viewModel.SelectedCategoryId;
+                project.StatusId     = viewModel.SelectedStatusId;
 
                 db.Entry(project).State = EntityState.Modified;
                 db.SaveChanges();
@@ -322,32 +325,52 @@ namespace WebApplication1.Controllers {
 
         //POST : API/id
         [HttpPost]
-        public async Task<ActionResult> BuckProject(int id )
+        public ActionResult BuckProject(int id, int amount)
         {
-            var user = _userManager.FindById(User.Identity.GetUserId());
-            var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
 
-            var viewModel = new BuckProjectViewModel()
+
+            var user    = _userManager.FindById(User.Identity.GetUserId());
+            var myUser  = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
+
+            var viewModel = new BuckProjectViewModel() 
             {
-                BuckerId = myUser.Id,
-                ProjectId = id,
-                Transaction = await new PaymentManager().SendPaymentAsync()
+                Amount         = amount,
+                ProjectId      = id,
+                BackerId       = myUser.AspNetUser.Id,
+                backerLastName = myUser.AspNetUser.LastName,
+                backerName     = myUser.AspNetUser.FirstName,
+                backerMail     = myUser.AspNetUser.Email
             };
 
-            if(viewModel.Transaction)
-            {
-                var backerProject = new BackerProject()
-                {
-                    Amount = viewModel.Amount,
-                    ProjectId = viewModel.ProjectId,
-                    UserId = viewModel.BuckerId
-                };
+            return View(viewModel);
+      
 
-                db.BackerProjects.Add(backerProject);
-                await db.SaveChangesAsync();
-            }
+            
+
+            //if(viewModel.Transaction)
+            //{
+            //    var backerProject = new BackerProject()
+            //    {
+            //        Amount = viewModel.Amount,
+            //        ProjectId = viewModel.ProjectId,
+            //        UserId = viewModel.BuckerId
+            //    };
+
+            //    db.BackerProjects.Add(backerProject);
+            //    await db.SaveChangesAsync();
+            //}
+            //return View(viewModel);
+        }
+        public async Task<ActionResult> VivaPayment(int projectId) {
+
+            var viewModel = new TransactionViewModel()
+            {
+                projectId = projectId,
+                transaction = await new PaymentManager().SendPaymentAsync()
+            };
+
+
             return View(viewModel);
         }
-
     }
 }

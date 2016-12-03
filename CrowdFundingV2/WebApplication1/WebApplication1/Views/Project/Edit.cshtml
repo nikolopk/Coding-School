@@ -103,11 +103,13 @@
                     <div>
                         <h3 class="rs alternate-tab accordion-label">Rewards</h3>
                         <div class="tab-pane accordion-content">
-                            <a class="post-new-comment be-fc-orange" href="/ProjectRewards/Create/@Model.Id"><i class="icon iPost"></i> Post an Reward</a>
+
+                            @Html.ActionLink("Post an Reward", "Create", "Rewards", routeValues: new { projectId = @Model.Id }, htmlAttributes: new { @class = "post-new-comment be-fc-orange" })
+                            @*< a class="post-new-comment be-fc-orange" href="/Rewards/Create/@Model.Id"><i class="icon iPost"></i> Post an Reward</a>*@
                             <div class="box-list-comment">
 
                                 @foreach (var reward in Model.Rewards)
-                                {
+                            {
                                     <div class="media comment-item">
                                         <a href="#" class="thumb-left">
                                             <img src="images/ex/th-90x90-1.jpg" alt="$TITLE">
