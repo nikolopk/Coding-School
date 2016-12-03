@@ -50,7 +50,7 @@
                                             <select name="@Html.NameFor(m => m.SelectedStatusId)" class="txt">
                                                 @foreach (var c in Model.Statuses)
                                                 {
-                                                    <option value="@c.Id">@c.Name</option>
+                                                    <option @(c.Id == Model.SelectedStatusId ? "selected" : string.Empty) value="@c.Id">@c.Name</option>
                                                 }
                                             </select>
 
@@ -64,7 +64,7 @@
                                             <select name="@Html.NameFor(m => m.SelectedCategoryId)" class="txt">
                                                 @foreach (var c in Model.Categories)
                                                 {
-                                                    <option value="@c.Id">@c.Name</option>
+                                                    <option @(c.Id == Model.SelectedCategoryId ? "selected" : string.Empty)  value="@c.Id">@c.Name</option>
                                                 }
                                             </select>
 
