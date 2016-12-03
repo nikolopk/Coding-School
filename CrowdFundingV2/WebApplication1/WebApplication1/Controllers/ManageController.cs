@@ -1,15 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 using WebApplication1.Models;
 
-namespace WebApplication1.Controllers
-{
+namespace WebApplication1.Controllers {
     [Authorize]
     public class ManageController : Controller
     {
@@ -55,21 +53,21 @@ namespace WebApplication1.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                message           == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                : message         == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                : message         == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
+                : message         == ManageMessageId.Error ? "An error has occurred."
+                : message         == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
+                : message         == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
 
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
-                HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
+                HasPassword       = HasPassword(),
+                PhoneNumber       = await UserManager.GetPhoneNumberAsync(userId),
+                TwoFactor         = await UserManager.GetTwoFactorEnabledAsync(userId),
+                Logins            = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
             return View(model);

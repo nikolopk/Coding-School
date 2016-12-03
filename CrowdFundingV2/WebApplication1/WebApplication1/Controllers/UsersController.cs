@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using CF.Data.Context;
+﻿using CF.Data.Context;
 using CF.Models.Database;
+using System.Data.Entity;
+using System.Net;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 using WebApplication1.Models;
 
-namespace WebApplication1.Controllers
-{
+namespace WebApplication1.Controllers {
     public class UsersController : Controller
     {
         private CrowdFundingContext db = new CrowdFundingContext();
@@ -88,9 +82,9 @@ namespace WebApplication1.Controllers
             var aspnetUser = user.AspNetUser;
             var viewModel = new UserDetailsViewModel()
             {
-                Email = aspnetUser.Email,
-                FirstName = aspnetUser.FirstName,
-                LastName = aspnetUser.LastName,
+                Email       = aspnetUser.Email,
+                FirstName   = aspnetUser.FirstName,
+                LastName    = aspnetUser.LastName,
                 PhoneNumber = aspnetUser.PhoneNumber
             };
             return View(viewModel);
@@ -111,11 +105,11 @@ namespace WebApplication1.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                var aspnetUser = user.AspNetUser;
-                aspnetUser.Email = userViewModel.Email;
-                aspnetUser.FirstName = userViewModel.FirstName;
-                aspnetUser.LastName = userViewModel.LastName;
-                aspnetUser.PhoneNumber = userViewModel.PhoneNumber;
+                var aspnetUser             = user.AspNetUser;
+                aspnetUser.Email           = userViewModel.Email;
+                aspnetUser.FirstName       = userViewModel.FirstName;
+                aspnetUser.LastName        = userViewModel.LastName;
+                aspnetUser.PhoneNumber     = userViewModel.PhoneNumber;
                 db.Entry(aspnetUser).State = EntityState.Modified;
                 
                 await db.SaveChangesAsync();

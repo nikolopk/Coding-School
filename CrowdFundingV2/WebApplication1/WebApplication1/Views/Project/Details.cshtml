@@ -116,7 +116,7 @@
 
                                     }
                                 </div>
-                                <div class="project-btn-action">
+                                <div class="btn project-btn-action">
                                     <a class="btn btn-red" href="#">Ask a question</a>
                                     <a class="btn btn-black" href="#">Report this project</a>
                                 </div>
@@ -148,17 +148,16 @@
                         <span class="val"><span class="fw-b">Funding ends: </span>@Model.DueDate.ToString("dd-MM-yyyy HH:mm")</span>
                     </div>
 
-                    @using ( Html.BeginForm("BuckProject", "Project") )
+                    @using ( Html.BeginForm("BuckProject", "Project" ,  new { onsubmit="validateAmount()"}))
                         {
                             @Html.Label("Amount : ");
-                            @Html.TextBox("amount", "", new {@type = "number", @step = "1" , @min ="1"});
+                            @Html.TextBox("amount", "amount", new {@type = "number", @step = "1" , @min ="1" ,@value = 1, @onfocus="if (this.value==0) this.value=1", @onblur = "if (this.value==0) this.value=1" });
                             @Html.Hidden("id",@Model.Id);
 
                         @*<a class="btn btn-green btn-buck-project") href="#">
                             <span class="lbl">Buck This Project</span>
                         </a>*@
-                        <input type="submit" value="Buck This Project" class="btn btn-green btn-buck-project")/> 
-                        
+                        <input type="submit" value="Back This Project" class="btn btn-green btn-buck-project"/> 
                     }
 
 
@@ -183,8 +182,7 @@
                         </div>
                     </div>
                     <div class="author-action">
-                        <a class="btn btn-red" href="#">Contact me</a>
-                        <a class="btn btn-white" href="#">See full bio</a>
+                        @Html.ActionLink("Contact me", "Details", "Users", routeValues: new { Id = @Model.CreatorId }, htmlAttributes: new { @class = "btn btn-red" })
                     </div>
                 </div>
             </div><!--end: .project-author -->
