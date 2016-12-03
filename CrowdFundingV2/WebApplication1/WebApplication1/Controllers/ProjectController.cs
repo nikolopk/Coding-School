@@ -167,6 +167,7 @@ namespace WebApplication1.Controllers {
 
 
         // GET: Projects/Details/5
+        [AllowAnonymous]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -229,6 +230,7 @@ namespace WebApplication1.Controllers {
         }
 
         // GET: Projects/Edit/5
+        [Authorize]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -295,6 +297,7 @@ namespace WebApplication1.Controllers {
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit(ProjectEditViewModel viewModel)
         {
             var user = _userManager.FindById(User.Identity.GetUserId());
@@ -325,6 +328,7 @@ namespace WebApplication1.Controllers {
 
         //POST : API/id
         [HttpPost]
+        [Authorize]
         public ActionResult BuckProject(int id, int amount)
         {
 
@@ -343,12 +347,11 @@ namespace WebApplication1.Controllers {
             };
 
             return View(backProjectModel);
-      
-
-            
-
-            
         }
+
+
+        [HttpPost]
+        [Authorize]
         public async Task<ActionResult> VivaPayment(int amount, int projectId, int BackerId) {
 
             var transactionModel = new TransactionViewModel()

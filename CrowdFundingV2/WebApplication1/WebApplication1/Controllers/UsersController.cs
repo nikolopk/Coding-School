@@ -31,7 +31,15 @@ namespace WebApplication1.Controllers {
             {
                 return HttpNotFound();
             }
-            return View(user);
+            var viewModel = new UserDetailsViewModel()
+            {
+                Email = user.AspNetUser.Email,
+                FirstName = user.AspNetUser.FirstName,
+                LastName = user.AspNetUser.LastName,
+                PhoneNumber = user.AspNetUser.PhoneNumber,
+                PhotoUrl = user.PhotoUrl
+            };
+            return View(viewModel);
         }
 
         // GET: Users/Create
@@ -97,11 +105,11 @@ namespace WebApplication1.Controllers {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                var aspnetUser = user.AspNetUser;
-                aspnetUser.Email = userViewModel.Email;
-                aspnetUser.FirstName = userViewModel.FirstName;
-                aspnetUser.LastName = userViewModel.LastName;
-                aspnetUser.PhoneNumber = userViewModel.PhoneNumber;
+                var aspnetUser             = user.AspNetUser;
+                aspnetUser.Email           = userViewModel.Email;
+                aspnetUser.FirstName       = userViewModel.FirstName;
+                aspnetUser.LastName        = userViewModel.LastName;
+                aspnetUser.PhoneNumber     = userViewModel.PhoneNumber;
                 db.Entry(aspnetUser).State = EntityState.Modified;
                 
                 await db.SaveChangesAsync();
