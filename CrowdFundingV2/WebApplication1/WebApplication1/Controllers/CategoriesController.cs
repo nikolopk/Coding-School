@@ -26,6 +26,12 @@ namespace WebApplication1.Controllers
 
             var category = db.Categories
                              .Include(p => p.Projects)
+                             .Select(y => new CategoryViewModel()
+                             {
+                                 Id = y.Id,
+                                 Name = y.Name,
+                                 NoProjects = y.Projects.Count()
+                             })
                              .Where(x => x.Id == id).FirstOrDefault();
 
             if(category == null)
@@ -56,6 +62,7 @@ namespace WebApplication1.Controllers
             {
                 Id = category.Id,
                 Name = category.Name,
+                NoProjects = category.NoProjects,
                 PopularProjects = categoryPopularProject.ToList()
             };
 
