@@ -1,0 +1,39 @@
+﻿@model CF.Models.Database.UserProjectComment
+
+@{
+    ViewBag.Title = "Comment the project!";
+    Layout = "~/Views/Shared/_myTemplate.cshtml";
+}
+
+<div class="layout-2cols">
+    <div class="content grid_8">
+        <div class="single-page">
+            <div class="wrapper-box box-post-comment">
+                <h2 class="common-title">Create a Comment!</h2>
+                <div class="form login-form">
+                    <section id="loginForm">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.ProjectId)
+                            <div class="box-white">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <h4 class="rs title-box">Creators need your opinion!</h4>
+                                <p class="rs">Let them know what you think!</p>
+                                <div class="form-action">
+                                    @Html.LabelFor(model => model.Text, "Comment", htmlAttributes: new { @class = "txt_email_login" })
+                                    @Html.TextAreaFor(model => model.Text, new { cols = "77", rows = "5", @class = "txt fill-width" })
+                                    @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                                    <p class="rs ta-c pb10">
+                                        <input type="submit" value="Create" class="btn btn-red btn-submit" />
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                    </section>
+                </div>
+            </div>
+        </div><!--end: .box-list-comment -->
+    </div>
+</div><!--end: .content -->
+<div class="clear"></div>

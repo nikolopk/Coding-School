@@ -1,0 +1,20 @@
+﻿@model  WebApplication1.Models.RewardViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<li>
+    <div class=" pledge-label accordion-label clearfix">
+        <i class="icon iPlugGray"></i>
+        <span class="pledge-amount">@Model.Title</span>
+        <span class="count-val">(@Model.CurrentAvailable of @Model.MaxAvailable)</span>
+    </div>
+    <div class=" pledge-content accordion-content">
+        <div class="pledge-detail">
+            @Html.HiddenFor(model => model.ProjectId)
+            <p class="rs pledge-description">@Model.Description</p>
+            <p class="rs ta-c"><a class="btn big btn-red" href="Project/BuckProject/@Model.ProjectId">Buck this project</a></p>
+        </div>
+    </div>
+</li><!--end: pledge-item -->

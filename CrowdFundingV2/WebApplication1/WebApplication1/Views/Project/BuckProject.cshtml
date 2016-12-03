@@ -1,0 +1,35 @@
+﻿@model WebApplication1.Models.BuckProjectViewModel
+@using System.Globalization;
+@{
+    ViewBag.Title = "BuckProject";
+    Layout = "~/Views/Shared/_myTemplate.cshtml";
+
+}
+
+<font color="black">
+    
+    <h1 style="margin-left: 20px;">
+        <b> Payment informartion!</b>
+    </h1><br />
+
+    <h2 style="margin-left: 20px;">
+        Dear @Model.backerName, <br />
+        we will charge your bank account at this time with @Model.Amount €. <br /><br />
+        In case the project is NOT succefully funded, you will receive a full refund! <br />
+        The only payment method we currently support is through VIVA Wallet. To proceed click the button below.<br />
+    </h2>
+
+    <form id="myform1" action=@Url.Action("VivaPayment", "Project", new { projectId = Model.ProjectId}) method="post" style="margin-left: 20px;">
+
+        <button type="button"
+            data-vp-publickey         ="SnJMStPua7FuMFkXFatxfyUH2RLhammNPfVVqSlOQec="
+            data-vp-baseurl           ="https://demo.vivapayments.com"
+            data-vp-lang              ="en"
+            data-vp-amount            =@(Model.Amount.ToString()+"00")
+            data-vp-description       ="My product"
+            data-vp-customerfirstname = @Model.backerName
+            data-vp-customersurname   = @Model.backerLastName
+            data-vp-customeremail     = @Model.backerMail     >
+        </button>
+    </form>
+</font>

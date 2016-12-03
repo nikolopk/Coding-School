@@ -1,0 +1,51 @@
+﻿@model WebApplication1.Models.RewardViewModel
+@using System.Globalization;
+
+@{
+    ViewBag.Title = "Create a Reward!";
+    Layout = "~/Views/Shared/_myTemplate.cshtml";
+}
+
+<div class="layout-2cols">
+    <div class="content grid_8">
+        <div class="single-page">
+            <div class="wrapper-box box-post-comment">
+                <h2 class="common-title">Create New Reward!</h2>
+                <div class="form login-form">
+                    <section id="loginForm">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(model => model.Id)
+                            @Html.HiddenFor(model => model.ProjectId)
+                            <div class="box-white">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-action">
+                                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "txt_email_login" })
+                                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "txt fill-width" } })
+                                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+
+                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "txt_email_login" })
+                                    @Html.TextAreaFor(model => model.Description, new { cols = "77", rows = "5", @class = "txt fill-width"  })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+                                    @Html.LabelFor(model => model.RequiredAmount, htmlAttributes: new { @class = "txt_email_login" })
+                                    @Html.EditorFor(model => model.RequiredAmount, new { htmlAttributes = new { @class = "txt fill-width" } })
+                                    @Html.ValidationMessageFor(model => model.RequiredAmount, "", new { @class = "text-danger" })
+
+                                    @Html.LabelFor(model => model.MaxAvailable, htmlAttributes: new { @class = "txt_email_login" })
+                                    @Html.EditorFor(model => model.MaxAvailable, new { htmlAttributes = new { @class = "txt fill-width" } })
+                                    @Html.ValidationMessageFor(model => model.MaxAvailable, "", new { @class = "text-danger" })
+                                    <p class="rs ta-c pb10">
+                                        <input type="submit" value="Create" class="btn btn-red btn-submit" />
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                    </section>
+                </div>
+            </div>
+        </div><!--end: .box-list-comment -->
+    </div>
+</div><!--end: .content -->
+<div class="clear"></div>

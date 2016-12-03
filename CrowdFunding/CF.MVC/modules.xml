@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<autofac>
+  <modules>
+    <module type="CF.EntityManagers.AModule.EntityManagersModule, CF.EntityManagers.AModule">
+    </module>
+    <module type="CF.DataRepositories.AModule.DataRepositoriesModule, CF.DataRepositories.AModule">
+
+    </module>
+    <module type="CF.Controllers.AModule.ControllersModule, CF.Controllers.AModule">
+    </module>
+    <module type="CF.Logging.Log4Net.AModule.Log4NetLoggerModule, CF.Logging.Log4Net.AModule">
+    </module>
+    <module type="CF.Models.AModule.ModelsModule, CF.Models.AModule">
+    </module>
+    
+
+  </modules>
+</autofac>

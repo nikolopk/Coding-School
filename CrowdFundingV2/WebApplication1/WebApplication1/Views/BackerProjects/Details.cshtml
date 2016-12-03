@@ -1,0 +1,58 @@
+﻿@model CF.Models.Database.BackerProject
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BackerProject</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.PhotoUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.PhotoUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateInserted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateInserted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

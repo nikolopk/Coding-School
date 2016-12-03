@@ -1,0 +1,15 @@
+﻿@model WebApplication1.Models.ProjectCommentViewModel
+
+<div class="media comment-item">
+    <a href="#" class="thumb-left">
+        <img src="images/ex/th-90x90-1.jpg" alt="$TITLE">
+    </a>
+    <div class="media-body">
+        <h4 class="rs comment-author">
+            <a href="#" class="be-fc-orange fw-b">@Model.CommentorFullName</a>
+            <span class="fc-gray">say:</span>
+        </h4>
+        <p class="rs comment-content"> @Model.Text</p>
+        <p class="rs time-post">on @Model.DateInserted</p>
+    </div>
+</div><!--end: .comment-item -->

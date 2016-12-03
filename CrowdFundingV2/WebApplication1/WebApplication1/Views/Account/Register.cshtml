@@ -1,0 +1,59 @@
+﻿@model WebApplication1.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_myTemplate.cshtml";
+}
+
+<div class="layout-2cols">
+    <div class="content grid_8">
+        <div class="single-page">
+            <div class="wrapper-box box-post-comment">
+                <h2 class="common-title">Register</h2>
+                <div class="form login-form">
+                    <section action="#">
+                        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="box-white">
+                                @Html.ValidationSummary("", new { @class = "text-danger" })
+                                <h4 class="rs title-box">New to 4Viva?</h4>
+                                <p class="rs">A 4Viva account is required to continue.</p>
+                                <div class="form-action">
+                                    <div class="left-input">
+                                        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+                                        @Html.TextBoxFor(m => m.FirstName, new { @class = "txt fill-width" })
+                                    </div>
+                                    <div class="right-input">
+                                        @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+                                        @Html.TextBoxFor(m => m.LastName, new { @class = "txt fill-width" })
+                                     </div>
+                                    <div class="left-input">
+                                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "txt fill-width" })
+                                    </div>
+                                    <div class="right-input">
+                                        @Html.LabelFor(m => m.ConfirmEmail, new { @class = "col-md-2 control-label" })
+                                        @Html.TextBoxFor(m => m.ConfirmEmail, new { @class = "txt fill-width" })
+                                    </div>
+                                    <div class="left-input">
+                                        @Html.LabelFor(m => m.Password, new { @class = "txt_password_register" })
+                                        @Html.PasswordFor(m => m.Password, new { @class = "txt fill-width" })
+                                    </div>
+                                    <div class="right-input">
+                                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "txt_password_register" })
+                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "txt fill-width" })
+                                    </div>
+                                    <p class="rs pb10">By signing up, you agree to our <a href="#" class="fc-orange">terms of use</a> and <a href="#" class="fc-orange">privacy policy</a>.</p>
+                                    <p class="rs ta-c">
+                                        <input type="submit" class="btn btn-red btn-submit" value="Register" />
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                    </section>
+                </div>
+            </div>
+        </div><!--end: .box-list-comment -->
+    </div>
+</div><!--end: .content -->
+<div class="clear"></div>
