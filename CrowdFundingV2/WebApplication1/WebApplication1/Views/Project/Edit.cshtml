@@ -11,7 +11,7 @@
             <div class="project-tab-detail tabbable accordion">
                 <ul class="nav nav-tabs clearfix">
                     <li class="active"><a href="#">Profile</a></li>
-                    <li><a href="#" class="be-fc-orange">Account</a></li>
+                    <li><a href="#" class="be-fc-orange">Rewards</a></li>
                     <li><a href="#" class="be-fc-orange">Updates</a></li>
                     <li><a href="#" class="be-fc-orange">Comments</a></li>
                     <li><a href="#" class="be-fc-orange">Projects</a></li>
@@ -101,22 +101,27 @@
                         </div><!--end: .tab-pane -->
                     </div>
                     <div>
-                        <h3 class="rs alternate-tab accordion-label">Account</h3>
+                        <h3 class="rs alternate-tab accordion-label">Rewards</h3>
                         <div class="tab-pane accordion-content">
-                            <div class="tab-pane-inside">
-                                <div class="project-author pb20">
-                                    <div class="media">
+                            <a class="post-new-comment be-fc-orange" href="/ProjectRewards/Create/@Model.Id"><i class="icon iPost"></i> Post an Reward</a>
+                            <div class="box-list-comment">
+
+                                @foreach (var reward in Model.Rewards)
+                                {
+                                    <div class="media comment-item">
                                         <a href="#" class="thumb-left">
-                                            <img src="images/ex/th-90x90-1.jpg" alt="$USER_NAME">
+                                            <img src="images/ex/th-90x90-1.jpg" alt="$TITLE">
                                         </a>
                                         <div class="media-body">
-                                            <h4 class="rs pb10"><a href="#" class="be-fc-orange fw-b">John Doe</a></h4>
-                                            <p class="rs">Chicago, IL</p>
-                                            <p class="rs fc-gray pb10">5 projects</p>
-                                            <p class="rs description">Mauris vel lacus vitae felis vestibulum volutpat. Etiam est nunc, venenatis in, tristique eu, imperdiet ac, nisl. Cum sociis natoque penatibus et magnis dis parturient montes</p>
+                                            <h4 class="rs comment-author">
+                                                @*<a href="#" class="be-fc-orange fw-b">@reward.FullName</a>*@
+                                                <span class="fc-gray">say:</span>
+                                            </h4>
+                                            @*<p class="rs comment-content"> @reward.Text</p>*@
+                                            @*<p class="rs time-post">on @reward.DateInserted</p>*@
                                         </div>
-                                    </div>
-                                </div><!--end: .project-author -->
+                                    </div><!--end: .comment-item -->
+                                }
                             </div>
                         </div><!--end: .tab-pane -->
                     </div>

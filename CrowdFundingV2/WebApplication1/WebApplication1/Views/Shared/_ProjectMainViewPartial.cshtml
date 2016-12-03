@@ -1,5 +1,6 @@
 ﻿@model WebApplication1.Models.BasicProjectInfoViewModel
 
+<div class="box-marked-project project-short inside-tab">
     <div class="top-project-info">
         <div class="content-info-short clearfix">
             <a href="#" class="thumb-img">
@@ -7,9 +8,9 @@
             </a>
             <div class="wrap-short-detail">
                 <h3 class="rs acticle-title">
-                
-                @Html.ActionLink(@Model.Title, "Details", "Project", new { id = @Model.Id }, new { @class = "be-fc-orange" })
-                
+
+                    @Html.ActionLink(@Model.Title, "Details", "Project", new { id = @Model.Id }, new { @class = "be-fc-orange" })
+
                 </h3>
                 <p class="rs tiny-desc">by <a href="profile.html" class="fw-b fc-gray be-fc-orange">@Model.CreatorFullName</a> </p>
                 <p class="rs title-description">@Model.Description</p>
@@ -41,3 +42,5 @@
         </div>
         <div class="clear"></div>
     </div>
+
+</div><!--end: .box-marked-project -->

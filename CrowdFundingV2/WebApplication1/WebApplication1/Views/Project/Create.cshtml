@@ -5,10 +5,6 @@
     Layout = "~/Views/Shared/_myTemplate.cshtml";
 }
 
-
-
-
-
 <div class="layout-2cols">
     <div class="content grid_8">
         <div class="project-detail">
@@ -87,16 +83,10 @@
                     <div>
                         <h3 class="rs alternate-tab accordion-label">Projects</h3>
                         <div class="tab-pane accordion-content">
-                            <div class="box-marked-project project-short inside-tab">
-
-                                @foreach (var item in Model.MyProjects)
-                                {
-                                    @Html.Partial("_ProjectMainViewPartial", item);
-                                }
-
-
-                            </div><!--end: .box-marked-project -->
-
+                        @foreach (var item in Model.MyProjects)
+                        {
+                            @Html.Partial("_ProjectMainViewPartial", item);
+                        }
                         </div><!--end: .tab-pane -->
                     </div>
                 </div>
@@ -112,7 +102,7 @@
                 </a>
                 <div class="media-body">
                     <h4 class="rs pb10"> @Html.ActionLink(Model.CreatorFullName, "Edit", "Users", new { id = Model.CreatorId }, new { @class = "be-fc-orange fw-b" }) </h4>
-                    <p class="rs fc-gray">@Model.CreatorId projects</p>
+                    <p class="rs fc-gray">@Model.NoProjects projects</p>
                 </div>
             </div>
             <div class="author-action">

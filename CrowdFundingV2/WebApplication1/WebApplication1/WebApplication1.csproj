@@ -243,6 +243,7 @@
     <Compile Include="Models\ProjectDetailsViewModel.cs" />
     <Compile Include="Models\ProjectUpdateViewModel.cs" />
     <Compile Include="Models\ProjectViewModel.cs" />
+    <Compile Include="Models\RewardViewModel.cs" />
     <Compile Include="Models\UserDetailsViewModel.cs" />
     <Compile Include="PaymentManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
