@@ -15,11 +15,11 @@
             </div>
             <div class="list-project-in-category">
                 <div class="lbl-type clearfix">
-                    <h4 class="rs title-lbl"><a href="#" class="be-fc-orange">Staff picks</a></h4>
+                    <h4 class="rs title-lbl"><a href="#" class="be-fc-orange">@Request.Params["filter"]</a></h4>
                     @*<a href="#" class="view-all be-fc-orange">View all</a>*@
                 </div>
                 <div class="list-project">
-                    @foreach (var item in Model.PopularProjects)
+                    @foreach (var item in Model.DisplayProjects)
                     {
                         @Html.Partial("_PopularProjectViewPartial", item)
                     }
@@ -35,31 +35,45 @@
         <div class="left-list-category">
             <h4 class="rs title-nav">Featured</h4>
             <ul class="rs nav nav-category">
-                <li class="active">
-                    <a href="#">
+                
+                 
+                <li @if ((Request.Params["filter"]) == "Staff Picks")
+                    {
+                         @:class="active"
+                    }>
+                    <a href="@Url.Action("Get", "Categories", new { Id = Model.Id, filter = "Staff Picks" })">
                         Staff Picks
-                        <span class="count-val">(12)</span>
+                        <span class="count-val">@Model.StaffProjects.Count()</span>
                         <i class="icon iPlugGray"></i>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li @if ((Request.Params["filter"]) == "Popular")
+                    {
+                         @:class="active"
+                    }>
+                    <a href="@Url.Action("Get", "Categories", new { Id = Model.Id, filter = "Popular" })">
                         Popular
-                        <span class="count-val">(2)</span>
+                        @*<span class="count-val">@Model.PopularProjects.Count()</span>*@
                         <i class="icon iPlugGray"></i>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
-                        Now Launched
-                        <span class="count-val">(212)</span>
+                <li @if ((Request.Params["filter"]) == "Today Launched")
+                    {
+                         @:class="active"
+                    }>
+                    <a href="@Url.Action("Get", "Categories", new { Id = Model.Id, filter = "Today Launched" })">
+                        Today Launched
+                        <span class="count-val">@Model.TodayProjects.Count()</span>
                         <i class="icon iPlugGray"></i>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li @if ((Request.Params["filter"]) == "Most Funded")
+                    {
+                         @:class="active"
+                    }>
+                    <a href="@Url.Action("Get", "Categories", new { Id = Model.Id, filter = "Most Funded" })">
                         Most Funded
-                        <span class="count-val">(23)</span>
+                        @*<span class="count-val">@Model.FundedProjects.Count()</span>*@
                         <i class="icon iPlugGray"></i>
                     </a>
                 </li>
@@ -79,7 +93,7 @@
                         {
                             <li class="active">
 
-                                <a href="@Url.Action("Get", "Categories", new {Id = i})">
+                                <a href="@Url.Action("Get", "Categories", new {Id = i, filter = "Staff Picks"})">
                                     @category.Name
                                     <span class="count-val">(@category.NoProjects)</span>
                                     <i class="icon iPlugGray"></i>
@@ -89,7 +103,7 @@
                         else {
                             <li>
 
-                                <a href="@Url.Action("Get", "Categories", new {Id = i})">
+                                <a href="@Url.Action("Get", "Categories", new {Id = i, filter = "Staff Picks"})">
                                     @category.Name
                                     <span class="count-val">(@category.NoProjects)</span>
                                     <i class="icon iPlugGray"></i>
