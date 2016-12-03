@@ -30,6 +30,7 @@ namespace WebApplication1
             builder.RegisterType<DboUserManager>().As<IManageDboUser>();
             builder.RegisterType<PaymentManager>().As<IPayWithVivaWallet>();
             builder.RegisterType<ProjectManager>().As<IManageProject>();
+            builder.RegisterType<UploadFileManager>().As<IUploadFile>();
 
             // REGISTER CONTROLLERS SO DEPENDENCIES ARE CONSTRUCTOR INJECTED
             builder.RegisterControllers(typeof(MvcApplication).Assembly);

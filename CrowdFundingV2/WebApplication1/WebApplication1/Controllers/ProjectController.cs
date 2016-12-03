@@ -9,6 +9,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using WebApplication1.Models;
 
@@ -19,12 +21,15 @@ namespace WebApplication1.Controllers
         private readonly CrowdFundingContext db = new CrowdFundingContext();
         private readonly ApplicationUserManager _userManager;
         private readonly IManageProject _projectManager;
+        private readonly IUploadFile _uploadFileManager;
 
 
-        public ProjectController(ApplicationUserManager userManager, IManageProject projectManager)
+
+        public ProjectController(ApplicationUserManager userManager, IManageProject projectManager, IUploadFile uploadFileManager)
         {
             _userManager = userManager;
             _projectManager = projectManager;
+            _uploadFileManager = uploadFileManager;
         }
         
         // GET: Test
@@ -113,27 +118,29 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult Create(ProjectViewModel model)
+        public ActionResult Create(ProjectViewModel model, HttpPostedFileBase upload)
         {
             var user      = _userManager.FindById(User.Identity.GetUserId());
             var myUser    = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
-            var dbProject = new Project()
-            {
-                CategoryId        = model.SelectedCategoryId,
-                CreatorId         = myUser.Id,
-                DateInserted      = DateTime.Now,
-                CurrentFundAmount = model.Project.CurrentFundAmount,
-                Description       = model.Project.Description,
-                Ratio             = model.Project.Ratio,
-                StatusId          = 1,
-                DueDate           = model.Project.DueDate,
-                TargetAmount      = model.Project.TargetAmount,
-                Title             = model.Project.Title
-
-            };
-
+            Project dbProject = null;
+            var imageFile = _uploadFileManager.UploadFile(upload);
             if (ModelState.IsValid)
             {
+                dbProject = new Project()
+                {
+                    CategoryId = model.SelectedCategoryId,
+                    CreatorId = myUser.Id,
+                    DateInserted = DateTime.Now,
+                    CurrentFundAmount = model.Project.CurrentFundAmount,
+                    Description = model.Project.Description,
+                    Ratio = model.Project.Ratio,
+                    StatusId = 1,
+                    DueDate = model.Project.DueDate,
+                    TargetAmount = model.Project.TargetAmount,
+                    Title = model.Project.Title,
+                    PhotoUrl = imageFile.FileName,
+                    Image = imageFile.Content
+                };
                 dbProject = db.Projects.Add(dbProject);
                 db.SaveChanges();
                 return RedirectToAction("Edit", new { id = dbProject.Id }); 
