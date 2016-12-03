@@ -30,7 +30,7 @@ namespace WebApplication1.Controllers
                              {
                                  Id = y.Id,
                                  Name = y.Name,
-                                 NoProjects = y.Projects.Count()
+                                 NoProjects = y.Projects.Where(x=>x.DueDate >= DateTime.Now).Count()
                              })
                              .Where(x => x.Id == id).FirstOrDefault();
 
