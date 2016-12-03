@@ -496,7 +496,6 @@
     <Content Include="Views\Shared\_PopularProjectViewPartial.cshtml" />
     <Content Include="Views\Shared\_ProjectCommentPartial.cshtml" />
     <Content Include="Views\Shared\_ProjectUpdatePartial.cshtml" />
-    <Content Include="Views\Project\_BackerPartial.cshtml" />
     <Content Include="Views\Project\BuckProject.cshtml" />
     <Content Include="Views\Project\VivaPayment.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
