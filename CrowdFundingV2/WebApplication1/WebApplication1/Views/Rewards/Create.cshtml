@@ -29,9 +29,16 @@
                                     @Html.TextAreaFor(model => model.Description, new { cols = "77", rows = "5", @class = "txt fill-width"  })
                                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
 
-                                    @Html.LabelFor(model => model.RequiredAmount, htmlAttributes: new { @class = "txt_email_login" })
-                                    @Html.EditorFor(model => model.RequiredAmount, new { htmlAttributes = new { @class = "txt fill-width" } })
-                                    @Html.ValidationMessageFor(model => model.RequiredAmount, "", new { @class = "text-danger" })
+                                    @Html.LabelFor(model => model.MinAmount, htmlAttributes: new { @class = "txt_email_login" })
+                                    @Html.EditorFor(model => model.MinAmount, new { htmlAttributes = new { @class = "txt fill-width" } })
+                                    @Html.ValidationMessageFor(model => model.MinAmount, "", new { @class = "text-danger" })
+
+                                    @Html.LabelFor(model => model.MaxAmount, htmlAttributes: new { @class = "txt_email_login" })
+                                    @Html.EditorFor(model => model.MaxAmount, new { htmlAttributes = new { @class = "txt fill-width" } })
+                                    @Html.ValidationMessageFor(model => model.MaxAmount, "", new { @class = "text-danger" })
+
+
+
 
                                     @Html.LabelFor(model => model.MaxAvailable, htmlAttributes: new { @class = "txt_email_login" })
                                     @Html.EditorFor(model => model.MaxAvailable, new { htmlAttributes = new { @class = "txt fill-width" } })
