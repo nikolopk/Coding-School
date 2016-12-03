@@ -243,6 +243,7 @@
     <Compile Include="Models\ProjectDetailsViewModel.cs" />
     <Compile Include="Models\ProjectUpdateViewModel.cs" />
     <Compile Include="Models\ProjectViewModel.cs" />
+    <Compile Include="Models\TransactionViewModel.cs" />
     <Compile Include="Models\UserDetailsViewModel.cs" />
     <Compile Include="PaymentManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -495,6 +496,7 @@
     <Content Include="Views\Shared\_ProjectUpdatePartial.cshtml" />
     <Content Include="Views\Project\_BackerPartial.cshtml" />
     <Content Include="Views\Project\BuckProject.cshtml" />
+    <Content Include="Views\Project\VivaPayment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

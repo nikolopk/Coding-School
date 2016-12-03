@@ -1,0 +1,23 @@
+﻿@model WebApplication1.Models.TransactionViewModel
+@{
+    ViewBag.Title = "VivaPayment";
+    Layout = "~/Views/Shared/_myTemplate.cshtml";
+
+}
+
+<meta http-equiv="refresh" content="5; url=@Url.Action("Details", "Project", new {id= @Model.projectId})" />
+    @{
+        if ( Model.transaction ) {
+            <h1 style="margin-left: 20px;">
+                Successful Payment !!! <br />
+                You will be redirected back to the project in 5 seconds.
+            </h1>
+        }
+        else {
+            <h1 style="margin-left: 20px;">
+                Payment Failed !!! <br />
+                You will be redirected back to the project in 5 seconds
+            </h1>
+        }
+
+    }
