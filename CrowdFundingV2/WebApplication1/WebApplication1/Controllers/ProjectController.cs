@@ -1,5 +1,6 @@
 ﻿using CF.Data.Context;
 using CF.Models.Database;
+using CF.Public;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -16,20 +17,19 @@ namespace WebApplication1.Controllers {
     {
         private readonly CrowdFundingContext db = new CrowdFundingContext();
         private readonly ApplicationUserManager _userManager;
+        private readonly IManageProject _projectManager;
 
 
-        public ProjectController(ApplicationUserManager userManager)
+        public ProjectController(ApplicationUserManager userManager, IManageProject projectManager)
         {
             _userManager = userManager;
+            _projectManager = projectManager;
         }
         
         // GET: Test
         public ActionResult Index()
         {
-            var project = db.Projects
-                           .Include(p => p.User)
-                           .Include(p => p.BackerProjects)
-                           .Include(p => p.UserProjectComments)
+            var project = _projectManager.GetAll()
                            .Select(y => new BasicProjectInfoViewModel()
                            {
                                Id                 = y.Id,
@@ -68,11 +68,7 @@ namespace WebApplication1.Controllers {
 
         public async Task<ActionResult> ProjectByCreator(int id)
         {
-            var projects = db.Projects
-                           .Include(p => p.User)
-                           .Include(p => p.BackerProjects)
-                           .Include(p => p.UserProjectComments)
-                           .Where(x => x.CreatorId == id)
+            var projects = _projectManager.GetByCreator(id)
                            .Select(y => new BasicProjectInfoViewModel()
                            {
                                Id                 = y.Id,
@@ -95,11 +91,7 @@ namespace WebApplication1.Controllers {
         [Authorize]
         public IEnumerable<BasicProjectInfoViewModel> CreatorProjects(int id)
         {
-            var projects  = db.Projects
-                           .Include(p => p.User)
-                           .Include(p => p.BackerProjects)
-                           .Include(p => p.UserProjectComments)
-                           .Where(x   => x.CreatorId == id)
+            var projects  = _projectManager.GetByCreator(id)
                            .Select(y  => new BasicProjectInfoViewModel()
                                     {
                                         Id                 = y.Id,
@@ -317,8 +309,6 @@ namespace WebApplication1.Controllers {
         [Authorize]
         public ActionResult BuckProject(int id, int amount)
         {
-
-
             var user    = _userManager.FindById(User.Identity.GetUserId());
             var myUser  = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
 
@@ -338,8 +328,8 @@ namespace WebApplication1.Controllers {
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult> VivaPayment(int amount, int projectId, int BackerId) {
-
+        public async Task<ActionResult> VivaPayment(int amount, int projectId, int BackerId)
+        {
             var transactionModel = new TransactionViewModel()
             {
                 projectId = projectId,
