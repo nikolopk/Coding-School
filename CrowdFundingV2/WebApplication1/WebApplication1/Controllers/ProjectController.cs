@@ -45,6 +45,12 @@ namespace WebApplication1.Controllers {
             return View(project);
         }
 
+        //[HttpGet]
+        //public ActionResult Search()
+        //{
+
+        //}
+
         [HttpGet]
         [Authorize]
         public ActionResult Create()

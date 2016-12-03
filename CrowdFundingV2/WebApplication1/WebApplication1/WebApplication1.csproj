@@ -342,6 +342,7 @@
     <Content Include="Content\mytemplate\images\myLogo-2.png" />
     <Content Include="Content\mytemplate\images\myLogo.png" />
     <Content Include="Content\mytemplate\images\no-avatar.png" />
+    <Content Include="Content\mytemplate\images\profic1.png" />
     <Content Include="Content\mytemplate\images\slide-item-bg.png" />
     <Content Include="Content\mytemplate\images\slider\bg.jpg" />
     <Content Include="Content\mytemplate\images\slider\border\border-8.png" />

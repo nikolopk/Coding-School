@@ -83,13 +83,15 @@
                         </div>
                     </nav>
                     <div class="top-message clearfix">
-                        <i class="icon iNext"></i>
+                        
                         @if (Request.IsAuthenticated)
                         {
+                            <img src="~/Content/mytemplate/images/profic1.png" style="width:20px; height:20px;"/>
                             string[] username = User.Identity.GetUserName().Split('@');
                             <span class="txt-message">Hello, @username[0]!</span>
                         }
                         else {
+                            <i class="icon iNext"></i>
                             <span class="txt-message">Be the change you want to see in the world.</span>
                         }
                         <div class="clear"></div>
@@ -102,9 +104,15 @@
             <div class="grid_12 header-content">
                 <div id="sys_header_right" class="header-right">
                     <div class="account-panel">
-                        <a href="@Url.Action("Register", "Account")" class="btn btn-red">Register</a>
-                    
-                        <a href="@Url.Action("Login", "Account")" class="btn btn-black">Login</a>
+                        @if (Request.IsAuthenticated)
+                        {
+                            <a href="@Url.Action("LogOff", "Account")" class="btn btn-red">Log off</a>
+                        }
+                        else {
+                            <a href="@Url.Action("Register", "Account")" class="btn btn-red">Register</a>
+                 
+                            <a href="@Url.Action("Login", "Account")" class="btn btn-black">Login</a>
+                        }
                     </div>
                     <div class="form-search">
                         <form action="#">

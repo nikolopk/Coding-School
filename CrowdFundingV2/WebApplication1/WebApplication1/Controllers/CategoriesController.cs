@@ -54,7 +54,7 @@ namespace WebApplication1.Controllers {
                {
                    Id                 = y.Id,
                    Title              = y.Title,
-                   CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
+                   CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
                    Description        = y.Description,
                    CurrentFund        = y.CurrentFundAmount,
                    Ratio              = (int)Math.Floor((y.Ratio * 100)),
@@ -74,7 +74,7 @@ namespace WebApplication1.Controllers {
                {
                    Id                 = y.Id,
                    Title              = y.Title,
-                   CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
+                   CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
                    Description        = y.Description,
                    CurrentFund        = y.CurrentFundAmount,
                    Ratio              = (int)Math.Floor((y.Ratio * 100)),
@@ -94,7 +94,7 @@ namespace WebApplication1.Controllers {
                {
                    Id                 = y.Id,
                    Title              = y.Title,
-                   CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
+                   CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
                    Description        = y.Description,
                    CurrentFund        = y.CurrentFundAmount,
                    Ratio              = (int)Math.Floor((y.Ratio * 100)),
@@ -113,7 +113,7 @@ namespace WebApplication1.Controllers {
                {
                    Id                 = y.Id,
                    Title              = y.Title,
-                   CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
+                   CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
                    Description        = y.Description,
                    CurrentFund        = y.CurrentFundAmount,
                    Ratio              = (int)Math.Floor((y.Ratio * 100)),
