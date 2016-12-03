@@ -1,4 +1,5 @@
 ﻿using CF.Data.Context;
+using CF.Public;
 using System;
 using System.Data;
 using System.Data.Entity;
@@ -12,10 +13,11 @@ namespace WebApplication1.Controllers {
     public class CategoriesController : Controller
     {
         private readonly CrowdFundingContext db = new CrowdFundingContext();
+        private readonly IManageProject _projectManager;
 
-        public CategoriesController()
+        public CategoriesController(IManageProject projectManager)
         {
-
+            _projectManager = projectManager;
         }
         
         public ActionResult Get(int? id, string filter)
@@ -42,10 +44,7 @@ namespace WebApplication1.Controllers {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
 
-            var categoryStaffProject = db.Projects
-               .Include(p            => p.User)
-               .Include(p            => p.BackerProjects)
-               .Include(p            => p.UserProjectComments)
+            var categoryStaffProject = _projectManager.GetAll()
                .Where(p              => p.CategoryId == id && p.DueDate >= DateTime.Now)
                .OrderByDescending(x  => x.DateInserted)
                .Select(y             => new BasicProjectInfoViewModel()
@@ -63,10 +62,7 @@ namespace WebApplication1.Controllers {
 
             var categoryDisplayProject = categoryStaffProject.ToList();
 
-            var categoryPopularProject = db.Projects
-               .Include(p              => p.User)
-               .Include(p              => p.BackerProjects)
-               .Include(p              => p.UserProjectComments)
+            var categoryPopularProject = _projectManager.GetAll()
                .Where(p                => p.CategoryId == id && p.DueDate >= DateTime.Now)
                .Select(y               => new BasicProjectInfoViewModel()
                {
@@ -83,10 +79,7 @@ namespace WebApplication1.Controllers {
                .OrderByDescending(x => x.CurrentBackerCount);
 
             var yesterday            = DateTime.Now.AddDays(-1);
-            var categoryTodayProject = db.Projects
-               .Include(p            => p.User)
-               .Include(p            => p.BackerProjects)
-               .Include(p            => p.UserProjectComments)
+            var categoryTodayProject = _projectManager.GetAll()
                .Where(p              => p.CategoryId == id && p.DueDate >= DateTime.Now && p.DateInserted > yesterday)
                .Select(y             => new BasicProjectInfoViewModel()
                {
@@ -102,10 +95,7 @@ namespace WebApplication1.Controllers {
                })
                .OrderByDescending(x => x.CurrentBackerCount);
 
-            var categoryFundedProject = db.Projects
-               .Include(p             => p.User)
-               .Include(p             => p.BackerProjects)
-               .Include(p             => p.UserProjectComments)
+            var categoryFundedProject = _projectManager.GetAll()
                .Where(p               => p.CategoryId == id && p.DueDate >= DateTime.Now)
                .Select(y              => new BasicProjectInfoViewModel()
                {

@@ -221,6 +221,7 @@
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\UserProjectCommentsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Extensions\ProjectExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

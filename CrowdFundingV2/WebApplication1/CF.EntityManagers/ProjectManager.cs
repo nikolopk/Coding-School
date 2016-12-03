@@ -26,12 +26,7 @@ namespace CF.EntityManagers
 
         public IQueryable<Project> GetByCreator(int creatorId)
         {
-            return db.Projects
-                           .Include(p => p.User)
-                           .Include(p => p.BackerProjects)
-                           .Include(p => p.UserProjectComments)
-                           .Include(p => p.ProjectUpdates)
-                           .Where(p => p.CreatorId == creatorId);
+            return GetAll().Where(p => p.CreatorId == creatorId);
         }
 
     }
