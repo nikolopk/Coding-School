@@ -17,7 +17,17 @@ namespace WebApplication1.Controllers
         private CrowdFundingContext db = new CrowdFundingContext();
         public ActionResult Index()
         {
+            var categories = db.Categories
+                            .Include(p => p.Projects)
+                            .Select(y => new CategoryViewModel()
+                            {
+                                Id = y.Id,
+                                Name = y.Name,
+                                NoProjects = y.Projects.Count()
+                            });
+
             var project = db.Projects
+                           .Include(p=>p.Category)
                            .Include(p => p.User)
                            .Include(p => p.BackerProjects)
                            .Include(p => p.UserProjectComments)
@@ -25,6 +35,8 @@ namespace WebApplication1.Controllers
                            .Select(y => new BasicProjectInfoViewModel()
                            {
                                Id = y.Id,
+                               CategoryId = y.CategoryId,
+                               CategoryName = y.Category.Name,
                                Title = y.Title,
                                CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
                                Description = y.Description,
@@ -35,7 +47,10 @@ namespace WebApplication1.Controllers
                                NoComments = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
                            }).FirstOrDefault();
 
+            
+
             var popularProject = db.Projects
+                .Include(p => p.Category)
                .Include(p => p.User)
                .Include(p => p.BackerProjects)
                .Include(p => p.UserProjectComments)
@@ -43,6 +58,8 @@ namespace WebApplication1.Controllers
                .Select(y => new BasicProjectInfoViewModel()
                {
                    Id = y.Id,
+                   CategoryId = y.CategoryId,
+                   CategoryName = y.Category.Name,
                    Title = y.Title,
                    CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
                    Description = y.Description,
@@ -53,14 +70,7 @@ namespace WebApplication1.Controllers
                    NoComments = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
                }).Take(4);
 
-            var categories = db.Categories
-                            .Include(p => p.Projects)
-                            .Select(y => new CategoryViewModel()
-                            {
-                                Id = y.Id,
-                                Name = y.Name,
-                                NoProjects = y.Projects.Count()
-                            });
+            
             var viewModel = new HomeIndexViewModel()
             {
                 Categories = categories.ToList(),
