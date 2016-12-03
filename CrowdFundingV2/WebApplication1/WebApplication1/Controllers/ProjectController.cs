@@ -218,7 +218,10 @@ namespace WebApplication1.Controllers {
                     ProjectId = project.Id,
                     CurrentAvailable = r.CurrentAvailable,
                     Description = r.Description,
-                    MaxAvailable = r.MaxAvailable
+                    MaxAvailable = r.MaxAvailable,
+                    MaxAmount = r.MaxRequiredAmount,
+                    MinAmount = r.MinRequiredAmount,
+                    Title = r.Name
                 }
                 ).ToList()
             };
