@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using CF.Data.Context;
 using CF.Models.Database;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -41,8 +42,17 @@ namespace WebApplication1.Controllers
         // GET: ProjectUpdates/Create
         public ActionResult Create(int? projectId)
         {
+            if (projectId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var viewModel = new ProjectUpdateViewModel()
+            {
+                ProjectId = projectId.Value
+            };
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title");
-            return View();
+            return View(viewModel);
         }
 
         // POST: ProjectUpdates/Create
