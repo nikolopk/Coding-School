@@ -79,8 +79,8 @@
         </div><!--end: .left-lst-category -->
         <div class="grid_8 marked-category">
             <div class="wrap-title clearfix">
-                <h2 class="title-mark rs">Staff Picks: <span class="fc-orange">Comics</span></h2>
-                <a href="@Url.Action("Index", "Categories")" class="count-project be-fc-orange">See all <span class="fw-b">24</span> Comics projects</a>
+                <h2 class="title-mark rs">Staff Picks: <span class="fc-orange">@Model.TopProject.CategoryName</span></h2>
+                <a href="@Url.Action("Index", "Categories", new { catId = @Model.TopProject.Id})" class="count-project be-fc-orange">See all <span class="fw-b">24</span> @Model.TopProject.Title projects</a>
             </div>
             <div class="box-marked-project project-short">
 
