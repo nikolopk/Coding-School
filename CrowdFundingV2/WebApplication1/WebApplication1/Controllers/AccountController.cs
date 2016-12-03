@@ -1,18 +1,14 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
+﻿using CF.Public;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 using WebApplication1.Models;
-using CF.Public;
 
-namespace WebApplication1.Controllers
-{
+namespace WebApplication1.Controllers {
     //https://www.asp.net/mvc/overview/security/create-an-aspnet-mvc-5-web-app-with-email-confirmation-and-password-reset
     [Authorize]
     public class AccountController : Controller
@@ -31,9 +27,9 @@ namespace WebApplication1.Controllers
                                 IAuthenticationManager authManager, 
                                 IManageDboUser dboUserManager)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _authManager = authManager;
+            _userManager    = userManager;
+            _signInManager  = signInManager;
+            _authManager    = authManager;
             _dboUserManager = dboUserManager;
         }
 
@@ -185,10 +181,10 @@ namespace WebApplication1.Controllers
             {
                 var user = new ApplicationUser
                 {
-                    UserName = model.Email,
-                    Email = model.Email,
+                    UserName  = model.Email,
+                    Email     = model.Email,
                     FirstName = model.FirstName,
-                    LastName = model.LastName
+                    LastName  = model.LastName
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -415,10 +411,10 @@ namespace WebApplication1.Controllers
                 }
                 var user = new ApplicationUser
                 {
-                    UserName = model.Email,
-                    Email = model.Email,
+                    UserName  = model.Email,
+                    Email     = model.Email,
                     FirstName =model.FirstName,
-                    LastName = model.LastName
+                    LastName  = model.LastName
                     
                 };
                 var result = await UserManager.CreateAsync(user);

@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using CF.Data.Context;
+﻿using CF.Data.Context;
 using CF.Models.Database;
+using System;
+using System.Data.Entity;
+using System.Net;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 using WebApplication1.Models;
 
-namespace WebApplication1.Controllers
-{
+namespace WebApplication1.Controllers {
     public class RewardsController : Controller
     {
         private CrowdFundingContext db = new CrowdFundingContext();
@@ -65,15 +60,15 @@ namespace WebApplication1.Controllers
             {
                 var reward = new Reward()
                 {
-                    ProjectId = viewModel.ProjectId,
-                    Name = viewModel.Title,
-                    Description = viewModel.Description,
-                    MaxAvailable = viewModel.MaxAvailable,
-                    CurrentAvailable = viewModel.MaxAvailable,
+                    ProjectId         = viewModel.ProjectId,
+                    Name              = viewModel.Title,
+                    Description       = viewModel.Description,
+                    MaxAvailable      = viewModel.MaxAvailable,
+                    CurrentAvailable  = viewModel.MaxAvailable,
                     MinRequiredAmount = viewModel.MinAmount,
                     MaxRequiredAmount = viewModel.MaxAmount,
-                    DateInserted = DateTime.Now,
-                    IsAvailable = true
+                    DateInserted      = DateTime.Now,
+                    IsAvailable       = true
                 };
                 db.Rewards.Add(reward);
                 await db.SaveChangesAsync();
