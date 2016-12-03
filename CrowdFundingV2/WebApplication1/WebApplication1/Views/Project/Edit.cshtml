@@ -50,7 +50,7 @@
                                             <select name="@Html.NameFor(m => m.SelectedStatusId)" class="txt">
                                                 @foreach (var c in Model.Statuses)
                                                 {
-                                                    <option value="@c.Id">@c.Name</option>
+                                                    <option @(c.Id == Model.SelectedStatusId ? "selected" : string.Empty) value="@c.Id">@c.Name</option>
                                                 }
                                             </select>
 
@@ -64,7 +64,7 @@
                                             <select name="@Html.NameFor(m => m.SelectedCategoryId)" class="txt">
                                                 @foreach (var c in Model.Categories)
                                                 {
-                                                    <option value="@c.Id">@c.Name</option>
+                                                    <option @(c.Id == Model.SelectedCategoryId ? "selected" : string.Empty)  value="@c.Id">@c.Name</option>
                                                 }
                                             </select>
 
@@ -93,7 +93,7 @@
                                             @Html.ValidationMessageFor(model => model.Project.DateVerified, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                    <p class="wrap-btn-submit rs ta-r">
+                                    <p class="btn wrap-btn-submit rs ta-r">
                                         <button class="btn btn-red btn-submit-all">Save all settings</button>
                                     </p>
                                 }
@@ -103,7 +103,9 @@
                     <div>
                         <h3 class="rs alternate-tab accordion-label">Rewards</h3>
                         <div class="tab-pane accordion-content">
-                            <a class="post-new-comment be-fc-orange" href="/ProjectRewards/Create/@Model.Id"><i class="icon iPost"></i> Post an Reward</a>
+
+                            @Html.ActionLink("Post an Reward", "Create", "Rewards", routeValues: new { projectId = @Model.Id }, htmlAttributes: new { @class = "post-new-comment be-fc-orange" })
+                            @*< a class="post-new-comment be-fc-orange" href="/Rewards/Create/@Model.Id"><i class="icon iPost"></i> Post an Reward</a>*@
                             <div class="box-list-comment">
 
                                 @foreach (var reward in Model.Rewards)
@@ -114,11 +116,15 @@
                                         </a>
                                         <div class="media-body">
                                             <h4 class="rs comment-author">
-                                                @*<a href="#" class="be-fc-orange fw-b">@reward.FullName</a>*@
-                                                <span class="fc-gray">say:</span>
+                                                <a href="#" class="be-fc-orange fw-b">@reward.Title</a>
                                             </h4>
-                                            @*<p class="rs comment-content"> @reward.Text</p>*@
-                                            @*<p class="rs time-post">on @reward.DateInserted</p>*@
+                                            <div class="pledge-content accordion-content">
+                                                <div class="pledge-detail">
+                                                    <p class="fc-gray">@reward.Description</p>
+                                                    <p class="rs fw-b pb20">Current Available (@reward.CurrentAvailable of @reward.MaxAvailable)</p>
+                                                    <p class="rs"><span class="fw-b">Date Inserted:</span> @reward.DateInserted</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div><!--end: .comment-item -->
                                 }
@@ -128,7 +134,8 @@
                     <div>
                         <h3 class="rs alternate-tab accordion-label">Updates</h3>
                         <div class="tab-pane accordion-content">
-                            <a class="post-new-comment be-fc-orange" href="/ProjectUpdates/Create/@Model.Id"><i class="icon iPost"></i> Post an Update</a>
+                            @Html.ActionLink("Post an Update", "Create", "ProjectUpdates", routeValues: new { projectId = @Model.Id }, htmlAttributes: new { @class = "post-new-comment be-fc-orange" })
+                            
                             <div class="box-list-comment">
                                 
                                 @foreach (var update in Model.Updates)
@@ -153,7 +160,8 @@
                     <div>
                         <h3 class="rs alternate-tab accordion-label">Comments</h3>
                         <div class="tab-pane accordion-content">
-                            <a class="post-new-comment be-fc-orange" href="/UserProjectComments/Create/@Model.Id"><i class="icon iPost"></i> Post a Comment</a>
+                            @Html.ActionLink("Post a Comment", "Create", "UserProjectComments", routeValues: new { projectId = @Model.Id }, htmlAttributes: new { @class = "post-new-comment be-fc-orange" })
+
                             <div class="box-list-comment">
 
                                 @foreach (var comment in Model.Comments)

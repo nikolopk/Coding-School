@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using CF.Data.Context;
+﻿using CF.Data.Context;
 using CF.Models.Database;
-using CF.MVC.Models;
+using System;
+using System.Data.Entity;
+using System.Net;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using WebApplication1.Models;
 
-namespace WebApplication1.Controllers
-{
+namespace WebApplication1.Controllers {
     public class RewardsController : Controller
     {
         private CrowdFundingContext db = new CrowdFundingContext();
@@ -40,11 +35,15 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Rewards/Create
-        public ActionResult Create(int projectId)
+        public ActionResult Create(int? projectId)
         {
+            if (projectId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             var viewModel = new RewardViewModel()
             {
-                ProjectId = projectId
+                ProjectId = projectId.Value
             };
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title");
             return View(viewModel);
@@ -61,14 +60,15 @@ namespace WebApplication1.Controllers
             {
                 var reward = new Reward()
                 {
-                    ProjectId = viewModel.ProjectId,
-                    Name = viewModel.Name,
-                    Description = viewModel.Description,
-                    MaxAvailable = viewModel.MaxAvailable,
-                    CurrentAvailable = viewModel.MaxAvailable,
-                    RequiredAmount = viewModel.RequiredAmount,
-                    DateInserted = DateTime.Now,
-                    IsAvailable = true
+                    ProjectId         = viewModel.ProjectId,
+                    Name              = viewModel.Title,
+                    Description       = viewModel.Description,
+                    MaxAvailable      = viewModel.MaxAvailable,
+                    CurrentAvailable  = viewModel.MaxAvailable,
+                    MinRequiredAmount = viewModel.MinAmount,
+                    MaxRequiredAmount = viewModel.MaxAmount,
+                    DateInserted      = DateTime.Now,
+                    IsAvailable       = true
                 };
                 db.Rewards.Add(reward);
                 await db.SaveChangesAsync();
@@ -99,7 +99,7 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,ProjectId,Name,DateInserted,Description,RequiredAmount,MaxAvailable,CurrentAvailable,IsAvailable")] Reward reward)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,ProjectId,Name,DateInserted,Description,MinRequiredAmount,MaxRequiredAmount,MaxAvailable,CurrentAvailable,IsAvailable")] Reward reward)
         {
             if (ModelState.IsValid)
             {

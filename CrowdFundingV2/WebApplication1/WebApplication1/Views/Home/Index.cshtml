@@ -60,11 +60,16 @@
                 <p class="description rs">Find projects, back them and change the world.</p>
                 <nav class="lst-category">
                     <ul class="rs nav nav-category">
-
+                        @{
+                            int i = 0;
+                        }
                         @foreach (var category in Model.Categories)
                         {
-                            <li>
-                                <a href="#">
+                            i++;
+                           
+                            <li class="active">
+                            
+                                <a href="@Url.Action("Get", "Categories", new { Id = i, filter = "StaffPicks" })">
                                     @category.Name
                                     <span class="count-val">(@category.NoProjects)</span>
                                     <i class="icon iPlugGray"></i>
@@ -80,7 +85,7 @@
         <div class="grid_8 marked-category">
             <div class="wrap-title clearfix">
                 <h2 class="title-mark rs">Staff Picks: <span class="fc-orange">@Model.TopProject.CategoryName</span></h2>
-                <a href="@Url.Action("Get", "Categories", new { Id = @Model.TopProject.CategoryId})" class="count-project be-fc-orange">See all <span class="fw-b">24</span> @Model.TopProject.CategoryName projects</a>
+                <a href="@Url.Action("Get", "Categories", new { Id = @Model.TopProject.CategoryId, filter = "Staff Picks"})" class="count-project be-fc-orange">See all <span class="fw-b">24</span> @Model.TopProject.CategoryName projects</a>
             </div>
             <div class="box-marked-project project-short">
 
