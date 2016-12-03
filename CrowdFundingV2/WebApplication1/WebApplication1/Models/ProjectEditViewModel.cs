@@ -6,7 +6,7 @@ using System.Web;
 
 namespace WebApplication1.Models
 {
-    public class ProjectDetailsViewModel
+    public class ProjectEditViewModel
     {
         public int Id { get; set; }
 
@@ -37,7 +37,17 @@ namespace WebApplication1.Models
                 return (DueDate - DateTime.Now).Days;
             }
         }
-        
+
+        public List<Category> Categories { get; set; }
+        public int SelectedCategoryId { get; set; }
+        public int SelectedStatusId { get; set; }
+        public List<ProjectStatu> Statuses { get; set; }
+        public int NoProjects { get; set; }
+
+        public Project Project { get; set; }
+
+        public IEnumerable<BasicProjectInfoViewModel> MyProjects { get; set; }
+
         public int CreatorNoProjects { get; set; }
         public int CreatorId { get; set; }
         public string CreatorImageUrl { get; set; }

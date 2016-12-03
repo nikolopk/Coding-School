@@ -5,11 +5,6 @@
     Layout = "~/Views/Shared/_myTemplate.cshtml";
 }
 
-@using (Html.BeginForm("Create", "Project"))
-{
-    @Html.AntiForgeryToken()
-
-
     <div class="layout-2cols">
         <div class="content grid_8">
             <div class="project-detail">
@@ -28,6 +23,7 @@
                                 <div class="form form-profile">
                                     @using (Html.BeginForm("Create", "Project", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                                     {
+                                    @Html.AntiForgeryToken()
                                         <div class="row-item clearfix">
                                             @Html.LabelFor(model => model.Project.CategoryId, "CategoryId", htmlAttributes: new { @class = "lbl" })
                                             <div class="val">
@@ -87,16 +83,10 @@
                         <div>
                             <h3 class="rs alternate-tab accordion-label">Projects</h3>
                             <div class="tab-pane accordion-content">
-                                @*<div class="box-marked-project project-short inside-tab">*@
-                                 
-                                @foreach(var item in Model.MyProjects)
+                        @foreach (var item in Model.MyProjects)
                                 {
                                     @Html.Partial("_ProjectMainViewPartial", item);
                                 }
-                 
-
-                                @*</div><!--end: .box-marked-project -->*@
-                                
                             </div><!--end: .tab-pane -->
                         </div>
                     </div>
@@ -111,8 +101,8 @@
                         <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$USER_NAME" />
                     </a>
                     <div class="media-body">
-                        <h4 class="rs pb10"> @Html.ActionLink(Model.CreatorFullName, "Edit", "Users", new { id = Model.CreatorId }, new  { @class = "be-fc-orange fw-b" }) </h4>
-                        <p class="rs fc-gray">@Model.CreatorId projects</p>
+                    <h4 class="rs pb10"> @Html.ActionLink(Model.CreatorFullName, "Edit", "Users", new { id = Model.CreatorId }, new { @class = "be-fc-orange fw-b" }) </h4>
+                    <p class="rs fc-gray">@Model.NoProjects projects</p>
                     </div>
                 </div>
                 <div class="author-action">
@@ -123,10 +113,6 @@
         </div><!--end: .sidebar -->
         <div class="clear"></div>
     </div>
-
-   
-}
-
 
 
 

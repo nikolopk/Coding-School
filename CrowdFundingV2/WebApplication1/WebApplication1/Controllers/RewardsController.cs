@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using CF.Data.Context;
 using CF.Models.Database;
+using CF.MVC.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -39,10 +40,14 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Rewards/Create
-        public ActionResult Create()
+        public ActionResult Create(int projectId)
         {
+            var viewModel = new RewardViewModel()
+            {
+                ProjectId = projectId
+            };
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title");
-            return View();
+            return View(viewModel);
         }
 
         // POST: Rewards/Create
@@ -50,17 +55,27 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,ProjectId,Name,DateInserted,Description,RequiredAmount,MaxAvailable,CurrentAvailable,IsAvailable")] Reward reward)
+        public async Task<ActionResult> Create(RewardViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
+                var reward = new Reward()
+                {
+                    ProjectId = viewModel.ProjectId,
+                    Name = viewModel.Name,
+                    Description = viewModel.Description,
+                    MaxAvailable = viewModel.MaxAvailable,
+                    CurrentAvailable = viewModel.MaxAvailable,
+                    RequiredAmount = viewModel.RequiredAmount,
+                    DateInserted = DateTime.Now,
+                    IsAvailable = true
+                };
                 db.Rewards.Add(reward);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", "Project", new { id = viewModel.ProjectId});
             }
-
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title", reward.ProjectId);
-            return View(reward);
+            
+            return View(viewModel);
         }
 
         // GET: Rewards/Edit/5

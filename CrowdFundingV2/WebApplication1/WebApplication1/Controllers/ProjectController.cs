@@ -211,7 +211,16 @@ namespace WebApplication1.Controllers {
                 {
                     FullName = b.User.AspNetUser.FirstName + " " + b.User.AspNetUser.LastName,
                     NoProjects = b.User.BackerProjects.Count()
-                }).ToList()
+                }).ToList(),
+                Rewards = project.Rewards.Select(r => new RewardViewModel()
+                {
+                    Id = project.Id,
+                    ProjectId = project.Id,
+                    CurrentAvailable = r.CurrentAvailable,
+                    Description = r.Description,
+                    MaxAvailable = r.MaxAvailable
+                }
+                ).ToList()
             };
             return View(viewModel);
         }
@@ -235,10 +244,47 @@ namespace WebApplication1.Controllers {
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", project.CategoryId);
-            ViewBag.StatusId = new SelectList(db.ProjectStatus, "Id", "Name", project.StatusId);
 
-            return View(project);
+            var model = new ProjectEditViewModel()
+            {
+                Id = project.Id,
+                Categories = db.Categories.ToList(),
+                Statuses = db.ProjectStatus.ToList(),
+                CreatorFullName = user.FirstName + " " + user.LastName,
+                CreatorId = myUser.Id,
+                SelectedCategoryId = project.CategoryId,
+                SelectedStatusId = project.StatusId,
+                NoProjects = db.Projects.Where(x => x.CreatorId == myUser.Id).Count(),
+                MyProjects = CreatorProjects(myUser.Id),
+                Project = project,
+                Comments = db.UserProjectComments.Where(x => x.ProjectId == project.Id).Select(y => new ProjectCommentViewModel()
+                {
+                    CommentorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
+                    DateInserted = y.DateInserted,
+                    Text = y.Text
+                }).ToList(),
+                Updates = db.ProjectUpdates.Where(x => x.ProjectId == project.Id).Select(y => new ProjectUpdateViewModel()
+                {
+                    FullName = user.FirstName + " " + user.LastName,
+                    DateInserted = y.DateInserted,
+                    Text = y.Text
+                }).ToList(),
+                Rewards = db.Rewards.Where(x => x.ProjectId == project.Id).Select(y => new RewardViewModel()
+                {
+                    Title = y.Name,
+                    ProjectId = project.Id,
+                    CurrentAvailable = y.CurrentAvailable,
+                    Description = y.Description,
+                    MaxAvailable = y.MaxAvailable
+                }).ToList()
+            };
+
+            return View(model);
+
+            //ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", project.CategoryId);
+            //ViewBag.StatusId = new SelectList(db.ProjectStatus, "Id", "Name", project.StatusId);
+
+            //return View(project);
         }
 
         // POST: Projects/Edit/5
@@ -246,25 +292,31 @@ namespace WebApplication1.Controllers {
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CreatorId,Title,Description,StatusId,CategoryId,DueDate,TargetAmount,CurrentFundAmount,Ratio,DateInserted,DateVerified,VerificationGuid")] Project project)
+        public ActionResult Edit(ProjectEditViewModel viewModel)
         {
             var user = _userManager.FindById(User.Identity.GetUserId());
             var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
-            if (project.CreatorId != myUser.Id)
+            if (viewModel.Project.CreatorId != myUser.Id)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             if (ModelState.IsValid)
             {
+                var project = db.Projects.Find(viewModel.Project.Id);
+                project.DueDate = viewModel.Project.DueDate;
+                project.Description = viewModel.Project.Description;
+                project.TargetAmount = viewModel.Project.TargetAmount;
+                project.Ratio = (project.CurrentFundAmount / viewModel.Project.TargetAmount);
+                project.Title = viewModel.Project.Title;
+                project.CategoryId = viewModel.SelectedCategoryId;
+                project.StatusId = viewModel.SelectedStatusId;
+
                 db.Entry(project).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", project.CategoryId);
-            ViewBag.StatusId = new SelectList(db.ProjectStatus, "Id", "Name", project.StatusId);
-            ViewBag.CreatorId = new SelectList(db.Users, "Id", "PhotoUrl", project.CreatorId);
-            return View(project);
+            return View(viewModel);
         }
 
 
@@ -272,11 +324,28 @@ namespace WebApplication1.Controllers {
         [HttpPost]
         public async Task<ActionResult> BuckProject(int id )
         {
+            var user = _userManager.FindById(User.Identity.GetUserId());
+            var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
+
             var viewModel = new BuckProjectViewModel()
             {
-                projectId = id,
-                transaction = await new PaymentManager().SendPaymentAsync()
+                BuckerId = myUser.Id,
+                ProjectId = id,
+                Transaction = await new PaymentManager().SendPaymentAsync()
             };
+
+            if(viewModel.Transaction)
+            {
+                var backerProject = new BackerProject()
+                {
+                    Amount = viewModel.Amount,
+                    ProjectId = viewModel.ProjectId,
+                    UserId = viewModel.BuckerId
+                };
+
+                db.BackerProjects.Add(backerProject);
+                await db.SaveChangesAsync();
+            }
             return View(viewModel);
         }
 

@@ -40,7 +40,7 @@ namespace WebApplication1.Controllers
 
         [Authorize]
         // GET: UserProjectComments/Create
-        public ActionResult Create(int projectId)
+        public ActionResult Create(int? projectId)
         {
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title");
             // ViewBag.BackerId = new SelectList(db.Users, "Id", "Email");
