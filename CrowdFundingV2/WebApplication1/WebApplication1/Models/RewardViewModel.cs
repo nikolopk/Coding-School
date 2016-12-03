@@ -22,5 +22,6 @@ namespace WebApplication1.Models
         [Required]
         public int MaxAvailable { get; set; }
         public int CurrentAvailable { get; set; }
+        public System.DateTime DateInserted { get; set; } 
     }
 }

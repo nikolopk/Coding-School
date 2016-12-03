@@ -9,12 +9,20 @@ using System.Web;
 using System.Web.Mvc;
 using CF.Data.Context;
 using CF.Models.Database;
+using WebApplication1.Models;
+using Microsoft.AspNet.Identity;
 
 namespace WebApplication1.Controllers
 {
     public class ProjectUpdatesController : Controller
     {
         private CrowdFundingContext db = new CrowdFundingContext();
+        private readonly ApplicationUserManager _userManager;
+
+        public ProjectUpdatesController(ApplicationUserManager userManager)
+        {
+            _userManager = userManager;
+        }
 
         // GET: ProjectUpdates
         public async Task<ActionResult> Index()
@@ -39,10 +47,18 @@ namespace WebApplication1.Controllers
         }
 
         // GET: ProjectUpdates/Create
+        [Authorize]
         public ActionResult Create(int? projectId)
         {
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title");
-            return View();
+            if (projectId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var viewModel = new ProjectUpdateViewModel()
+            {
+                ProjectId = projectId.Value
+            };
+            return View(viewModel);
         }
 
         // POST: ProjectUpdates/Create
@@ -50,17 +66,26 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,ProjectId,Text,DateInserted")] ProjectUpdate projectUpdate)
+        [Authorize]
+        public async Task<ActionResult> Create(ProjectUpdateViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                db.ProjectUpdates.Add(projectUpdate);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
+                var user = _userManager.FindById(User.Identity.GetUserId());
+                var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
 
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title", projectUpdate.ProjectId);
-            return View(projectUpdate);
+                var update = new ProjectUpdate()
+                {
+                    ProjectId=viewModel.ProjectId,
+                    Text = viewModel.Text,
+                    DateInserted = DateTime.Now
+                };
+                db.ProjectUpdates.Add(update);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Edit", "Project", new { id = viewModel.ProjectId });
+            }
+            
+            return View(viewModel);
         }
 
         // GET: ProjectUpdates/Edit/5
@@ -75,7 +100,6 @@ namespace WebApplication1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title", projectUpdate.ProjectId);
             return View(projectUpdate);
         }
 

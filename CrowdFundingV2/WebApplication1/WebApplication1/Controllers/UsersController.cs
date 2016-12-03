@@ -71,7 +71,6 @@ namespace WebApplication1.Controllers {
             {
                 return HttpNotFound();
             }
-            ViewBag.AspNetUsersId = new SelectList(db.AspNetUsers, "Id", "Email", user.AspNetUsersId);
             var aspnetUser = user.AspNetUser;
             var viewModel = new UserDetailsViewModel()
             {
@@ -98,15 +97,16 @@ namespace WebApplication1.Controllers {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                user = new CF.Models.Database.User()
-                {
-                   // AspNetUser = aspnetUser,
-                };
-                db.Entry(user).State = EntityState.Modified;
+                var aspnetUser = user.AspNetUser;
+                aspnetUser.Email = userViewModel.Email;
+                aspnetUser.FirstName = userViewModel.FirstName;
+                aspnetUser.LastName = userViewModel.LastName;
+                aspnetUser.PhoneNumber = userViewModel.PhoneNumber;
+                db.Entry(aspnetUser).State = EntityState.Modified;
+                
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Users", new { id = userViewModel.Id });
             }
-            //ViewBag.AspNetUsersId = new SelectList(db.AspNetUsers, "Id", "Email", user.AspNetUsersId);
             return View(userViewModel);
         }
 
