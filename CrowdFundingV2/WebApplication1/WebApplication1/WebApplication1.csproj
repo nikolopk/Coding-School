@@ -342,6 +342,7 @@
     <Content Include="Content\mytemplate\images\myLogo-2.png" />
     <Content Include="Content\mytemplate\images\myLogo.png" />
     <Content Include="Content\mytemplate\images\no-avatar.png" />
+    <Content Include="Content\mytemplate\images\profic1.png" />
     <Content Include="Content\mytemplate\images\slide-item-bg.png" />
     <Content Include="Content\mytemplate\images\slider\bg.jpg" />
     <Content Include="Content\mytemplate\images\slider\border\border-8.png" />
@@ -496,10 +497,10 @@
     <Content Include="Views\Shared\_PopularProjectViewPartial.cshtml" />
     <Content Include="Views\Shared\_ProjectCommentPartial.cshtml" />
     <Content Include="Views\Shared\_ProjectUpdatePartial.cshtml" />
-    <Content Include="Views\Project\_BackerPartial.cshtml" />
     <Content Include="Views\Project\BuckProject.cshtml" />
     <Content Include="Views\Project\VivaPayment.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Project\_BackerPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
