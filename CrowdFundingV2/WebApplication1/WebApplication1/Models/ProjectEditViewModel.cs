@@ -10,7 +10,7 @@ namespace WebApplication1.Models
     public class ProjectEditViewModel
     {
         public int Id { get; set; }
-
+        
         [Required]
         public string Title { get; set; }
         public string CreatorFullName { get; set; }
