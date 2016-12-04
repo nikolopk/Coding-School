@@ -300,7 +300,8 @@ namespace WebApplication1.Controllers
                     ProjectId        = project.Id,
                     CurrentAvailable = y.CurrentAvailable,
                     Description      = y.Description,
-                    MaxAvailable     = y.MaxAvailable
+                    MaxAvailable     = y.MaxAvailable,
+                    DateInserted     = y.DateInserted
                 }).ToList()
             };
 
