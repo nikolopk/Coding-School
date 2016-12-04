@@ -1,4 +1,5 @@
-﻿namespace WebApplication1.Models {
+﻿namespace WebApplication1.Models
+{
     public class CategoryViewModel
     {
         public int Id { get; set; }

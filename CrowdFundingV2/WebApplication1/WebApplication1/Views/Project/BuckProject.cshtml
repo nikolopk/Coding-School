@@ -13,7 +13,7 @@
     </h1><br />
 
     <h3 style="margin-left: 20px;">
-        Dear @Model.backerName, <br />
+        Dear @Model.BackerName, <br />
         we will charge your bank account at this time with @Model.Amount €. <br /><br />
         In case the project is NOT succesfully funded, you will receive a full refund! <br />
         The only payment method we currently support is through VIVA Wallet. To proceed click the button below.<br />
@@ -30,9 +30,9 @@
             data-vp-lang              ="en"
             data-vp-amount            =@(Model.Amount.ToString()+"00")
             data-vp-description       ="My product"
-            data-vp-customerfirstname = @Model.backerName
-            data-vp-customersurname   = @Model.backerLastName
-            data-vp-customeremail     = @Model.backerMail     >
+            data-vp-customerfirstname = @Model.BackerName
+            data-vp-customersurname   = @Model.BackerLastName
+            data-vp-customeremail     = @Model.BackerMail     >
         </button>
     </form>
 </font>

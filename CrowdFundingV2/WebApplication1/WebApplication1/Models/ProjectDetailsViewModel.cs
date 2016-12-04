@@ -10,7 +10,6 @@ namespace WebApplication1.Models
     {
         public int LoggedinId { get; set; }
         public int Id { get; set; }
-
         public string Title { get; set; }
         public string CreatorFullName { get; set; }
         public DateTime DateInserted { get; set; }

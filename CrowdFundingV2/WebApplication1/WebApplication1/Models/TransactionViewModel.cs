@@ -1,6 +1,7 @@
-﻿namespace WebApplication1.Models {
+﻿namespace WebApplication1.Models
+{
     public class TransactionViewModel {
-        public bool transaction { get; set; }
-        public int projectId { get; set; }
+        public bool Transaction { get; set; }
+        public int ProjectId { get; set; }
     }
 }

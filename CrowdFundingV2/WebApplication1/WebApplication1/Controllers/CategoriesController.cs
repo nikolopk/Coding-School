@@ -237,7 +237,6 @@ namespace WebApplication1.Controllers {
 
         public ActionResult MostFunded()
         {
-
             var mostProject = _projectManager.GetAll()
                .Where(p => p.DueDate >= DateTime.Now)
                .Select(y => new BasicProjectInfoViewModel()
@@ -253,9 +252,7 @@ namespace WebApplication1.Controllers {
                    NoComments = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
                })
                .OrderByDescending(x => x.CurrentFund).Take(6);
-
-
-
+            
             var viewModel = new CategoryDetailsViewModel()
             {
                 DisplayProjects = mostProject.ToList()
@@ -263,6 +260,5 @@ namespace WebApplication1.Controllers {
 
             return View("MostFunded", viewModel);
         }
-
     }
 }

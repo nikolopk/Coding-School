@@ -10,7 +10,6 @@ using System.Web.Mvc;
 using CF.Data.Context;
 using CF.Models.Database;
 using WebApplication1.Models;
-using Microsoft.AspNet.Identity;
 
 namespace WebApplication1.Controllers
 {
@@ -78,65 +77,7 @@ namespace WebApplication1.Controllers
             
             return View(viewModel);
         }
-
-        // GET: ProjectUpdates/Edit/5
-        public async Task<ActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ProjectUpdate projectUpdate = await db.ProjectUpdates.FindAsync(id);
-            if (projectUpdate == null)
-            {
-                return HttpNotFound();
-            }
-            return View(projectUpdate);
-        }
-
-        // POST: ProjectUpdates/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,ProjectId,Text,DateInserted")] ProjectUpdate projectUpdate)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(projectUpdate).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title", projectUpdate.ProjectId);
-            return View(projectUpdate);
-        }
-
-        // GET: ProjectUpdates/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ProjectUpdate projectUpdate = await db.ProjectUpdates.FindAsync(id);
-            if (projectUpdate == null)
-            {
-                return HttpNotFound();
-            }
-            return View(projectUpdate);
-        }
-
-        // POST: ProjectUpdates/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            ProjectUpdate projectUpdate = await db.ProjectUpdates.FindAsync(id);
-            db.ProjectUpdates.Remove(projectUpdate);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
-
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

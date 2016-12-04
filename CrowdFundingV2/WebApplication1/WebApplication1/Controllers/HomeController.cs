@@ -6,11 +6,12 @@ using System.Linq;
 using System.Web.Mvc;
 using WebApplication1.Models;
 
-namespace WebApplication1.Controllers {
+namespace WebApplication1.Controllers
+{
     [RequireHttps]
     public class HomeController : Controller
     {
-        private CrowdFundingContext db = new CrowdFundingContext();
+        private readonly CrowdFundingContext db = new CrowdFundingContext();
         public ActionResult Index()
         {
             var categories = db.Categories
@@ -19,7 +20,7 @@ namespace WebApplication1.Controllers {
                             {
                                 Id = y.Id,
                                 Name = y.Name,
-                                NoProjects = y.Projects.Where(x => x.DueDate >= DateTime.Now).Count()
+                                NoProjects = y.Projects.Count(x => x.DueDate >= DateTime.Now)
                             });
 
             var project               = db.Projects
@@ -38,14 +39,12 @@ namespace WebApplication1.Controllers {
                                Description        = y.Description,
                                CurrentFund        = y.CurrentFundAmount,
                                Ratio              = (int)(((double)y.CurrentFundAmount/y.TargetAmount)*100),
-                               CurrentBackerCount = y.BackerProjects.Where(x => x.ProjectId == y.Id).Count(),
+                               CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
                                DueDate            = y.DueDate,
-                               NoComments         = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
+                               NoComments         = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
                                ImageUrl = y.PhotoUrl
                            }).FirstOrDefault();
-
             
-
             var popularProject = db.Projects
                 .Include(p     => p.Category)
                .Include(p      => p.User)

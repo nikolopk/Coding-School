@@ -7,7 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
 
-namespace WebApplication1.Controllers {
+namespace WebApplication1.Controllers
+{
     [Authorize]
     public class ManageController : Controller
     {

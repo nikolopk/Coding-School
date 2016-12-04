@@ -22,8 +22,6 @@ namespace WebApplication1.Controllers {
         private readonly IManageProject _projectManager;
         private readonly IUploadFile _uploadFileManager;
 
-
-
         public ProjectController(ApplicationUserManager userManager, IManageProject projectManager, IUploadFile uploadFileManager)
         {
             _userManager       = userManager;
@@ -38,7 +36,6 @@ namespace WebApplication1.Controllers {
                            .FirstOrDefault();
             return View(project);
         }
-
         
         public ActionResult Search(string searchTitle)
         {
@@ -58,9 +55,9 @@ namespace WebApplication1.Controllers {
                                Description = y.Description,
                                CurrentFund = y.CurrentFundAmount,
                                Ratio = (int)(((double)y.CurrentFundAmount / y.TargetAmount) * 100),
-                               CurrentBackerCount = y.BackerProjects.Where(x => x.ProjectId == y.Id).Count(),
+                               CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
                                DueDate = y.DueDate,
-                               NoComments = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
+                               NoComments = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
                                ImageUrl = y.PhotoUrl
                            });
 
@@ -78,8 +75,7 @@ namespace WebApplication1.Controllers {
         {
             var user   = _userManager.FindById(User.Identity.GetUserId());
             var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
-
-
+            
             var model = new ProjectViewModel()
             {
                 Categories      = db.Categories.ToList(),
@@ -109,9 +105,6 @@ namespace WebApplication1.Controllers {
                                NoComments         = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
                                ImageUrl = y.PhotoUrl
                            });
-
-
-
             return View(await projects.ToListAsync());
         }
 
@@ -134,9 +127,6 @@ namespace WebApplication1.Controllers {
                                         NoComments         = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
                                         
                                     }).ToList();
-
-            
-
             return projects;
         }
 
@@ -299,7 +289,6 @@ namespace WebApplication1.Controllers {
                 DateInserted       = project.DateInserted,
                 TargetAmount       = project.TargetAmount,
                 Description        = project.Description,
-
                 Comments           = db.UserProjectComments.Where(x => x.ProjectId == project.Id).Select(y => new ProjectCommentViewModel()
                 {
                     CommentorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
@@ -372,9 +361,9 @@ namespace WebApplication1.Controllers {
                 Amount         = amount,
                 ProjectId      = id,
                 BackerId       = myUser.Id,
-                backerLastName = myUser.AspNetUser.LastName,
-                backerName     = myUser.AspNetUser.FirstName,
-                backerMail     = myUser.AspNetUser.Email
+                BackerLastName = myUser.AspNetUser.LastName,
+                BackerName     = myUser.AspNetUser.FirstName,
+                BackerMail     = myUser.AspNetUser.Email
             };
 
             return View(backProjectModel);
@@ -387,11 +376,11 @@ namespace WebApplication1.Controllers {
         {
             var transactionModel = new TransactionViewModel()
             {
-                projectId = projectId,
-                transaction = await new PaymentManager().SendPaymentAsync()
+                ProjectId = projectId,
+                Transaction = await new PaymentManager().SendPaymentAsync()
             };
 
-            if(transactionModel.transaction )
+            if(transactionModel.Transaction )
             {
                 var backerProject = new BackerProject() 
                 {

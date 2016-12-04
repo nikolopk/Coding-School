@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using CF.Data.Context;
 using CF.Models.Database;
@@ -14,7 +9,7 @@ namespace WebApplication1.Controllers
 {
     public class BackerProjectsController : Controller
     {
-        private CrowdFundingContext db = new CrowdFundingContext();
+        private readonly CrowdFundingContext db = new CrowdFundingContext();
 
         // GET: BackerProjects
         public async Task<ActionResult> Index()

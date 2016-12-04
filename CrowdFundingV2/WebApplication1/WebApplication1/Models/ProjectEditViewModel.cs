@@ -52,7 +52,6 @@ namespace WebApplication1.Models
         public Project Project { get; set; }
 
         public IEnumerable<BasicProjectInfoViewModel> MyProjects { get; set; }
-
         public int CreatorNoProjects { get; set; }
         public int CreatorId { get; set; }
         public string CreatorImageUrl { get; set; }

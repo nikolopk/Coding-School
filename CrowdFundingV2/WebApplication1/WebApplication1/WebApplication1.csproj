@@ -235,7 +235,6 @@
     <Compile Include="Models\BuckProjectViewModel.cs" />
     <Compile Include="Models\CategoryDetailsViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
-    <Compile Include="Models\File.cs" />
     <Compile Include="Models\HomeIndexViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />

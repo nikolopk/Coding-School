@@ -55,12 +55,7 @@
     <Compile Include="Database\UserProjectComment.cs" />
     <Compile Include="Entities\File.cs" />
     <Compile Include="ICachableModel.cs" />
-    <Compile Include="MVC\Project\BasicProjectInfoViewModel.cs" />
-    <Compile Include="MVC\Project\ProjectAboutViewModel.cs" />
-    <Compile Include="MVC\Project\ProjectBackDisplayViewModel.cs" />
     <Compile Include="MVC\Project\ProjectCreatorBasicInfoProfileViewModel.cs" />
-    <Compile Include="MVC\Project\ProjectViewModel.cs" />
-    <Compile Include="MVC\Project\RewardViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
