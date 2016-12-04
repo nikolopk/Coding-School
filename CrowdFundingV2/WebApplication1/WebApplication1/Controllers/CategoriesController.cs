@@ -60,6 +60,7 @@ namespace WebApplication1.Controllers {
                    CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
                    DueDate            = y.DueDate,
                    NoComments         = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
+                   ImageUrl = y.PhotoUrl
                });
 
             var categoryDisplayProject = categoryStaffProject.ToList();
@@ -77,6 +78,7 @@ namespace WebApplication1.Controllers {
                    CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
                    DueDate            = y.DueDate,
                    NoComments         = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
+                   ImageUrl = y.PhotoUrl
                })
                .OrderByDescending(x => x.CurrentBackerCount);
 
@@ -94,6 +96,7 @@ namespace WebApplication1.Controllers {
                    CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
                    DueDate            = y.DueDate,
                    NoComments         = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
+                   ImageUrl = y.PhotoUrl
                })
                .OrderByDescending(x => x.CurrentBackerCount);
 
@@ -110,6 +113,7 @@ namespace WebApplication1.Controllers {
                    CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
                    DueDate            = y.DueDate,
                    NoComments         = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
+                   ImageUrl = y.PhotoUrl
                })
                .OrderByDescending(x => x.CurrentFund);
 

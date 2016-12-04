@@ -41,6 +41,7 @@ namespace WebApplication1.Controllers {
                                CurrentBackerCount = y.BackerProjects.Where(x => x.ProjectId == y.Id).Count(),
                                DueDate            = y.DueDate,
                                NoComments         = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
+                               ImageUrl = y.PhotoUrl
                            }).FirstOrDefault();
 
             
@@ -64,6 +65,7 @@ namespace WebApplication1.Controllers {
                    CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
                    DueDate            = y.DueDate,
                    NoComments         = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
+                   ImageUrl = y.PhotoUrl
                }).Take(4);
 
             
