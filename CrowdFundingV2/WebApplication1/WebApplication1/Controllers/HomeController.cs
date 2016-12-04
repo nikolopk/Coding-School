@@ -61,9 +61,9 @@ namespace WebApplication1.Controllers {
                    Description        = y.Description,
                    CurrentFund        = y.CurrentFundAmount,
                    Ratio              = (int)Math.Floor((y.Ratio * 100)),
-                   CurrentBackerCount = y.BackerProjects.Where(x => x.ProjectId == y.Id).Count(),
+                   CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
                    DueDate            = y.DueDate,
-                   NoComments         = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
+                   NoComments         = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
                }).Take(4);
 
             

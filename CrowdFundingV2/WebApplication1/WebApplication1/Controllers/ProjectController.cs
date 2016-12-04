@@ -40,7 +40,7 @@ namespace WebApplication1.Controllers
                            {
                                Id                 = y.Id,
                                Title              = y.Title,
-                               CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
+                               CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
                                Description        = y.Description,
                                CurrentFund        = y.CurrentFundAmount,
                                Ratio              = (int)Math.Floor((y.Ratio * 100)),
@@ -79,7 +79,7 @@ namespace WebApplication1.Controllers
                            {
                                Id                 = y.Id,
                                Title              = y.Title,
-                               CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
+                               CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
                                Description        = y.Description,
                                CurrentFund        = y.CurrentFundAmount,
                                Ratio              = (int)Math.Floor((y.Ratio * 100)),
@@ -102,7 +102,7 @@ namespace WebApplication1.Controllers
                                     {
                                         Id                 = y.Id,
                                         Title              = y.Title,
-                                        CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.FirstName,
+                                        CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
                                         Description        = y.Description,
                                         CurrentFund        = y.CurrentFundAmount,
                                         Ratio              = (int)Math.Floor((y.Ratio * 100)),
@@ -187,6 +187,8 @@ namespace WebApplication1.Controllers
                 CurrentBackerCount = project.BackerProjects.Count,
                 DateInserted       = project.DateInserted,
                 Id                 = project.Id,
+                CreatorImageUrl    = user.PhotoUrl,
+                ProjectImageUrl    = project.PhotoUrl,
                 Comments           = project.UserProjectComments.Select(c => new ProjectCommentViewModel()
                 {
                     CommentorFullName = c.User.AspNetUser.FirstName + " " + c.User.AspNetUser.LastName,
