@@ -4,7 +4,7 @@
     <div class="top-project-info">
         <div class="content-info-short clearfix">
             <a href="#" class="thumb-img">
-                <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-292x204-1.jpg" alt="$TITLE">
+                <img src="/images/@Model.ImageUrl" alt="">
             </a>
             <div class="wrap-short-detail">
                 <h3 class="rs acticle-title">
@@ -13,7 +13,7 @@
                 
                 </h3>
                 <p class="rs tiny-desc">by <a href="profile.html" class="fw-b fc-gray be-fc-orange">@Model.CreatorFullName</a> </p>
-                <p class="rs title-description">@Model.Description</p>
+                @*<p class="rs title-description">@Model.Description</p>*@
             </div>
             <p class="rs clearfix comment-view">
                 <a href="#" class="fc-gray be-fc-orange">@Model.NoComments comments</a>

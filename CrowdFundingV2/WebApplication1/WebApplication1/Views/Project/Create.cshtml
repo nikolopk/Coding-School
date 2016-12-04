@@ -1,7 +1,7 @@
 ﻿@model WebApplication1.Models.ProjectViewModel 
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Project";
     Layout = "~/Views/Shared/_myTemplate.cshtml";
 }
 
@@ -10,18 +10,15 @@
             <div class="project-detail">
                 <div class="project-tab-detail tabbable accordion">
                     <ul class="nav nav-tabs clearfix">
-                        <li class="active">@Html.ActionLink("Project", "Create", "Project", new { @class = "be-fc-orange" })    </li>
-                        <li><a href="#" class="be-fc-orange"></a></li>
-                        <li class="disable"><a href="#" class="be-fc-orange">Project</a></li>
-                        <li><a href="#" class="be-fc-orange">Inbox</a></li>
-                        <li>@Html.ActionLink("My Projects", "ProjectByCreator", "Project", new { id = Model.CreatorId }, new { @class = "be-fc-orange" })  </li>
+                        <li class="active">@Html.ActionLink("Project", "Create", "Project", new { @class = "be-fc-orange" })</li>
+                        <li>@Html.ActionLink("My Projects", "ProjectByCreator", "Project", new { id = Model.CreatorId }, new { @class = "be-fc-orange" })</li>
                     </ul>
                     <div class="tab-content">
                         <div>
                             <h3 class="rs alternate-tab accordion-label">Profile</h3>
                             <div class="tab-pane accordion-content active">
                                 <div class="form form-profile">
-                                    @using (Html.BeginForm("Create", "Project", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                    @using (Html.BeginForm("Create", "Project", FormMethod.Post, new { enctype = "multipart/form-data" , @class = "form-horizontal", role = "form" }))
                                     {
                                     @Html.AntiForgeryToken()
                                         <div class="row-item clearfix">
@@ -35,7 +32,6 @@
                                                 </select>
                                                 
                                                 @Html.ValidationMessageFor(model => model.SelectedCategoryId, "", new { @class = "text-danger" })
-                                                @*<p class="rs description-input">Your name is displayed on your profile.</p>*@
                                             </div>
                                         </div>
 
@@ -55,7 +51,7 @@
                                         <div class="row-item clearfix">
                                             @Html.LabelFor(model => model.Project.Description, htmlAttributes: new { @class = "lbl" })
                                             <div class="val">
-                                                @Html.TextBoxFor(model => model.Project.Description, new { @class = "txt", @placeholder = "Description of the project" })
+                                                @Html.TextAreaFor(model => model.Project.Description, new { cols = "60", rows = "5", @class = "txt", @placeholder = "Description of the project" })
                                                 @Html.ValidationMessageFor(model => model.Project.Description, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -77,7 +73,13 @@
                                                 
                                             </div>
                                         </div>
-                                        <p class="wrap-btn-submit rs ta-r">
+                                        <div class="row-item clearfix">
+                                            @Html.LabelFor(model => model.Project.PhotoUrl, "Photo", htmlAttributes: new { @class = "lbl" })
+                                            <div class="val">
+                                                <input type="file" id="Avatar" name="upload" />
+                                            </div>
+                                        </div>
+                                        <p class="btn wrap-btn-submit rs ta-r">
                                             <button class="btn btn-red btn-submit-all">Save all settings</button>
                                         </p>
                                     }
@@ -85,9 +87,9 @@
                             </div><!--end: .tab-pane -->
                         </div>
                         <div>
-                            <h3 class="rs alternate-tab accordion-label">Projects</h3>
+                        <h3 class="rs alternate-tab accordion-label">Projects</h3>
                             <div class="tab-pane accordion-content">
-                        @foreach (var item in Model.MyProjects)
+                                @foreach (var item in Model.MyProjects)
                                 {
                                     @Html.Partial("_ProjectMainViewPartial", item);
                                 }

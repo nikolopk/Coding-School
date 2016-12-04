@@ -16,14 +16,8 @@ namespace WebApplication1.Controllers
 {
     public class ProjectUpdatesController : Controller
     {
-        private CrowdFundingContext db = new CrowdFundingContext();
-        private readonly ApplicationUserManager _userManager;
-
-        public ProjectUpdatesController(ApplicationUserManager userManager)
-        {
-            _userManager = userManager;
-        }
-
+        private readonly CrowdFundingContext db = new CrowdFundingContext();
+        
         // GET: ProjectUpdates
         public async Task<ActionResult> Index()
         {
@@ -71,9 +65,6 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = _userManager.FindById(User.Identity.GetUserId());
-                var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
-
                 var update = new ProjectUpdate()
                 {
                     ProjectId=viewModel.ProjectId,
@@ -82,7 +73,7 @@ namespace WebApplication1.Controllers
                 };
                 db.ProjectUpdates.Add(update);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Edit", "Project", new { id = viewModel.ProjectId });
+                return RedirectToAction("Details", "Project", new { id = viewModel.ProjectId });
             }
             
             return View(viewModel);

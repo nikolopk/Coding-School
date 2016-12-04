@@ -1,10 +1,12 @@
 ﻿@model WebApplication1.Models.ProjectEditViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Project";
     Layout = "~/Views/Shared/_myTemplate.cshtml";
 }
 
+@using (Html.BeginForm("Edit", "Project", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+{
 <div class="layout-2cols">
     <div class="content grid_8">
         <div class="project-detail">
@@ -21,44 +23,31 @@
                         <h3 class="rs alternate-tab accordion-label">Profile</h3>
                         <div class="tab-pane accordion-content active">
                             <div class="form form-profile">
-                                @using (Html.BeginForm())
-                                {
+                               
                                     @Html.AntiForgeryToken()
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                     @Html.HiddenFor(model => model.Project.Id)
                                     @Html.HiddenFor(model => model.Project.CreatorId)
+                                    @Html.HiddenFor(model => model.Id)
+
 
                                     <div class="row-item clearfix">
-                                        @Html.LabelFor(model => model.Project.Title, htmlAttributes: new { @class = "lbl" })
+                                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "lbl" })
                                         <div class="val">
-                                            @Html.EditorFor(model => model.Project.Title, new { htmlAttributes = new { @class = "txt" } })
-                                            @Html.ValidationMessageFor(model => model.Project.Title, "", new { @class = "text-danger" })
-                                            <p class="rs description-input">Your name is displayed on your profile.</p>
+                                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "txt" } })
+                                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                     <div class="row-item clearfix">
-                                        @Html.LabelFor(model => model.Project.Description, htmlAttributes: new { @class = "lbl" })
+                                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "lbl" })
                                         <div class="val">
-                                            @Html.EditorFor(model => model.Project.Description, new { htmlAttributes = new { @class = "txt" } })
-                                            @Html.ValidationMessageFor(model => model.Project.Description, "", new { @class = "text-danger" })
+                                            @Html.TextAreaFor(model => model.Description, new { cols = "60", rows = "5", @class = "txt" })
+                                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
+                                    
                                     <div class="row-item clearfix">
-                                        @Html.LabelFor(model => model.Project.StatusId, "StatusId", htmlAttributes: new { @class = "lbl" })
-
-                                        <div class="val">
-                                            <select name="@Html.NameFor(m => m.SelectedStatusId)" class="txt">
-                                                @foreach (var c in Model.Statuses)
-                                                {
-                                                    <option @(c.Id == Model.SelectedStatusId ? "selected" : string.Empty) value="@c.Id">@c.Name</option>
-                                                }
-                                            </select>
-
-                                            @Html.ValidationMessageFor(model => model.SelectedStatusId, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                    <div class="row-item clearfix">
-                                        @Html.LabelFor(model => model.Project.CategoryId, "StatusId", htmlAttributes: new { @class = "lbl" })
+                                        @Html.LabelFor(model => model.Project.CategoryId, "Category", htmlAttributes: new { @class = "lbl" })
 
                                         <div class="val">
                                             <select name="@Html.NameFor(m => m.SelectedCategoryId)" class="txt">
@@ -72,31 +61,24 @@
                                         </div>
                                     </div>
                                     <div class="row-item clearfix">
-                                        @Html.LabelFor(model => model.Project.DueDate, htmlAttributes: new { @class = "lbl" })
+                                        @Html.LabelFor(model => model.DueDate, "Due Date", htmlAttributes: new { @class = "lbl" })
                                         <div class="val">
-                                            @Html.EditorFor(model => model.Project.DueDate, new { htmlAttributes = new { @class = "txt" } })
-                                            @Html.ValidationMessageFor(model => model.Project.DueDate, "", new { @class = "text-danger" })
+                                            @Html.EditorFor(model => model.DueDate, new { htmlAttributes = new { @class = "txt" } })
+                                            @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                     <div class="row-item clearfix">
-                                        @Html.LabelFor(model => model.Project.TargetAmount, htmlAttributes: new { @class = "lbl" })
+                                        @Html.LabelFor(model => model.TargetAmount,"Target Amount", htmlAttributes: new { @class = "lbl" })
                                         <div class="val">
-                                            @Html.EditorFor(model => model.Project.TargetAmount, new { htmlAttributes = new { @class = "txt" } })
-                                            @Html.ValidationMessageFor(model => model.Project.TargetAmount, "", new { @class = "text-danger" })
+                                            @Html.EditorFor(model => model.TargetAmount, new { htmlAttributes = new { @class = "txt" } })
+                                            @Html.ValidationMessageFor(model => model.TargetAmount, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-
-                                    <div class="row-item clearfix">
-                                        @Html.LabelFor(model => model.Project.DateVerified, htmlAttributes: new { @class = "lbl" })
-                                        <div class="val">
-                                            @Html.EditorFor(model => model.Project.DateVerified, new { htmlAttributes = new { @class = "txt" } })
-                                            @Html.ValidationMessageFor(model => model.Project.DateVerified, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
+                                    
                                     <p class="btn wrap-btn-submit rs ta-r">
                                         <button class="btn btn-red btn-submit-all">Save all settings</button>
                                     </p>
-                                }
+                                
                             </div>
                         </div><!--end: .tab-pane -->
                     </div>
@@ -164,9 +146,7 @@
                         <h3 class="rs alternate-tab accordion-label">Comments</h3>
                         <div class="tab-pane accordion-content">
                             @Html.ActionLink("Post a Comment", "Create", "UserProjectComments", routeValues: new { projectId = @Model.Id }, htmlAttributes: new { @class = "post-new-comment be-fc-orange" })
-
                             <div class="box-list-comment">
-
                                 @foreach (var comment in Model.Comments)
                                 {
                                     <div class="media comment-item">
@@ -198,10 +178,10 @@
                                 <div class="top-project-info">
                                     <div class="content-info-short clearfix">
                                         <a href="#" class="thumb-img">
-                                            <img src="images/ex/th-292x204-1.jpg" alt="$TITLE">
+                                            <img src="/images/@project.ImageUrl" alt="">
                                         </a>
                                         <div class="wrap-short-detail">
-                                            <h3 class="rs acticle-title"><a class="be-fc-orange" href="/project/edit/@project.Id">@project.Title</a></h3>
+                                            <h3 class="rs acticle-title"><a class="be-fc-orange" href="/project/details/@project.Id">@project.Title</a></h3>
                                             <p class="rs tiny-desc">by <a href="#" class="fw-b fc-gray be-fc-orange">@project.CreatorFullName</a> </p>
                                             <p class="rs title-description">@project.Description</p>
                                         </div>
@@ -217,7 +197,7 @@
                                     </div>
                                     <div class="group-fee clearfix">
                                         <div class="fee-item">
-                                            <p class="rs lbl">Bankers</p>
+                                            <p class="rs lbl">Buckers</p>
                                             <span class="val">@project.CurrentBackerCount</span>
                                         </div>
                                         <div class="sep"></div>
@@ -249,13 +229,18 @@
                     <img src="images/ex/th-90x90-1.jpg" alt="$USER_NAME" />
                 </a>
                 <div class="media-body">
-                    <h4 class="rs pb10"><a href="#" class="be-fc-orange fw-b">@Model.CreatorFullName</a></h4>
+                    <h4 class="rs pb10">
+                        @Html.ActionLink(@Model.CreatorFullName, "Details", "Users", routeValues: new { Id = @Model.CreatorId }, htmlAttributes: new { @class = "be-fc-orange fw-b" })
+                    </h4>
                     <p class="rs fc-gray">@Model.CreatorNoProjects projects</p>
                 </div>
             </div>
             <div class="author-action">
                 @Html.ActionLink("Edit Info", "Edit", "Users", new { id = @Model.CreatorId }, htmlAttributes: new { @class = "btn btn-red" })
-                 <a class="btn btn-white" href="#">Logout</a>
+                @if (Request.IsAuthenticated)
+                {
+                    <a href="@Url.Action("LogOff", "Account")" class="btn btn-white">Log off</a>
+                }
             </div>
         </div><!--end: .project-author -->
     </div><!--end: .sidebar -->
@@ -265,3 +250,4 @@
 
 
 
+}

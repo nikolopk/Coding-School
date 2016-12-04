@@ -11,12 +11,14 @@ namespace CF.Models.Database
         public int StatusId { get; set; } // StatusId
         public int CategoryId { get; set; } // CategoryId
         public System.DateTime DueDate { get; set; } // DueDate
-        public decimal TargetAmount { get; set; } // TargetAmount
-        public decimal CurrentFundAmount { get; set; } // CurrentFundAmount
+        public int TargetAmount { get; set; } // TargetAmount
+        public int CurrentFundAmount { get; set; } // CurrentFundAmount
         public decimal Ratio { get; set; } // Ratio
         public System.DateTime DateInserted { get; set; } // DateInserted
         public System.DateTime? DateVerified { get; set; } // DateVerified
         public System.Guid? VerificationGuid { get; set; } // VerificationGuid
+        public byte[] Image { get; set; } // Image
+        public string PhotoUrl { get; set; } // PhotoUrl
 
         // Reverse navigation
         public virtual System.Collections.Generic.ICollection<BackerProject> BackerProjects { get; set; } // BackerProject.FK_BackerProject_Project

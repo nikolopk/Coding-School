@@ -37,10 +37,11 @@ namespace WebApplication1.Controllers {
                                CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
                                Description        = y.Description,
                                CurrentFund        = y.CurrentFundAmount,
-                               Ratio              = (int)Math.Floor((y.Ratio * 100)),
+                               Ratio              = (int)(((double)y.CurrentFundAmount/y.TargetAmount)*100),
                                CurrentBackerCount = y.BackerProjects.Where(x => x.ProjectId == y.Id).Count(),
                                DueDate            = y.DueDate,
                                NoComments         = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
+                               ImageUrl = y.PhotoUrl
                            }).FirstOrDefault();
 
             
@@ -60,10 +61,11 @@ namespace WebApplication1.Controllers {
                    CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
                    Description        = y.Description,
                    CurrentFund        = y.CurrentFundAmount,
-                   Ratio              = (int)Math.Floor((y.Ratio * 100)),
-                   CurrentBackerCount = y.BackerProjects.Where(x => x.ProjectId == y.Id).Count(),
+                   Ratio              = (int)(((double)y.CurrentFundAmount / y.TargetAmount) * 100),
+                   CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
                    DueDate            = y.DueDate,
-                   NoComments         = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
+                   NoComments         = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
+                   ImageUrl = y.PhotoUrl
                }).Take(4);
 
             

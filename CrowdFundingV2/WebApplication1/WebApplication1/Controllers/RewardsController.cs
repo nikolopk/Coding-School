@@ -10,7 +10,7 @@ using WebApplication1.Models;
 namespace WebApplication1.Controllers {
     public class RewardsController : Controller
     {
-        private CrowdFundingContext db = new CrowdFundingContext();
+        private readonly CrowdFundingContext db = new CrowdFundingContext();
 
         // GET: Rewards
         public async Task<ActionResult> Index()
@@ -68,7 +68,8 @@ namespace WebApplication1.Controllers {
                     MinRequiredAmount = viewModel.MinAmount,
                     MaxRequiredAmount = viewModel.MaxAmount,
                     DateInserted      = DateTime.Now,
-                    IsAvailable       = true
+                    IsAvailable       = true,
+                    
                 };
                 db.Rewards.Add(reward);
                 await db.SaveChangesAsync();

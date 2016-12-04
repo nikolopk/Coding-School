@@ -18,8 +18,9 @@ namespace CF.POCOGenerator
     public class User
     {
         public int Id { get; set; } // Id (Primary key)
-        public string PhotoUrl { get; set; } // PhotoUrl (length: 200)
         public string AspNetUsersId { get; set; } // AspNetUsersId (length: 128)
+        public string PhotoUrl { get; set; } // PhotoUrl
+        public byte[] Image { get; set; } // Image
 
         // Reverse navigation
         public virtual System.Collections.Generic.ICollection<BackerProject> BackerProjects { get; set; } // BackerProject.FK_BackerProject_User

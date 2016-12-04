@@ -10,7 +10,7 @@ namespace CF.EntityManagers
 {
     public class DboUserManager : IManageDboUser
     {
-        private CrowdFundingContext db = new CrowdFundingContext();
+        private readonly CrowdFundingContext db = new CrowdFundingContext();
         
         public async Task CreateDboUser(string id)
         {

@@ -1,6 +1,7 @@
 ﻿using CF.Models.Database;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,18 +10,22 @@ namespace WebApplication1.Models
     public class ProjectEditViewModel
     {
         public int Id { get; set; }
-
+        
+        [Required]
         public string Title { get; set; }
         public string CreatorFullName { get; set; }
         public DateTime DateInserted { get; set; }
         public DateTime DueDate { get; set; }
-        public decimal TargetAmount { get; set; }
+        [Required]
+        [Range(0, int.MaxValue, ErrorMessage = "The value must be greater than 0")]
+        public int TargetAmount { get; set; }
         public int Ratio { get; set; }
 
         public int CurrentBackerCount { get; set; }
 
         public decimal CurrentFund { get; set; }
 
+        [Required]
         public string Description { get; set; }
 
         public List<RewardViewModel> Rewards { get; set; }

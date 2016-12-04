@@ -53,6 +53,7 @@
     <Compile Include="Database\Reward.cs" />
     <Compile Include="Database\User.cs" />
     <Compile Include="Database\UserProjectComment.cs" />
+    <Compile Include="Entities\File.cs" />
     <Compile Include="ICachableModel.cs" />
     <Compile Include="MVC\Project\BasicProjectInfoViewModel.cs" />
     <Compile Include="MVC\Project\ProjectAboutViewModel.cs" />
@@ -62,9 +63,7 @@
     <Compile Include="MVC\Project\RewardViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

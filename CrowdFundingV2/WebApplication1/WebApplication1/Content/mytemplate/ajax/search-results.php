@@ -3,7 +3,7 @@
 	<div class="top-project-info">
 		<div class="content-info-short clearfix">
 			<a href="#" class="thumb-img">
-				<img src="images/ex/th-292x204-3.jpg" alt="$TITLE">
+				<img src="images/ex/th-292x204-3.jpg" alt="">
 			</a>
 			<div class="wrap-short-detail">
 				<h3 class="rs acticle-title"><a class="be-fc-orange" href="#">LYK and Bear #1: No Food Deed Unpunished</a></h3>
@@ -24,7 +24,7 @@
 		</div>
 		<div class="group-fee clearfix">
 			<div class="fee-item">
-				<p class="rs lbl">Bankers</p>
+				<p class="rs lbl">Buckers</p>
 				<span class="val"><?php print rand(90, 400);?></span>
 			</div>
 			<div class="sep"></div>
@@ -46,7 +46,7 @@
 	<div class="top-project-info">
 		<div class="content-info-short clearfix">
 			<a href="#" class="thumb-img">
-				<img src="images/ex/th-292x204-4.jpg" alt="$TITLE">
+				<img src="images/ex/th-292x204-4.jpg" alt="">
 			</a>
 			<div class="wrap-short-detail">
 				<h3 class="rs acticle-title"><a class="be-fc-orange" href="#">LYK and Bear #1: No Food Deed Unpunished</a></h3>
@@ -67,7 +67,7 @@
 		</div>
 		<div class="group-fee clearfix">
 			<div class="fee-item">
-				<p class="rs lbl">Bankers</p>
+				<p class="rs lbl">Buckers</p>
 				<span class="val"><?php print rand(90, 400);?></span>
 			</div>
 			<div class="sep"></div>
