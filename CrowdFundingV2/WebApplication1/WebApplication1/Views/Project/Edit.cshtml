@@ -243,7 +243,9 @@
                     <img src="images/ex/th-90x90-1.jpg" alt="$USER_NAME" />
                 </a>
                 <div class="media-body">
-                    <h4 class="rs pb10"><a href="#" class="be-fc-orange fw-b">@Model.CreatorFullName</a></h4>
+                    <h4 class="rs pb10">
+                        @Html.ActionLink(@Model.CreatorFullName, "Details", "Users", routeValues: new { Id = @Model.CreatorId }, htmlAttributes: new { @class = "be-fc-orange fw-b" })
+                    </h4>
                     <p class="rs fc-gray">@Model.CreatorNoProjects projects</p>
                 </div>
             </div>
