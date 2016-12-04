@@ -33,18 +33,17 @@
                                         <div class="val">
                                             @Html.EditorFor(model => model.Project.Title, new { htmlAttributes = new { @class = "txt" } })
                                             @Html.ValidationMessageFor(model => model.Project.Title, "", new { @class = "text-danger" })
-                                            <p class="rs description-input">Your name is displayed on your profile.</p>
                                         </div>
                                     </div>
                                     <div class="row-item clearfix">
                                         @Html.LabelFor(model => model.Project.Description, htmlAttributes: new { @class = "lbl" })
                                         <div class="val">
-                                            @Html.EditorFor(model => model.Project.Description, new { htmlAttributes = new { @class = "txt" } })
+                                            @Html.TextAreaFor(model => model.Project.Description, new { cols = "60", rows = "5", @class = "txt" })
                                             @Html.ValidationMessageFor(model => model.Project.Description, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                     <div class="row-item clearfix">
-                                        @Html.LabelFor(model => model.Project.StatusId, "StatusId", htmlAttributes: new { @class = "lbl" })
+                                        @Html.LabelFor(model => model.Project.StatusId, "Status", htmlAttributes: new { @class = "lbl" })
 
                                         <div class="val">
                                             <select name="@Html.NameFor(m => m.SelectedStatusId)" class="txt">
@@ -58,7 +57,7 @@
                                         </div>
                                     </div>
                                     <div class="row-item clearfix">
-                                        @Html.LabelFor(model => model.Project.CategoryId, "StatusId", htmlAttributes: new { @class = "lbl" })
+                                        @Html.LabelFor(model => model.Project.CategoryId, "Category", htmlAttributes: new { @class = "lbl" })
 
                                         <div class="val">
                                             <select name="@Html.NameFor(m => m.SelectedCategoryId)" class="txt">
@@ -72,27 +71,20 @@
                                         </div>
                                     </div>
                                     <div class="row-item clearfix">
-                                        @Html.LabelFor(model => model.Project.DueDate, htmlAttributes: new { @class = "lbl" })
+                                        @Html.LabelFor(model => model.Project.DueDate, "Due Date", htmlAttributes: new { @class = "lbl" })
                                         <div class="val">
                                             @Html.EditorFor(model => model.Project.DueDate, new { htmlAttributes = new { @class = "txt" } })
                                             @Html.ValidationMessageFor(model => model.Project.DueDate, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                     <div class="row-item clearfix">
-                                        @Html.LabelFor(model => model.Project.TargetAmount, htmlAttributes: new { @class = "lbl" })
+                                        @Html.LabelFor(model => model.Project.TargetAmount,"Target Amount", htmlAttributes: new { @class = "lbl" })
                                         <div class="val">
                                             @Html.EditorFor(model => model.Project.TargetAmount, new { htmlAttributes = new { @class = "txt" } })
                                             @Html.ValidationMessageFor(model => model.Project.TargetAmount, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-
-                                    <div class="row-item clearfix">
-                                        @Html.LabelFor(model => model.Project.DateVerified, htmlAttributes: new { @class = "lbl" })
-                                        <div class="val">
-                                            @Html.EditorFor(model => model.Project.DateVerified, new { htmlAttributes = new { @class = "txt" } })
-                                            @Html.ValidationMessageFor(model => model.Project.DateVerified, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
+                                    
                                     <p class="btn wrap-btn-submit rs ta-r">
                                         <button class="btn btn-red btn-submit-all">Save all settings</button>
                                     </p>
@@ -217,7 +209,7 @@
                                     </div>
                                     <div class="group-fee clearfix">
                                         <div class="fee-item">
-                                            <p class="rs lbl">Bankers</p>
+                                            <p class="rs lbl">Buckers</p>
                                             <span class="val">@project.CurrentBackerCount</span>
                                         </div>
                                         <div class="sep"></div>
@@ -255,7 +247,10 @@
             </div>
             <div class="author-action">
                 @Html.ActionLink("Edit Info", "Edit", "Users", new { id = @Model.CreatorId }, htmlAttributes: new { @class = "btn btn-red" })
-                 <a class="btn btn-white" href="#">Logout</a>
+                @if (Request.IsAuthenticated)
+                {
+                    <a href="@Url.Action("LogOff", "Account")" class="btn btn-white">Log off</a>
+                }
             </div>
         </div><!--end: .project-author -->
     </div><!--end: .sidebar -->
