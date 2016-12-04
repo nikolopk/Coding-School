@@ -27,9 +27,9 @@
                                     </div>
                                     <form action="#">
                                         <div class="row-item clearfix">
-                                            @Html.LabelFor(m => m.FirstName, new { @class = "fw-b", @style = "padding-left:3em" })
+                                            @Html.LabelFor(m => m.FirstName, new { @class = "fw-b", @style = "padding-left:3em;" })
                                             <div class="val">
-                                                @Html.DisplayFor(m => m.FirstName, new { @class = "txt fill-width" })
+                                                @Html.DisplayFor(m => m.FirstName, new { @class = "txt" })
                                             </div>
                                         </div>
                                         <div class="row-item clearfix">
@@ -45,7 +45,7 @@
                                             </div>
                                         </div>
                                         <div class="row-item clearfix">
-                                            @Html.LabelFor(m => m.PhoneNumber, new { @class = "fw-b", @style = "padding-left:3em" })
+                                            @Html.LabelFor(m => m.PhoneNumber,"Phone", new { @class = "fw-b", @style = "padding-left:3em" })
                                             <div class="val">
                                                 @Html.DisplayFor(m => m.PhoneNumber, new { @class = "txt fill-width" })
                                             </div>

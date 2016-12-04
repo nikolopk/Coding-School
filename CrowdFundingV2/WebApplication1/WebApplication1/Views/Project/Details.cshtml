@@ -85,9 +85,6 @@
                                         <!-- AddThis Button END -->
                                     </div>
                                 </div>
-                                <div class="project-btn-action">
-                                    <a class="btn big btn-red" href="#">Ask a question</a>
-                                </div>
                             </div><!--end: .tab-pane(About) -->
                         </div>
                         <div>
@@ -107,14 +104,10 @@
                             <h3 class="rs alternate-tab accordion-label">Backers (@Model.Backers.Count())</h3>
                             <div class="tab-pane accordion-content">
                                 <div class="tab-pane-inside">
-                                    <a class="post-new-comment be-fc-orange" href="/UserProjectComments/Create/@Model.Id"><i class="icon iPost"></i> Post a comment</a>
                                     @foreach ( var backer in Model.Backers ) {
                                         @Html.Partial("_BackerPartial", backer)
 
                                     }
-                                </div>
-                                <div class="btn project-btn-action">
-                                    <a class="btn btn-red" href="#">Ask a question</a>
                                 </div>
                             </div><!--end: .tab-pane(Backers) -->
                         </div>
@@ -169,7 +162,9 @@
                             <img src="@Url.Content("~/Content/myTemplate/")images/ex/th-90x90-1.jpg" alt="$USER_NAME" />
                         </a>
                         <div class="media-body">
-                            <h4 class="rs pb10"><a href="#" class="be-fc-orange fw-b">@Model.CreatorFullName</a></h4>
+                            <h4 class="rs pb10">
+                                @Html.ActionLink(@Model.CreatorFullName, "Details", "Users", routeValues: new { Id = @Model.CreatorId }, htmlAttributes: new { @class = "be-fc-orange fw-b" })
+                        </h4>
                             <p class="rs fc-gray">@Model.CreatorNoProjects projects</p>
                         </div>
                     </div>
@@ -186,8 +181,6 @@
                     { 
                         @Html.Partial("~/Views/Rewards/Details.cshtml", reward)
                     }
-
-                   
                 </ul>
             </div><!--end: .wrap-nav-pledge -->
         </div><!--end: .sidebar -->
