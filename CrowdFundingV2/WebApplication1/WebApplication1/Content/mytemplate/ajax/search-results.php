@@ -24,7 +24,7 @@
 		</div>
 		<div class="group-fee clearfix">
 			<div class="fee-item">
-				<p class="rs lbl">Bankers</p>
+				<p class="rs lbl">Buckers</p>
 				<span class="val"><?php print rand(90, 400);?></span>
 			</div>
 			<div class="sep"></div>
@@ -67,7 +67,7 @@
 		</div>
 		<div class="group-fee clearfix">
 			<div class="fee-item">
-				<p class="rs lbl">Bankers</p>
+				<p class="rs lbl">Buckers</p>
 				<span class="val"><?php print rand(90, 400);?></span>
 			</div>
 			<div class="sep"></div>
