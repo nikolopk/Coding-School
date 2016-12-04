@@ -14,6 +14,9 @@ namespace WebApplication1.Models
         public string LastName { get; set; } 
         public string PhotoUrl { get; set; } 
         public string Email { get; set; } 
-        public string PhoneNumber { get; set; } 
+        public string PhoneNumber { get; set; }
+
+        public IEnumerable<BasicProjectInfoViewModel> MyProjects { get; set; }
+        public IEnumerable<BasicProjectInfoViewModel> BackProjects { get; set; }
     }
 }
