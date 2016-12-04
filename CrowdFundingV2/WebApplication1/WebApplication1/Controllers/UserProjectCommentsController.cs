@@ -42,9 +42,15 @@ namespace WebApplication1.Controllers
         // GET: UserProjectComments/Create
         public ActionResult Create(int? projectId)
         {
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title");
-            // ViewBag.BackerId = new SelectList(db.Users, "Id", "Email");
-            return View();
+            if (projectId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var viewModel = new Models.ProjectCommentViewModel()
+            {
+                ProjectId = projectId.Value
+            };
+            return View(viewModel);
         }
 
         // POST: UserProjectComments/Create
