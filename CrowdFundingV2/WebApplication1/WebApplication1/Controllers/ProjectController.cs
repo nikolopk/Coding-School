@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using WebApplication1.Extensions;
 
 namespace WebApplication1.Controllers {
     public class ProjectController : Controller
@@ -33,19 +34,8 @@ namespace WebApplication1.Controllers {
         // GET: Test
         public ActionResult Index()
         {
-            var project = _projectManager.GetAll()
-                           .Select(y => new BasicProjectInfoViewModel()
-                           {
-                               Id                 = y.Id,
-                               Title              = y.Title,
-                               CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
-                               Description        = y.Description,
-                               CurrentFund        = y.CurrentFundAmount,
-                               Ratio              = (int)Math.Floor((y.Ratio * 100)),
-                               CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
-                               DueDate            = y.DueDate,
-                               NoComments         = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
-                           }).FirstOrDefault();
+            var project = _projectManager.GetAll().CreateBasicProjectInfoViewModel()
+                           .FirstOrDefault();
             return View(project);
         }
 
@@ -196,10 +186,13 @@ namespace WebApplication1.Controllers {
                 return HttpNotFound();
             }
 
+            var userAsp = _userManager.FindById(User.Identity.GetUserId());
+            var loggedInUser = db.Users.Where(x => x.AspNetUsersId.Equals(userAsp.Id)).FirstOrDefault();
             var user       = project.User;
             var aspNetUser = user.AspNetUser;
             var viewModel  = new ProjectDetailsViewModel()
             {
+                LoggedinId         = loggedInUser.Id,
                 CreatorId          = user.Id,
                 Title              = project.Title,
                 Description        = project.Description,
@@ -310,7 +303,8 @@ namespace WebApplication1.Controllers {
                     ProjectId        = project.Id,
                     CurrentAvailable = y.CurrentAvailable,
                     Description      = y.Description,
-                    MaxAvailable     = y.MaxAvailable
+                    MaxAvailable     = y.MaxAvailable,
+                    DateInserted     = y.DateInserted
                 }).ToList()
             };
 
@@ -342,14 +336,11 @@ namespace WebApplication1.Controllers {
                 project.Ratio        = (project.CurrentFundAmount / viewModel.TargetAmount);
                 project.Title        = viewModel.Title;
                 project.CategoryId   = viewModel.SelectedCategoryId;
-                //project.StatusId     = viewModel.SelectedStatusId;
-               
-
                 db.Entry(project).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Edit", new { id = project.Id });
+                return RedirectToAction("Details", new { id = project.Id });
             }
-            return RedirectToAction("Edit", new { id = viewModel.Project.Id });
+            return RedirectToAction("Details", new { id = viewModel.Project.Id });
         }
 
 
