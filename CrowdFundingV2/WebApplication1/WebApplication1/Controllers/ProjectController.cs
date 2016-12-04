@@ -39,31 +39,37 @@ namespace WebApplication1.Controllers {
             return View(project);
         }
 
-        //[HttpGet]
-        //public ActionResult Search(string searchTitle)
-        //{
-        //    var project = db.Projects
-        //                   .Include(p => p.Category)
-        //                   .Include(p => p.User)
-        //                   .Include(p => p.BackerProjects)
-        //                   .Include(p => p.UserProjectComments)
-        //                   .Where(p => p.Title.Contains(searchTitle))
-        //                   .Select(y => new BasicProjectInfoViewModel()
-        //                   {
-        //                       Id = y.Id,
-        //                       CategoryId = y.CategoryId,
-        //                       CategoryName = y.Category.Name,
-        //                       Title = y.Title,
-        //                       CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
-        //                       Description = y.Description,
-        //                       CurrentFund = y.CurrentFundAmount,
-        //                       Ratio = (int)(((double)y.CurrentFundAmount / y.TargetAmount) * 100),
-        //                       CurrentBackerCount = y.BackerProjects.Where(x => x.ProjectId == y.Id).Count(),
-        //                       DueDate = y.DueDate,
-        //                       NoComments = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
-        //                   }).FirstOrDefault();
-        //    return ()
-        //}
+        
+        public ActionResult Search(string searchTitle)
+        {
+            var project = db.Projects
+                           .Include(p => p.Category)
+                           .Include(p => p.User)
+                           .Include(p => p.BackerProjects)
+                           .Include(p => p.UserProjectComments)
+                           .Where(p => p.Title.Contains(searchTitle))
+                           .Select(y => new BasicProjectInfoViewModel()
+                           {
+                               Id = y.Id,
+                               CategoryId = y.CategoryId,
+                               CategoryName = y.Category.Name,
+                               Title = y.Title,
+                               CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
+                               Description = y.Description,
+                               CurrentFund = y.CurrentFundAmount,
+                               Ratio = (int)(((double)y.CurrentFundAmount / y.TargetAmount) * 100),
+                               CurrentBackerCount = y.BackerProjects.Where(x => x.ProjectId == y.Id).Count(),
+                               DueDate = y.DueDate,
+                               NoComments = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
+                           });
+
+            var viewModel = new ProjectSearchViewModel()
+            {
+
+                DisplayProjects = project.ToList()
+            };
+            return View("Search", viewModel);
+        }
 
         [HttpGet]
         [Authorize]
