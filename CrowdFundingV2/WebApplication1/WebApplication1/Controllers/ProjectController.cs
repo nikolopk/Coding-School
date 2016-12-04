@@ -187,10 +187,13 @@ namespace WebApplication1.Controllers
                 return HttpNotFound();
             }
 
+            var userAsp = _userManager.FindById(User.Identity.GetUserId());
+            var loggedInUser = db.Users.Where(x => x.AspNetUsersId.Equals(userAsp.Id)).FirstOrDefault();
             var user       = project.User;
             var aspNetUser = user.AspNetUser;
             var viewModel  = new ProjectDetailsViewModel()
             {
+                LoggedinId         = loggedInUser.Id,
                 CreatorId          = user.Id,
                 Title              = project.Title,
                 Description        = project.Description,
@@ -332,12 +335,9 @@ namespace WebApplication1.Controllers
                 project.Ratio        = (project.CurrentFundAmount / viewModel.TargetAmount);
                 project.Title        = viewModel.Title;
                 project.CategoryId   = viewModel.SelectedCategoryId;
-                //project.StatusId     = viewModel.SelectedStatusId;
-               
-
                 db.Entry(project).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Edit", new { id = project.Id });
+                return RedirectToAction("Details", new { id = project.Id });
             }
             return RedirectToAction("Details", new { id = viewModel.Project.Id });
         }
