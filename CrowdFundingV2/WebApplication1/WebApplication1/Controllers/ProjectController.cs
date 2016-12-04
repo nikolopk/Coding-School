@@ -332,12 +332,9 @@ namespace WebApplication1.Controllers
                 project.Ratio        = (project.CurrentFundAmount / viewModel.TargetAmount);
                 project.Title        = viewModel.Title;
                 project.CategoryId   = viewModel.SelectedCategoryId;
-                //project.StatusId     = viewModel.SelectedStatusId;
-               
-
                 db.Entry(project).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Edit", new { id = project.Id });
+                return RedirectToAction("Details", new { id = project.Id });
             }
             return RedirectToAction("Details", new { id = viewModel.Project.Id });
         }
