@@ -65,7 +65,7 @@ namespace WebApplication1.Controllers {
 
             var viewModel = new ProjectSearchViewModel()
             {
-
+                Query = searchTitle,
                 DisplayProjects = project.ToList()
             };
             return View("Search", viewModel);
