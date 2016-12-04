@@ -45,20 +45,7 @@
                                             @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
-                                    @*<div class="row-item clearfix">
-                                        @Html.LabelFor(model => model.Project.StatusId, "Status", htmlAttributes: new { @class = "lbl" })
-
-                                        <div class="val">
-                                            <select name="@Html.NameFor(m => m.SelectedStatusId)" class="txt">
-                                                @foreach (var c in Model.Statuses)
-                                                {
-                                                    <option @(c.Id == Model.SelectedStatusId ? "selected" : string.Empty) value="@c.Id">@c.Name</option>
-                                                }
-                                            </select>
-
-                                            @Html.ValidationMessageFor(model => model.SelectedStatusId, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>*@
+                                    
                                     <div class="row-item clearfix">
                                         @Html.LabelFor(model => model.Project.CategoryId, "Category", htmlAttributes: new { @class = "lbl" })
 
@@ -159,9 +146,7 @@
                         <h3 class="rs alternate-tab accordion-label">Comments</h3>
                         <div class="tab-pane accordion-content">
                             @Html.ActionLink("Post a Comment", "Create", "UserProjectComments", routeValues: new { projectId = @Model.Id }, htmlAttributes: new { @class = "post-new-comment be-fc-orange" })
-
                             <div class="box-list-comment">
-
                                 @foreach (var comment in Model.Comments)
                                 {
                                     <div class="media comment-item">
