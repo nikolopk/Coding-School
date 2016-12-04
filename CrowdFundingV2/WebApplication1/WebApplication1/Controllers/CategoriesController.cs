@@ -8,6 +8,7 @@ using System.Net;
 using System.Web.Mvc;
 using WebApplication1.Models;
 
+
 namespace WebApplication1.Controllers {
     [RequireHttps]
     public class CategoriesController : Controller
@@ -47,7 +48,8 @@ namespace WebApplication1.Controllers {
             var categoryStaffProject = _projectManager.GetAll()
                .Where(p              => p.CategoryId == id && p.DueDate >= DateTime.Now)
                .OrderByDescending(x  => x.DateInserted)
-               .Select(y             => new BasicProjectInfoViewModel()
+               .Select(y             => 
+               new BasicProjectInfoViewModel()
                {
                    Id                 = y.Id,
                    Title              = y.Title,

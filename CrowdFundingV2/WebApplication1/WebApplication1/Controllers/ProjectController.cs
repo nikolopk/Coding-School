@@ -13,6 +13,7 @@ using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using WebApplication1.Extensions;
 
 namespace WebApplication1.Controllers
 {
@@ -35,19 +36,8 @@ namespace WebApplication1.Controllers
         // GET: Test
         public ActionResult Index()
         {
-            var project = _projectManager.GetAll()
-                           .Select(y => new BasicProjectInfoViewModel()
-                           {
-                               Id                 = y.Id,
-                               Title              = y.Title,
-                               CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
-                               Description        = y.Description,
-                               CurrentFund        = y.CurrentFundAmount,
-                               Ratio              = (int)Math.Floor((y.Ratio * 100)),
-                               CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
-                               DueDate            = y.DueDate,
-                               NoComments         = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
-                           }).FirstOrDefault();
+            var project = _projectManager.GetAll().CreateBasicProjectInfoViewModel()
+                           .FirstOrDefault();
             return View(project);
         }
 
@@ -322,7 +312,7 @@ namespace WebApplication1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Edit", new { id = project.Id });
             }
-            return RedirectToAction("Edit", new { id = viewModel.Project.Id });
+            return RedirectToAction("Details", new { id = viewModel.Project.Id });
         }
 
 

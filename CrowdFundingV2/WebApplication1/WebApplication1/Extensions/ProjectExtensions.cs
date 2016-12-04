@@ -13,6 +13,10 @@ namespace WebApplication1.Extensions
 {
     public static class ProjectExtensions
     {
+        public static IEnumerable<BasicProjectInfoViewModel> CreateBasicProjectInfoViewModel(this IQueryable<Project> projects)
+        {
+            return projects.Select(y => CreateBasicProjectInfoViewModel(y)).ToList();
+        }
         public static BasicProjectInfoViewModel CreateBasicProjectInfoViewModel(this Project y )
         {
             return new BasicProjectInfoViewModel()
