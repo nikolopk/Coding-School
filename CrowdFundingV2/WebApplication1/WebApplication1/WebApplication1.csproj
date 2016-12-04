@@ -215,7 +215,6 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\ProjectUpdatesController.cs" />
     <Compile Include="Controllers\RewardsController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
