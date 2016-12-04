@@ -1,10 +1,6 @@
 ﻿@model WebApplication1.Models.ProjectDetailsViewModel
 @using System.Globalization;
-<script type="text/javascript">
-    function getAmount() {
-        var amount = document.getElementById('backAmount').value;
-    }
-</script>
+
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_myTemplate.cshtml";
@@ -35,7 +31,7 @@
                         </div>
                         <div class="group-fee clearfix">
                             <div class="fee-item">
-                                <p class="rs lbl">Buckers</p>
+                                <p class="rs lbl">Backers</p>
                                 <span class="val">@Model.CurrentBackerCount</span>
                             </div>
                             <div class="sep"></div>

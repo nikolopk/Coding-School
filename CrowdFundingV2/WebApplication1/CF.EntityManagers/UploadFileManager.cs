@@ -4,8 +4,7 @@ using System.IO;
 using System.Web;
 using System.Web.Hosting;
 
-namespace CF.EntityManagers
-{
+namespace CF.EntityManagers {
     public class UploadFileManager : IUploadFile
     {
         public Models.Entities.File UploadFile(HttpPostedFileBase upload)
@@ -13,24 +12,28 @@ namespace CF.EntityManagers
             Models.Entities.File file = null;
             if (upload != null && upload.ContentLength > 0)
             {
-                file = new Models.Entities.File
-                {
-                    FileName = Guid.NewGuid().ToString() + System.IO.Path.GetFileName(upload.FileName),
-                    ContentType = upload.ContentType,
-                };
-                using (var reader = new System.IO.BinaryReader(upload.InputStream))
-                {
-                    file.Content = reader.ReadBytes(upload.ContentLength);
-                }
+                var filename = Guid.NewGuid().ToString() + Path.GetFileName(upload.FileName);
+                //file = new Models.Entities.File
+                //{
+                //    FileName = Guid.NewGuid().ToString() + System.IO.Path.GetFileName(upload.FileName),
+                //    //ContentType = upload.ContentType,
+                //};
+                //using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                //{
+                //    file.Content = reader.ReadBytes(upload.ContentLength);
+                //}
 
                 string pathForSaving = HostingEnvironment.MapPath("~/Images");
                 if (this.CreateFolderIfNeeded(pathForSaving))
                 {
-                    string uploadFilePathAndName = Path.Combine(pathForSaving, file.FileName);
+                    var uploadFilePathAndName = Path.Combine(pathForSaving, filename);
                     upload.SaveAs(uploadFilePathAndName);
                 }
+                file = new Models.Entities.File {
+                    FileName = filename
+                };
             }
-
+            
             return file;
         }
 
