@@ -1,6 +1,6 @@
 ﻿@model WebApplication1.Models.ProjectSearchViewModel
 @{
-    ViewBag.Title = "Search";
+    ViewBag.Title = "Category";
     Layout = "~/Views/Shared/_mytemplate.cshtml";
 }
 
@@ -8,14 +8,14 @@
     <div class="content grid_9">
         <div class="search-result-page">
             <div class="top-lbl-val">
-                <h3 class="common-title">Search / <span class="fc-orange">@Model.Query</span></h3>
+                <h3 class="common-title">Discover / <span class="fc-orange">@Model.Query</span></h3>
                 <div class="count-result">
                     <span class="fw-b fc-black">@Model.DisplayProjects.Count()</span> projects found for this search
                 </div>
             </div>
             <div class="list-project-in-category">
                 <div class="lbl-type clearfix">
-                    <h4 class="rs title-lbl"><a href="#" class="be-fc-orange">@Request.Params["filter"]</a></h4>
+                    <h4 class="rs title-lbl"><a href="#" class="be-fc-orange">@Request.Params["searvhTitle"]</a></h4>
                     @*<a href="#" class="view-all be-fc-orange">View all</a>*@
                 </div>
                 <div class="list-project">
@@ -26,8 +26,90 @@
                     <div class="clear"></div>
                 </div>
             </div><!--end: .list-project-in-category -->
- 
+            @*<p class="rs ta-c">
+                    <a id="showmoreproject" class="btn btn-black btn-load-more" href="#">Show more projects</a>
+                </p>*@
         </div><!--end: .search-result-page -->
     </div><!--end: .content -->
+    @*<div class="sidebar grid_3">
+        <div class="left-list-category">
+            <h4 class="rs title-nav">Featured</h4>
+            <ul class="rs nav nav-category">
 
+
+                <li @if ((Request.Params["filter"]) == "Staff Picks") { @: class="active"
+                                        }>
+                    <a href="@Url.Action("Get", "Categories", new { Id = Model.Id, filter = "Staff Picks" })">
+                        Staff Picks
+                        <span class="count-val">@Model.StaffProjects.Count()</span>
+                        <i class="icon iPlugGray"></i>
+                    </a>
+                </li>
+                <li @if ((Request.Params["filter"]) == "Popular") { @: class="active"
+                                        }>
+                    <a href="@Url.Action("Get", "Categories", new { Id = Model.Id, filter = "Popular" })">
+                        Popular
+                        @*<span class="count-val">@Model.PopularProjects.Count()</span>*@
+                        @*<i class="icon iPlugGray"></i>
+                    </a>
+                </li>
+                <li @if ((Request.Params["filter"]) == "Today Launched") { @: class="active"
+                                        }>
+                    <a href="@Url.Action("Get", "Categories", new { Id = Model.Id, filter = "Today Launched" })">
+                        Today Launched
+                        <span class="count-val">@Model.TodayProjects.Count()</span>
+                        <i class="icon iPlugGray"></i>
+                    </a>
+                </li>
+                <li @if ((Request.Params["filter"]) == "Most Funded") { @: class="active"
+                                        }>
+                    <a href="@Url.Action("Get", "Categories", new { Id = Model.Id, filter = "Most Funded" })">
+                        Most Funded
+                        @*<span class="count-val">@Model.FundedProjects.Count()</span>*@
+                        @*<i class="icon iPlugGray"></i>
+                    </a>
+                </li>
+            </ul>
+        </div><!--end: .left-list-category -->
+        <div class="left-list-category">
+            <h4 class="rs title-nav">Category</h4>
+            <ul class="rs nav nav-category">
+                <ul class="rs nav nav-category">
+                    @{
+                        int i = 0;
+                    }
+                    @foreach (var category in Model.Categories)
+                    {
+                        i++;
+                        if (i == Model.Id)
+                        {
+                            <li class="active">
+
+                                <a href="@Url.Action("Get", "Categories", new {Id = i, filter = "Staff Picks"})">
+                                    @category.Name
+                                    <span class="count-val">(@category.NoProjects)</span>
+                                    <i class="icon iPlugGray"></i>
+                                </a>
+                            </li>
+                        }
+                        else {
+                            <li>
+
+                                <a href="@Url.Action("Get", "Categories", new {Id = i, filter = "Staff Picks"})">
+                                    @category.Name
+                                    <span class="count-val">(@category.NoProjects)</span>
+                                    <i class="icon iPlugGray"></i>
+                                </a>
+                            </li>
+                        }
+
+
+                    }
+
+                </ul>
+
+            </ul>
+        </div><!--end: .left-list-category -->
+    </div><!--end: .sidebar -->*@
+    <div class="clear"></div>
 </div>
