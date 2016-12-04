@@ -309,19 +309,20 @@ namespace WebApplication1.Controllers
             if (ModelState.IsValid)
             {
                 var project          = db.Projects.Find(viewModel.Project.Id);
-                project.DueDate      = viewModel.Project.DueDate;
-                project.Description  = viewModel.Project.Description;
-                project.TargetAmount = viewModel.Project.TargetAmount;
-                project.Ratio        = (project.CurrentFundAmount / viewModel.Project.TargetAmount);
-                project.Title        = viewModel.Project.Title;
+                project.DueDate      = viewModel.DueDate;
+                project.Description  = viewModel.Description;
+                project.TargetAmount = viewModel.TargetAmount;
+                project.Ratio        = (project.CurrentFundAmount / viewModel.TargetAmount);
+                project.Title        = viewModel.Title;
                 project.CategoryId   = viewModel.SelectedCategoryId;
-                project.StatusId     = viewModel.SelectedStatusId;
+                //project.StatusId     = viewModel.SelectedStatusId;
+               
 
                 db.Entry(project).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", new { id = project.Id });
             }
-            return View(viewModel);
+            return RedirectToAction("Edit", new { id = viewModel.Project.Id });
         }
 
 
