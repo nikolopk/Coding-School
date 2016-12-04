@@ -25,7 +25,8 @@
                                     @Html.TextAreaFor(model => model.Text, new { cols = "77", rows = "5", @class = "txt fill-width" })
                                     @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
                                     <p class="rs ta-c pb10">
-                                        <input type="submit" value="Create" class="btn btn-red btn-submit" />
+                                        <input type="submit" value="Create Update" class="btn btn-red" />
+                                        @Html.ActionLink("Edit project", "Edit", "Project", new { id = Model.ProjectId }, new { @class = "btn btn-red" })
                                     </p>
                                 </div>
                             </div>
