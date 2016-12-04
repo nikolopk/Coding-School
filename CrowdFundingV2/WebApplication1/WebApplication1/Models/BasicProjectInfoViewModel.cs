@@ -1,7 +1,6 @@
 ﻿using System;
 
-namespace WebApplication1.Models
-{
+namespace WebApplication1.Models {
     public class BasicProjectInfoViewModel 
     {
         public int CategoryId { get; set; }

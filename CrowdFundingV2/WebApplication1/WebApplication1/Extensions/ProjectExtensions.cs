@@ -1,16 +1,11 @@
 ﻿using CF.Models.Database;
-using WebApplication1.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 using System.Data;
-using System.Data.Entity;
+using System.Linq;
+using WebApplication1.Models;
 
 
-namespace WebApplication1.Extensions
-{
+namespace WebApplication1.Extensions {
     public static class ProjectExtensions
     {
         public static IEnumerable<BasicProjectInfoViewModel> CreateBasicProjectInfoViewModel(this IQueryable<Project> projects)
@@ -26,10 +21,11 @@ namespace WebApplication1.Extensions
                 CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
                 Description = y.Description,
                 CurrentFund = y.CurrentFundAmount,
-                Ratio = (int)Math.Floor((y.Ratio * 100)),
+                Ratio = (int) ( ( (double) y.CurrentFundAmount / y.TargetAmount ) * 100 ),
                 CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
                 DueDate = y.DueDate,
                 NoComments = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
+                ImageUrl = y.PhotoUrl
             };
         }
     }

@@ -11,8 +11,8 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using WebApplication1.Models;
 using WebApplication1.Extensions;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers {
     public class ProjectController : Controller
@@ -61,6 +61,7 @@ namespace WebApplication1.Controllers {
                                CurrentBackerCount = y.BackerProjects.Where(x => x.ProjectId == y.Id).Count(),
                                DueDate = y.DueDate,
                                NoComments = y.UserProjectComments.Where(x => x.ProjectId == y.Id).Count(),
+                               ImageUrl = y.PhotoUrl
                            });
 
             var viewModel = new ProjectSearchViewModel()
@@ -102,10 +103,11 @@ namespace WebApplication1.Controllers {
                                CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
                                Description        = y.Description,
                                CurrentFund        = y.CurrentFundAmount,
-                               Ratio              = (int)Math.Floor((y.Ratio * 100)),
+                               Ratio              = (int) ( ( (double) y.CurrentFundAmount / y.TargetAmount ) * 100 ),
                                CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
                                DueDate            = y.DueDate,
                                NoComments         = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
+                               ImageUrl = y.PhotoUrl
                            });
 
 
@@ -125,10 +127,12 @@ namespace WebApplication1.Controllers {
                                         CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
                                         Description        = y.Description,
                                         CurrentFund        = y.CurrentFundAmount,
-                                        Ratio              = (int)Math.Floor((y.Ratio * 100)),
+                                        Ratio              = (int) ( ( (double) y.CurrentFundAmount / y.TargetAmount ) * 100 ),
+                                        ImageUrl = y.PhotoUrl,
                                         CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
                                         DueDate            = y.DueDate,
                                         NoComments         = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
+                                        
                                     }).ToList();
 
             
@@ -179,6 +183,7 @@ namespace WebApplication1.Controllers {
 
 
         // GET: Projects/Details/5
+        [HttpGet]
         [AllowAnonymous]
         public async Task<ActionResult> Details(int? id)
         {
@@ -193,12 +198,16 @@ namespace WebApplication1.Controllers {
             }
 
             var userAsp = _userManager.FindById(User.Identity.GetUserId());
-            var loggedInUser = db.Users.Where(x => x.AspNetUsersId.Equals(userAsp.Id)).FirstOrDefault();
+            User loggedInUser = null;
+            if ( userAsp != null ) 
+            {
+                loggedInUser = db.Users.Where(x => x.AspNetUsersId.Equals(userAsp.Id)).FirstOrDefault();
+            }
             var user       = project.User;
             var aspNetUser = user.AspNetUser;
             var viewModel  = new ProjectDetailsViewModel()
             {
-                LoggedinId         = loggedInUser.Id,
+                LoggedinId         = loggedInUser == null ? 0 :loggedInUser.Id,
                 CreatorId          = user.Id,
                 Title              = project.Title,
                 Description        = project.Description,
@@ -285,7 +294,7 @@ namespace WebApplication1.Controllers {
                 ProjectImageUrl    = project.PhotoUrl,
                 CreatorNoProjects  = myUser.Projects.Count,
                 CreatorImageUrl    = myUser.PhotoUrl,
-                Ratio              = (int)Math.Floor((project.Ratio * 100)),
+                Ratio              = (int) ( ( (double) project.CurrentFundAmount / project.TargetAmount ) * 100 ),
                 DueDate            = project.DueDate,
                 DateInserted       = project.DateInserted,
                 TargetAmount       = project.TargetAmount,
@@ -339,7 +348,7 @@ namespace WebApplication1.Controllers {
                 project.DueDate      = viewModel.DueDate;
                 project.Description  = viewModel.Description;
                 project.TargetAmount = viewModel.TargetAmount;
-                project.Ratio        = (project.CurrentFundAmount / viewModel.TargetAmount);
+                project.Ratio        = (int) ( ( (double) project.CurrentFundAmount / project.TargetAmount ) * 100 );
                 project.Title        = viewModel.Title;
                 project.CategoryId   = viewModel.SelectedCategoryId;
                 db.Entry(project).State = EntityState.Modified;
