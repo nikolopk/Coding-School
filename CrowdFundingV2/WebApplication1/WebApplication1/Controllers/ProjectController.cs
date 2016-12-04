@@ -10,12 +10,11 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
-using System.Web.Hosting;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using WebApplication1.Extensions;
 
-namespace WebApplication1.Controllers
-{
+namespace WebApplication1.Controllers {
     public class ProjectController : Controller
     {
         private readonly CrowdFundingContext db = new CrowdFundingContext();
@@ -27,27 +26,16 @@ namespace WebApplication1.Controllers
 
         public ProjectController(ApplicationUserManager userManager, IManageProject projectManager, IUploadFile uploadFileManager)
         {
-            _userManager = userManager;
-            _projectManager = projectManager;
+            _userManager       = userManager;
+            _projectManager    = projectManager;
             _uploadFileManager = uploadFileManager;
         }
         
         // GET: Test
         public ActionResult Index()
         {
-            var project = _projectManager.GetAll()
-                           .Select(y => new BasicProjectInfoViewModel()
-                           {
-                               Id                 = y.Id,
-                               Title              = y.Title,
-                               CreatorFullName    = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
-                               Description        = y.Description,
-                               CurrentFund        = y.CurrentFundAmount,
-                               Ratio              = (int)Math.Floor((y.Ratio * 100)),
-                               CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
-                               DueDate            = y.DueDate,
-                               NoComments         = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
-                           }).FirstOrDefault();
+            var project = _projectManager.GetAll().CreateBasicProjectInfoViewModel()
+                           .FirstOrDefault();
             return View(project);
         }
 
@@ -152,26 +140,27 @@ namespace WebApplication1.Controllers
         [Authorize]
         public ActionResult Create(ProjectViewModel model, HttpPostedFileBase upload)
         {
-            var user      = _userManager.FindById(User.Identity.GetUserId());
-            var myUser    = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
+            var user          = _userManager.FindById(User.Identity.GetUserId());
+            var myUser        = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
             Project dbProject = null;
-            var imageFile = _uploadFileManager.UploadFile(upload);
+            var imageFile     = _uploadFileManager.UploadFile(upload);
+
             if (ModelState.IsValid)
             {
                 dbProject = new Project()
                 {
-                    CategoryId = model.SelectedCategoryId,
-                    CreatorId = myUser.Id,
-                    DateInserted = DateTime.Now,
+                    CategoryId        = model.SelectedCategoryId,
+                    CreatorId         = myUser.Id,
+                    DateInserted      = DateTime.Now,
                     CurrentFundAmount = model.Project.CurrentFundAmount,
-                    Description = model.Project.Description,
-                    Ratio = model.Project.Ratio,
-                    StatusId = 1,
-                    DueDate = model.Project.DueDate,
-                    TargetAmount = model.Project.TargetAmount,
-                    Title = model.Project.Title,
-                    PhotoUrl = imageFile != null ? imageFile.FileName : null,
-                    Image = imageFile != null ? imageFile.Content : null
+                    Description       = model.Project.Description,
+                    Ratio             = model.Project.Ratio,
+                    StatusId          = 1,
+                    DueDate           = model.Project.DueDate,
+                    TargetAmount      = model.Project.TargetAmount,
+                    Title             = model.Project.Title,
+                    PhotoUrl          = imageFile != null ? imageFile.FileName : null,
+                    Image             = imageFile != null ? imageFile.Content : null
                 };
                 dbProject = db.Projects.Add(dbProject);
                 db.SaveChanges();
@@ -203,15 +192,18 @@ namespace WebApplication1.Controllers
                 return HttpNotFound();
             }
 
+            var userAsp = _userManager.FindById(User.Identity.GetUserId());
+            var loggedInUser = db.Users.Where(x => x.AspNetUsersId.Equals(userAsp.Id)).FirstOrDefault();
             var user       = project.User;
             var aspNetUser = user.AspNetUser;
             var viewModel  = new ProjectDetailsViewModel()
             {
+                LoggedinId         = loggedInUser.Id,
                 CreatorId          = user.Id,
                 Title              = project.Title,
                 Description        = project.Description,
                 DueDate            = project.DueDate,
-                Ratio              = (int)Math.Floor(project.Ratio * 100),
+                Ratio              = (int)(((double)project.CurrentFundAmount/project.TargetAmount)*100),
                 TargetAmount       = project.TargetAmount,
                 CreatorNoProjects  = user.Projects.Count,
                 CurrentFund        = project.CurrentFundAmount,
@@ -288,16 +280,17 @@ namespace WebApplication1.Controllers
                 MyProjects         = CreatorProjects(myUser.Id),
                 Project            = project,
                 CurrentBackerCount = project.BackerProjects.Count(x => x.ProjectId == project.Id),
-                CurrentFund = project.CurrentFundAmount,
-                Title = project.Title,
-                ProjectImageUrl = project.PhotoUrl,
-                CreatorNoProjects = myUser.Projects.Count,
-                CreatorImageUrl = myUser.PhotoUrl,
-                Ratio = (int)Math.Floor((project.Ratio * 100)),
-                DueDate = project.DueDate,
-                DateInserted = project.DateInserted,
-                TargetAmount = project.TargetAmount,
-                Description = project.Description,
+                CurrentFund        = project.CurrentFundAmount,
+                Title              = project.Title,
+                ProjectImageUrl    = project.PhotoUrl,
+                CreatorNoProjects  = myUser.Projects.Count,
+                CreatorImageUrl    = myUser.PhotoUrl,
+                Ratio              = (int)Math.Floor((project.Ratio * 100)),
+                DueDate            = project.DueDate,
+                DateInserted       = project.DateInserted,
+                TargetAmount       = project.TargetAmount,
+                Description        = project.Description,
+
                 Comments           = db.UserProjectComments.Where(x => x.ProjectId == project.Id).Select(y => new ProjectCommentViewModel()
                 {
                     CommentorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
@@ -316,7 +309,8 @@ namespace WebApplication1.Controllers
                     ProjectId        = project.Id,
                     CurrentAvailable = y.CurrentAvailable,
                     Description      = y.Description,
-                    MaxAvailable     = y.MaxAvailable
+                    MaxAvailable     = y.MaxAvailable,
+                    DateInserted     = y.DateInserted
                 }).ToList()
             };
 
@@ -331,8 +325,9 @@ namespace WebApplication1.Controllers
         [Authorize]
         public ActionResult Edit(ProjectEditViewModel viewModel)
         {
-            var user = _userManager.FindById(User.Identity.GetUserId());
+            var user   = _userManager.FindById(User.Identity.GetUserId());
             var myUser = db.Users.Where(x => x.AspNetUsersId.Equals(user.Id)).FirstOrDefault();
+
             if (viewModel.Project.CreatorId != myUser.Id)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -347,14 +342,11 @@ namespace WebApplication1.Controllers
                 project.Ratio        = (project.CurrentFundAmount / viewModel.TargetAmount);
                 project.Title        = viewModel.Title;
                 project.CategoryId   = viewModel.SelectedCategoryId;
-                //project.StatusId     = viewModel.SelectedStatusId;
-               
-
                 db.Entry(project).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Edit", new { id = project.Id });
+                return RedirectToAction("Details", new { id = project.Id });
             }
-            return RedirectToAction("Edit", new { id = viewModel.Project.Id });
+            return RedirectToAction("Details", new { id = viewModel.Project.Id });
         }
 
 

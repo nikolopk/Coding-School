@@ -73,7 +73,7 @@ namespace WebApplication1.Controllers
                 };
                 db.ProjectUpdates.Add(update);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Edit", "Project", new { id = viewModel.ProjectId });
+                return RedirectToAction("Details", "Project", new { id = viewModel.ProjectId });
             }
             
             return View(viewModel);

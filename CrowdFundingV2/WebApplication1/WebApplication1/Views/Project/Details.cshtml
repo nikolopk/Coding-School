@@ -1,12 +1,8 @@
 ﻿@model WebApplication1.Models.ProjectDetailsViewModel
 @using System.Globalization;
-<script type="text/javascript">
-    function getAmount() {
-        var amount = document.getElementById('backAmount').value;
-    }
-</script>
+
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Project Details";
     Layout = "~/Views/Shared/_myTemplate.cshtml";
 
 }
@@ -35,7 +31,7 @@
                         </div>
                         <div class="group-fee clearfix">
                             <div class="fee-item">
-                                <p class="rs lbl">Buckers</p>
+                                <p class="rs lbl">Backers</p>
                                 <span class="val">@Model.CurrentBackerCount</span>
                             </div>
                             <div class="sep"></div>
@@ -92,7 +88,8 @@
                             <div class="tab-pane accordion-content">
                                 <div class="tab-pane-inside">
                                     <div class="list-last-post">
-                                        @foreach ( var update in Model.Updates ) {
+                                        @foreach (var update in Model.Updates)
+                                        {
                                             @Html.Partial("_ProjectUpdatePartial", update)
 
                                         }
@@ -104,7 +101,8 @@
                             <h3 class="rs alternate-tab accordion-label">Backers (@Model.Backers.Count())</h3>
                             <div class="tab-pane accordion-content">
                                 <div class="tab-pane-inside">
-                                    @foreach ( var backer in Model.Backers ) {
+                                    @foreach (var backer in Model.Backers)
+                                    {
                                         @Html.Partial("_BackerPartial", backer)
 
                                     }
@@ -114,8 +112,10 @@
                         <div>
                             <h3 class="rs active alternate-tab accordion-label">Comments (@Model.Comments.Count())</h3>
                             <div class="tab-pane accordion-content">
-                                <div class="box-list-comment">
-                                    @foreach ( var comment in Model.Comments ) {
+                                @Html.ActionLink("Post a Comment", "Create", "UserProjectComments", routeValues: new { projectId = @Model.Id }, htmlAttributes: new { @class = "post-new-comment be-fc-orange" })
+                                    <div class="tab-pane-inside">
+                                    @foreach (var comment in Model.Comments)
+                                    {
                                         @Html.Partial("_ProjectCommentPartial", comment)
                                     }
                                 </div>
@@ -137,16 +137,16 @@
                         <span class="val"><span class="fw-b">Funding ends: </span>@Model.DueDate.ToString("yyyy-MM-dd HH:mm")</span>
                     </div>
 
-                    @using ( Html.BeginForm("BuckProject", "Project" ,  new { onsubmit="validateAmount()"}))
-                        {
-                            @Html.Label("Amount : ");
-                            @Html.TextBox("amount", "amount", new {@type = "number", @step = "1" , @min ="1" ,@value = 1, @onfocus="if (this.value==0) this.value=1", @onblur = "if (this.value==0) this.value=1", @class="txt"});
-                            @Html.Hidden("id",@Model.Id);
-                        
-                        <input type="submit" value="Back This Project" class="btn btn-green btn-buck-project"/> 
+                    @using (Html.BeginForm("BuckProject", "Project", new { onsubmit = "validateAmount()" }))
+                    {
+                        @Html.Label("Amount : ");
+                        @Html.TextBox("amount", "amount", new { @type = "number", @step = "1", @min = "1", @value = 1, @onfocus = "if (this.value==0) this.value=1", @onblur = "if (this.value==0) this.value=1", @class = "txt" });
+                        @Html.Hidden("id", @Model.Id);
+
+                        <input type="submit" value="Back This Project" class="btn btn-green btn-buck-project" />
                     }
 
-                        <p class="rs description">
+                    <p class="rs description">
                         This project will only be funded if at least €@Model.TargetAmount is pledged by @{
                             CultureInfo ci = new CultureInfo("en-US"); }
                         @Model.DueDate.ToString("ddd dd MMMM yyyy HH:mm", ci)
@@ -164,12 +164,17 @@
                         <div class="media-body">
                             <h4 class="rs pb10">
                                 @Html.ActionLink(@Model.CreatorFullName, "Details", "Users", routeValues: new { Id = @Model.CreatorId }, htmlAttributes: new { @class = "be-fc-orange fw-b" })
-                        </h4>
+                            </h4>
                             <p class="rs fc-gray">@Model.CreatorNoProjects projects</p>
                         </div>
                     </div>
                     <div class="author-action">
                         @Html.ActionLink("Contact me", "Details", "Users", routeValues: new { Id = @Model.CreatorId }, htmlAttributes: new { @class = "btn btn-red" })
+                        
+                        @if (Request.IsAuthenticated && @Model.CreatorId == @Model.LoggedinId)
+                        {
+                            @Html.ActionLink("Edit Project", "Edit", "Project", routeValues: new { Id = @Model.Id }, htmlAttributes: new { @class = "btn btn-red" })
+                        }
                     </div>
                 </div>
             </div><!--end: .project-author -->
@@ -177,8 +182,8 @@
             <div class="wrap-nav-pledge">
                 <ul class="rs nav nav-pledge accordion">
 
-                    @foreach(var reward in Model.Rewards)
-                    { 
+                    @foreach (var reward in Model.Rewards)
+                    {
                         @Html.Partial("~/Views/Rewards/Details.cshtml", reward)
                     }
                 </ul>

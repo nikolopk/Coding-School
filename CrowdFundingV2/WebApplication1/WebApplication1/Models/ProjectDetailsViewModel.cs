@@ -8,6 +8,7 @@ namespace WebApplication1.Models
 {
     public class ProjectDetailsViewModel
     {
+        public int LoggedinId { get; set; }
         public int Id { get; set; }
 
         public string Title { get; set; }
