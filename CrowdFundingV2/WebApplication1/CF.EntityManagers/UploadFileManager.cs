@@ -23,7 +23,7 @@ namespace CF.EntityManagers
                     file.Content = reader.ReadBytes(upload.ContentLength);
                 }
 
-                string pathForSaving = HostingEnvironment.MapPath("~/Images");
+                string pathForSaving = HostingEnvironment.MapPath("~/Content/mytemplate/images");
                 if (this.CreateFolderIfNeeded(pathForSaving))
                 {
                     string uploadFilePathAndName = Path.Combine(pathForSaving, file.FileName);
