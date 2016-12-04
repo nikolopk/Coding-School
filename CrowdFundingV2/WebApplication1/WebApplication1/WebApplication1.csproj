@@ -243,6 +243,7 @@
     <Compile Include="Models\ProjectCommentViewModel.cs" />
     <Compile Include="Models\ProjectEditViewModel.cs" />
     <Compile Include="Models\ProjectDetailsViewModel.cs" />
+    <Compile Include="Models\ProjectSearchViewModel.cs" />
     <Compile Include="Models\ProjectUpdateViewModel.cs" />
     <Compile Include="Models\ProjectViewModel.cs" />
     <Compile Include="Models\TransactionViewModel.cs" />
@@ -503,6 +504,7 @@
     <Content Include="Views\Project\VivaPayment.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Project\_BackerPartial.cshtml" />
+    <Content Include="Views\Project\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
