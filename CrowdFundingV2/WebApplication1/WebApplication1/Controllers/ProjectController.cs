@@ -138,8 +138,8 @@ namespace WebApplication1.Controllers
                     DueDate = model.Project.DueDate,
                     TargetAmount = model.Project.TargetAmount,
                     Title = model.Project.Title,
-                    PhotoUrl = imageFile.FileName,
-                    Image = imageFile.Content
+                    PhotoUrl = imageFile != null ? imageFile.FileName : null,
+                    Image = imageFile != null ? imageFile.Content : null
                 };
                 dbProject = db.Projects.Add(dbProject);
                 db.SaveChanges();
@@ -253,6 +253,17 @@ namespace WebApplication1.Controllers
                 NoProjects         = db.Projects.Count(x => x.CreatorId == myUser.Id),
                 MyProjects         = CreatorProjects(myUser.Id),
                 Project            = project,
+                CurrentBackerCount = project.BackerProjects.Count(x => x.ProjectId == project.Id),
+                CurrentFund = project.CurrentFundAmount,
+                Title = project.Title,
+                ProjectImageUrl = project.PhotoUrl,
+                CreatorNoProjects = myUser.Projects.Count,
+                CreatorImageUrl = myUser.PhotoUrl,
+                Ratio = (int)Math.Floor((project.Ratio * 100)),
+                DueDate = project.DueDate,
+                DateInserted = project.DateInserted,
+                TargetAmount = project.TargetAmount,
+                Description = project.Description,
                 Comments           = db.UserProjectComments.Where(x => x.ProjectId == project.Id).Select(y => new ProjectCommentViewModel()
                 {
                     CommentorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
