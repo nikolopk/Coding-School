@@ -503,6 +503,10 @@
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Project\_BackerPartial.cshtml" />
     <Content Include="Views\Project\Search.cshtml" />
+    <Content Include="Views\Categories\Popular.cshtml" />
+    <Content Include="Views\Categories\StaffPicks.cshtml" />
+    <Content Include="Views\Categories\SmallProject.cshtml" />
+    <Content Include="Views\Categories\MostFunded.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

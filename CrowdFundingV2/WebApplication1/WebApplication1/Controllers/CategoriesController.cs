@@ -141,5 +141,124 @@ namespace WebApplication1.Controllers {
 
             return View("Index",viewModel);
         }
+
+        public ActionResult Popular()
+        {
+
+            var popularProject = _projectManager.GetAll()
+               .Where(p => p.DueDate >= DateTime.Now)
+               .Select(y => new BasicProjectInfoViewModel()
+               {
+                   Id = y.Id,
+                   Title = y.Title,
+                   CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
+                   Description = y.Description,
+                   CurrentFund = y.CurrentFundAmount,
+                   Ratio = (int)(((double)y.CurrentFundAmount / y.TargetAmount) * 100),
+                   CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
+                   DueDate = y.DueDate,
+                   NoComments = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
+               })
+               .OrderByDescending(x => x.CurrentBackerCount).Take(6);
+
+           
+
+            var viewModel = new CategoryDetailsViewModel()
+            {
+                DisplayProjects = popularProject.ToList()
+            };
+
+            return View("Popular", viewModel);
+        }
+
+
+        public ActionResult StaffPicks()
+        {
+
+            var staffProject = _projectManager.GetAll()
+              .Where(p => p.DueDate >= DateTime.Now)
+              .OrderByDescending(x => x.DateInserted)
+              .Select(y =>
+              new BasicProjectInfoViewModel()
+              {
+                  Id = y.Id,
+                  Title = y.Title,
+                  CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
+                  Description = y.Description,
+                  CurrentFund = y.CurrentFundAmount,
+                  Ratio = (int)(((double)y.CurrentFundAmount / y.TargetAmount) * 100),
+                  CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
+                  DueDate = y.DueDate,
+                  NoComments = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
+              }).Take(6);
+
+
+
+            var viewModel = new CategoryDetailsViewModel()
+            {
+                DisplayProjects = staffProject.ToList()
+            };
+
+            return View("StaffPicks", viewModel);
+        }
+
+        public ActionResult SmallProjects()
+        {
+
+            var smallProject = _projectManager.GetAll()
+               .Where(p => p.DueDate >= DateTime.Now)
+               .Select(y => new BasicProjectInfoViewModel()
+               {
+                   Id = y.Id,
+                   Title = y.Title,
+                   CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
+                   Description = y.Description,
+                   CurrentFund = y.CurrentFundAmount,
+                   Ratio = (int)(((double)y.CurrentFundAmount / y.TargetAmount) * 100),
+                   CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
+                   DueDate = y.DueDate,
+                   NoComments = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
+               })
+               .OrderBy(x => x.CurrentFund).Take(6);
+
+
+
+            var viewModel = new CategoryDetailsViewModel()
+            {
+                DisplayProjects = smallProject.ToList()
+            };
+
+            return View("SmallProject", viewModel);
+        }
+
+        public ActionResult MostFunded()
+        {
+
+            var mostProject = _projectManager.GetAll()
+               .Where(p => p.DueDate >= DateTime.Now)
+               .Select(y => new BasicProjectInfoViewModel()
+               {
+                   Id = y.Id,
+                   Title = y.Title,
+                   CreatorFullName = y.User.AspNetUser.FirstName + " " + y.User.AspNetUser.LastName,
+                   Description = y.Description,
+                   CurrentFund = y.CurrentFundAmount,
+                   Ratio = (int)(((double)y.CurrentFundAmount / y.TargetAmount) * 100),
+                   CurrentBackerCount = y.BackerProjects.Count(x => x.ProjectId == y.Id),
+                   DueDate = y.DueDate,
+                   NoComments = y.UserProjectComments.Count(x => x.ProjectId == y.Id),
+               })
+               .OrderByDescending(x => x.CurrentFund).Take(6);
+
+
+
+            var viewModel = new CategoryDetailsViewModel()
+            {
+                DisplayProjects = mostProject.ToList()
+            };
+
+            return View("MostFunded", viewModel);
+        }
+
     }
 }
