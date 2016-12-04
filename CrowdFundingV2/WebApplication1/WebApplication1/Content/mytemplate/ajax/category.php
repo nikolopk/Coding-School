@@ -5,7 +5,7 @@
 		<div class="top-project-info">
 			<div class="content-info-short clearfix">
 				<a href="#" class="thumb-img">
-					<img src="images/ex/th-292x204-1.jpg" alt="$TITLE">
+					<img src="images/ex/th-292x204-1.jpg" alt="">
 				</a>
 				<div class="wrap-short-detail">
 					<h3 class="rs acticle-title"><a class="be-fc-orange" href="#">Project title</a></h3>
@@ -49,7 +49,7 @@
 		<div class="top-project-info">
 			<div class="content-info-short clearfix">
 				<a href="#" class="thumb-img">
-					<img src="images/ex/th-192x135-1.jpg" alt="$TITLE">
+					<img src="images/ex/th-192x135-1.jpg" alt="">
 				</a>
 				<div class="wrap-short-detail">
 					<h3 class="rs acticle-title"><a class="be-fc-orange" href="#">Project title</a></h3>
@@ -93,7 +93,7 @@
 		<div class="top-project-info">
 			<div class="content-info-short clearfix">
 				<a href="#" class="thumb-img">
-					<img src="images/ex/th-192x135-2.jpg" alt="$TITLE">
+					<img src="images/ex/th-192x135-2.jpg" alt="">
 				</a>
 				<div class="wrap-short-detail">
 					<h3 class="rs acticle-title"><a class="be-fc-orange" href="#">Project title</a></h3>

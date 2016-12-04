@@ -68,7 +68,8 @@ namespace WebApplication1.Controllers {
                     MinRequiredAmount = viewModel.MinAmount,
                     MaxRequiredAmount = viewModel.MaxAmount,
                     DateInserted      = DateTime.Now,
-                    IsAvailable       = true
+                    IsAvailable       = true,
+                    
                 };
                 db.Rewards.Add(reward);
                 await db.SaveChangesAsync();

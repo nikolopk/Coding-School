@@ -1,12 +1,8 @@
 ﻿@model WebApplication1.Models.ProjectDetailsViewModel
 @using System.Globalization;
-<script type="text/javascript">
-    function getAmount() {
-        var amount = document.getElementById('backAmount').value;
-    }
-</script>
+
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Project Details";
     Layout = "~/Views/Shared/_myTemplate.cshtml";
 
 }
@@ -23,7 +19,9 @@
                             <div class="thumb-img">
                                 <div class="rslides_container">
                                     <ul class="rslides" id="slider1">
-                                        <li><img src="@Url.Content("~/images/")@Model.ProjectImageUrl" alt=""></li>
+                                        <li>
+                                            <img src="/images/@Model.ProjectImageUrl" alt="">
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -35,7 +33,7 @@
                         </div>
                         <div class="group-fee clearfix">
                             <div class="fee-item">
-                                <p class="rs lbl">Buckers</p>
+                                <p class="rs lbl">Backers</p>
                                 <span class="val">@Model.CurrentBackerCount</span>
                             </div>
                             <div class="sep"></div>
@@ -72,7 +70,7 @@
                                         <img class="img-desc" src="@Url.Content("~/images/")@Model.ProjectImageUrl" alt="$DESCRIPTION" />
                                         <span class="img-label">Me and project friends on meeting</span>
                                     </p>
-                                    <p>Nam sit amet est sapien, a faucibus purus. Sed commodo facilisis tempus. Pellentesque placerat elementum adipiscing. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
+                                    
                                     <div class="social-sharing">
                                         <!-- AddThis Button BEGIN -->
                                         <div class="addthis_toolbox addthis_default_style">

@@ -1,6 +1,7 @@
 ﻿@using WebApplication1.Models
 @using Microsoft.AspNet.Identity
 
+
 <!DOCTYPE html>
 
 <html>
@@ -52,6 +53,25 @@
     <!--[if lt IE 9]>
     <script type="text/javascript" src="js/html5.js"></script>
     <![endif]-->
+
+    <script>
+        function takeSearch() {
+            var query = document.getElementById("sys_txt_keyword").value;
+            //var url = '@Url.Action("Search", "Project")?searchTitle=' + query;
+            window.location.href = '/project/search?searchTitle=' + query;
+            //document.getElementById("sys_txt_keyword").innerHTML = url;
+            //alert(url);
+
+            //var xhttp = new XMLHttpRequest();
+            //xhttp.onreadystatechange = function () {
+            //    if (this.readyState == 4 && this.status == 200) {
+            //        document.getElementById("sys_txt_keyword").innerHTML = this.responseText;
+            //    }
+            //};
+            //xhttp.open("GET", "ajax_info.txt", true);
+            //xhttp.send();
+        }
+    </script>
 </head>
 <body>
     <header id="header">
@@ -115,14 +135,14 @@
                         }
                     </div>
                     <div class="form-search">
-                        <form action="@Url.Action("Search", "Project")">
+                        <form>
                             <label for="sys_txt_keyword">
                                 <input id="sys_txt_keyword" class="txt-keyword" type="text" placeholder="Search projects" />
                             </label>
-                            <button class="btn-search" type="reset"><i class="icon iMagnifier"></i></button>
+                            <button class="btn-search" type="reset" onclick="takeSearch()"><i class="icon iMagnifier"></i></button>
                             <button class="btn-reset-keyword" type="reset"><i class="icon iXHover"></i></button>
                         </form>
-                    </div>
+</div>
                 </div>
                 <div class="header-left">
                     <h1 id="logo">
@@ -201,11 +221,11 @@
                             <li><a class="be-fc-orange" href="#">Stats</a></li>
                         </ul>
                         <ul class="rs">
-                            <li><a class="be-fc-orange" href="#">Staff Picks</a></li>
-                            <li><a class="be-fc-orange" href="#">Popular</a></li>
+                            <li><a class="be-fc-orange" href="@Url.Action("StaffPicks", "Categories")">Staff Picks</a></li>
+                            <li><a class="be-fc-orange" href="@Url.Action("Popular", "Categories")">Popular</a></li>
                             <li><a class="be-fc-orange" href="#">Recent</a></li>
-                            <li><a class="be-fc-orange" href="#">Small Projects</a></li>
-                            <li><a class="be-fc-orange" href="#">Most Funded</a></li>
+                            <li><a class="be-fc-orange" href="@Url.Action("SmallProjects", "Categories")">Small Projects</a></li>
+                            <li><a class="be-fc-orange" href="@Url.Action("MostFunded", "Categories")">Most Funded</a></li>
                         </ul>
                         <div class="clear"></div>
                     </div>
@@ -219,9 +239,9 @@
                         <img src="@Url.Content("~/Content/myTemplate/")images/myLogo-2.png" alt="4Viva" />
                     </a>
                     <p class="rs term-privacy">
-                        <a class="fw-b be-fc-orange" href="single.html">Terms & Conditions</a>
+                        <a class="fw-b be-fc-orange" href="#">Terms & Conditions</a>
                         <span class="sep">/</span>
-                        <a class="fw-b be-fc-orange" href="single.html">Privacy Policy</a>
+                        <a class="fw-b be-fc-orange" href="#">Privacy Policy</a>
                         <span class="sep">/</span>
                         <a class="fw-b be-fc-orange" href="@Url.Action("About", "Home")">FAQ</a>
                     </p>

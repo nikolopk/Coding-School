@@ -242,12 +242,12 @@
     <Compile Include="Models\ProjectCommentViewModel.cs" />
     <Compile Include="Models\ProjectEditViewModel.cs" />
     <Compile Include="Models\ProjectDetailsViewModel.cs" />
+    <Compile Include="Models\ProjectSearchViewModel.cs" />
     <Compile Include="Models\ProjectUpdateViewModel.cs" />
     <Compile Include="Models\ProjectViewModel.cs" />
     <Compile Include="Models\TransactionViewModel.cs" />
     <Compile Include="Models\RewardViewModel.cs" />
     <Compile Include="Models\UserDetailsViewModel.cs" />
-    <Compile Include="PaymentManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -502,6 +502,11 @@
     <Content Include="Views\Project\VivaPayment.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Project\_BackerPartial.cshtml" />
+    <Content Include="Views\Project\Search.cshtml" />
+    <Content Include="Views\Categories\Popular.cshtml" />
+    <Content Include="Views\Categories\StaffPicks.cshtml" />
+    <Content Include="Views\Categories\SmallProject.cshtml" />
+    <Content Include="Views\Categories\MostFunded.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

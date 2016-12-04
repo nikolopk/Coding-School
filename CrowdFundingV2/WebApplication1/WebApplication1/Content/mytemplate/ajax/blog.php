@@ -1,7 +1,7 @@
 <?php sleep(1);?>
 <div class="media other-post-item">
 	<a href="#" class="thumb-left">
-		<img src="images/ex/th-90x90-3.jpg" alt="$TITLE">
+		<img src="images/ex/th-90x90-3.jpg" alt="">
 	</a>
 	<div class="media-body">
 		<h4 class="rs title-other-post">
@@ -13,7 +13,7 @@
 </div><!--end: . other-post-item -->
 <div class="media other-post-item">
 	<a href="#" class="thumb-left">
-		<img src="images/ex/th-90x90-4.jpg" alt="$TITLE">
+		<img src="images/ex/th-90x90-4.jpg" alt="">
 	</a>
 	<div class="media-body">
 		<h4 class="rs title-other-post">
@@ -25,7 +25,7 @@
 </div><!--end: . other-post-item -->
 <div class="media other-post-item">
 	<a href="#" class="thumb-left">
-		<img src="images/ex/th-90x90-1.jpg" alt="$TITLE">
+		<img src="images/ex/th-90x90-1.jpg" alt="">
 	</a>
 	<div class="media-body">
 		<h4 class="rs title-other-post">
