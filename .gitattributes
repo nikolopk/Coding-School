@@ -61,3 +61,5 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+Coding-School/CrowdFundingV2/WebApplication1/WebApplication1/Scripts/* linguist-vendored
